@@ -60,7 +60,6 @@ namespace App_MetroCali
             gControl.Overlays.Add(markerOverlay);
         }
 
-        public void 
 
         public void separarListasDeParadas()
         {
