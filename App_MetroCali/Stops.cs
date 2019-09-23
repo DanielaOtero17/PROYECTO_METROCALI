@@ -14,10 +14,10 @@ namespace App_MetroCali
         public String LONGNAME { get; set; }
         public String GPS_X { get; set; }
         public String GPS_y { get; set; }
-        public double DECIMALLONGITUD { get; set; }
-        public double DECIMALLATITUD { get; set; }
+        public String DECIMALLONGITUD { get; set; }
+        public String DECIMALLATITUD { get; set; }
 
-        public Stops(string sTOPID, string pLANVERSIONID, string sHORTNAME, string lONGNAME, string gPS_X, string gPS_y, double dECIMALLONGITUD, double dECIMALLATITUD)
+        public Stops(string sTOPID, string pLANVERSIONID, string sHORTNAME, string lONGNAME, string gPS_X, string gPS_y, String dECIMALLONGITUD, String dECIMALLATITUD)
         {
             STOPID = sTOPID;
             PLANVERSIONID = pLANVERSIONID;
