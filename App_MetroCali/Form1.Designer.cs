@@ -41,7 +41,7 @@
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(253, 115);
+            this.gControl.Location = new System.Drawing.Point(72, 97);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
             this.gControl.MinZoom = 2;
