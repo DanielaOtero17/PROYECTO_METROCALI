@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App_MetroCali
 {
-    class Stops
+    public class Stops
     {
         private String STOPID { get; set; }
         private String PLANVERSIONID { get; set; }
