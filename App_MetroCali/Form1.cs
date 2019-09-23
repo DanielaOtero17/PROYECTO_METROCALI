@@ -19,6 +19,10 @@ namespace App_MetroCali
     public partial class Form1 : Form
     {
 
+        GMarkerGoogle marker;
+        GMapOverlay markerOverlay;
+
+
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
         List<Stops> ParadasCalle = new List<Stops>();
@@ -48,13 +52,15 @@ namespace App_MetroCali
 
             markerOverlay = new GMapOverlay("Marcador");
             Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GmarkerGoogle(new pointLatLng(), markerMio);
+            marker = new GMarkerGoogle(new PointLatLng(3.4372201,-76.5224991), markerMio);
             markerOverlay.Markers.Add(marker);
 
-            marker.TooltipMode = MarkerTooltipMode.Always;
-            marker.ToolTiptext = String.Format("Este es el mio");
+            marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipText = String.Format("Este es el mio");
             gControl.Overlays.Add(markerOverlay);
         }
+
+        public void 
 
         public void separarListasDeParadas()
         {
