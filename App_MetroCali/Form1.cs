@@ -23,7 +23,7 @@ namespace App_MetroCali
         GMarkerGoogle marker;
         GMapOverlay markerOverlay;
 
-
+        int i = 0;
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
         List<Stops> ParadasCalle = new List<Stops>();
@@ -86,8 +86,6 @@ namespace App_MetroCali
             }
              lector.Close();
 
-
-
           }
 
         public void separarListasDeParadas() {
@@ -109,10 +107,7 @@ namespace App_MetroCali
          return Paradas;
         }
 
-        private void GControl_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void GControl_Load(object sender, EventArgs e){}
 
         private void Bguardar_Click(object sender, EventArgs e)
         {
@@ -126,7 +121,7 @@ namespace App_MetroCali
                 case "":
 
                     MessageBox.Show("Por favor seleccione una opción.");
-                 break;
+                    break;
 
                 case "ESTACIONES":
                     mostrarMarcadores(ParadasEstaciones);
@@ -139,9 +134,7 @@ namespace App_MetroCali
                 case "PATIOS":
                     MessageBox.Show("Esta área se encuentra temporalmente fuera de servicio, por favor seleccione otra opción.");
                     break;
-            }
-
-            
+            }  
         }
 
         public void mostrarMarcadores(List<Stops> a)
@@ -160,10 +153,6 @@ namespace App_MetroCali
 
         }
 
-        private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-          
-        }
+        private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
     }
 }
