@@ -76,6 +76,7 @@ namespace App_MetroCali
             }
         }
 
+
         public List<Stops> retornarLista() {
          return Paradas;
         }
@@ -83,6 +84,25 @@ namespace App_MetroCali
         private void GControl_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Bguardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void filter()
+        {
+            switch{
+            case ""
+
+
+            }
+        }
+        private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+          
         }
     }
 }
