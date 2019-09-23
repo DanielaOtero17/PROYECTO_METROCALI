@@ -14,6 +14,7 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.IO;
+using System.Globalization;
 
 namespace App_MetroCali
 {
@@ -76,8 +77,11 @@ namespace App_MetroCali
                 String LONGNAME = arregloString[3];
                 String GPS_X = arregloString[4];
                 String GPS_y = arregloString[5];
-                String DECIMALLONGITUD = arregloString[6];
-                String DECIMALLATITUD = arregloString[7];
+
+                double DECIMALLONGITUD = double.Parse(arregloString[6],CultureInfo.InvariantCulture);
+                double DECIMALLATITUD = double.Parse(arregloString[7], CultureInfo.InvariantCulture);
+
+
 
                 Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_y, DECIMALLONGITUD, DECIMALLATITUD);
                 Paradas.Add(parada);
