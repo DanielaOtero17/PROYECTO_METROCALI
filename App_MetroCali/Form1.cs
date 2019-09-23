@@ -13,6 +13,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using System.IO;
 
 namespace App_MetroCali
 {
@@ -60,7 +61,26 @@ namespace App_MetroCali
             gControl.Overlays.Add(markerOverlay);
         }
 
-        public void 
+           public void lecturaParadas(){
+            StreamReader lector = new StreamReader(@"STOPS.txt");
+            String line = lector.ReadLine();
+
+            while(line != null){
+                String[] arregloString = line.Split(',');
+
+                String STOPID = arregloString[0];
+                String PLANVERSIONID = arregloString[1];
+                String SHORTNAME = arregloString[2];
+                String LONGNAME = arregloString[3];
+                String GPS_X = arregloString[4];
+                String GPS_Y = arregloString[5];
+                String longi = arregloString[6];
+                String lat = arregloString[7];
+
+                Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_Y, longi, lat);
+
+            }
+           }
 
         public void separarListasDeParadas()
         {
