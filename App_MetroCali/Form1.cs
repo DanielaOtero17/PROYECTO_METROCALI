@@ -13,6 +13,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using System.IO;
 
 namespace App_MetroCali
 {
@@ -60,6 +61,7 @@ namespace App_MetroCali
             gControl.Overlays.Add(markerOverlay);
         }
 
+        public void 
 
         public void separarListasDeParadas()
         {
