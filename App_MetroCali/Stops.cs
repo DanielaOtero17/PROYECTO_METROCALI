@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace App_MetroCali
 {
-    class Stops
+    public class Stops
     {
-        private String STOPID { get; set; }
-        private String PLANVERSIONID { get; set; }
-        private String SHORTNAME { get; set; }
-        private String LONGNAME { get; set; }
-        private String GPS_X { get; set; }
-        private String GPS_y { get; set; }
-        private double DECIMALLONGITUD { get; set; }
-        private double DECIMALLATITUD { get; set; }
+        public String STOPID { get; set; }
+        public String PLANVERSIONID { get; set; }
+        public String SHORTNAME { get; set; }
+        public String LONGNAME { get; set; }
+        public String GPS_X { get; set; }
+        public String GPS_y { get; set; }
+        public double DECIMALLONGITUD { get; set; }
+        public double DECIMALLATITUD { get; set; }
 
         public Stops(string sTOPID, string pLANVERSIONID, string sHORTNAME, string lONGNAME, string gPS_X, string gPS_y, double dECIMALLONGITUD, double dECIMALLATITUD)
         {
