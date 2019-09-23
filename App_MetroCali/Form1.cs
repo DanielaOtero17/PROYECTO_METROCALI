@@ -65,7 +65,14 @@ namespace App_MetroCali
         {
             for(int i = 0; i< Paradas.Count; i++)
             {
-
+                if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6"))
+                {
+                    ParadasEstaciones.Add(Paradas[i]);
+                }
+                else if(retornarLista()[i].STOPID.Substring(0,1).Equals("5"))
+                {
+                    ParadasCalle.Add(Paradas[i]);
+                }
             }
         }
 
