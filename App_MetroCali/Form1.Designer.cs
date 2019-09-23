@@ -41,7 +41,8 @@
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(72, 97);
+            this.gControl.Location = new System.Drawing.Point(54, 79);
+            this.gControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
             this.gControl.MinZoom = 2;
@@ -55,7 +56,7 @@
             this.gControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gControl.ShowTileGridLines = false;
-            this.gControl.Size = new System.Drawing.Size(819, 425);
+            this.gControl.Size = new System.Drawing.Size(614, 345);
             this.gControl.TabIndex = 0;
             this.gControl.Zoom = 0D;
             this.gControl.Load += new System.EventHandler(this.GControl_Load);
@@ -63,28 +64,33 @@
             // cb_elegir
             // 
             this.cb_elegir.FormattingEnabled = true;
-            this.cb_elegir.Location = new System.Drawing.Point(72, 32);
+            this.cb_elegir.Location = new System.Drawing.Point(54, 26);
+            this.cb_elegir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_elegir.Name = "cb_elegir";
-            this.cb_elegir.Size = new System.Drawing.Size(176, 24);
+            this.cb_elegir.Size = new System.Drawing.Size(133, 21);
             this.cb_elegir.TabIndex = 1;
+            this.cb_elegir.SelectedIndexChanged += new System.EventHandler(this.Cb_elegir_SelectedIndexChanged);
             // 
             // Bguardar
             // 
-            this.Bguardar.Location = new System.Drawing.Point(286, 32);
+            this.Bguardar.Location = new System.Drawing.Point(214, 26);
+            this.Bguardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(75, 23);
+            this.Bguardar.Size = new System.Drawing.Size(56, 19);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar";
             this.Bguardar.UseVisualStyleBackColor = true;
+            this.Bguardar.Click += new System.EventHandler(this.Bguardar_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 876);
+            this.ClientSize = new System.Drawing.Size(1011, 712);
             this.Controls.Add(this.Bguardar);
             this.Controls.Add(this.cb_elegir);
             this.Controls.Add(this.gControl);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
