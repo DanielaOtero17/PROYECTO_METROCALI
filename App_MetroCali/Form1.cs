@@ -93,11 +93,14 @@ namespace App_MetroCali
 
         private void filter()
         {
-            switch{
-            case ""
+            switch
+            case "" {
+
+                    }
+                  
 
 
-            }
+            
         }
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e)
         {
