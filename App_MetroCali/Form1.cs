@@ -16,10 +16,8 @@ using GMap.NET.WindowsForms.Markers;
 using System.IO;
 using System.Globalization;
 
-namespace App_MetroCali
-{
-    public partial class Form1 : Form
-    {
+namespace App_MetroCali{
+    public partial class Form1 : Form{
 
         GMarkerGoogle marker;
         GMapOverlay markerOverlay;
@@ -31,8 +29,7 @@ namespace App_MetroCali
         double latitudCali = 3.42158;
         double longitudCali = -76.5205;
 
-        public Form1()
-        {
+        public Form1(){
             InitializeComponent();
         }
 
@@ -40,7 +37,7 @@ namespace App_MetroCali
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
             gControl.MapProvider = GMapProviders.GoogleMap;
-            gControl.Position = new GMap.NET.PointLatLng(latitudCali, longitudCali);
+            gControl.Position = new PointLatLng(latitudCali, longitudCali);
             gControl.MinZoom = 0;
             gControl.MaxZoom = 24;
             gControl.Zoom = 18;
@@ -50,7 +47,7 @@ namespace App_MetroCali
            cb_elegir.Items.Add("PARADAS EN LAS CALLES");
            cb_elegir.Items.Add("PATIOS");
 
-            //lecturaParadas();
+            lecturaParadas();
 
             markerOverlay = new GMapOverlay("Marcador");
             Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
@@ -113,13 +110,11 @@ namespace App_MetroCali
 
         private void GControl_Load(object sender, EventArgs e){}
 
-        private void Bguardar_Click(object sender, EventArgs e)
-        {
+        private void Bguardar_Click(object sender, EventArgs e){
             filter();
         }
 
-        private void filter()
-        {
+        private void filter(){
             switch (cb_elegir.Text)
             {
                 case "":
@@ -141,10 +136,8 @@ namespace App_MetroCali
             }  
         }
 
-        public void mostrarMarcadores(List<Stops> a)
-        {
-            for(int i =0; i<a.Count(); i++)
-            {
+        public void mostrarMarcadores(List<Stops> a){
+            for(int i =0; i<a.Count(); i++){
                 marker = new GMarkerGoogle(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD),GMarkerGoogleType.red);
                 markerOverlay.Markers.Add(marker);
 
