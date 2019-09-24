@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GMap.NET;
-using GMap.NET.MapProviders;
-using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.IO;
 using System.Globalization;
@@ -21,43 +19,20 @@ namespace App_MetroCali{
 
         GMarkerGoogle marker;
         GMapOverlay markerOverlay;
+        double latitudCali = 3.42158;
+        double longitudCali = -76.5205;
 
         int i = 0;
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
         List<Stops> ParadasCalle = new List<Stops>();
-        double latitudCali = 3.42158;
-        double longitudCali = -76.5205;
+      
 
         public Form1(){
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e){
-            gControl.DragButton = MouseButtons.Left;
-            gControl.CanDragMap = true;
-            gControl.MapProvider = GMapProviders.GoogleMap;
-            gControl.Position = new PointLatLng(latitudCali, longitudCali);
-            gControl.MinZoom = 0;
-            gControl.MaxZoom = 24;
-            gControl.Zoom = 18;
-            gControl.AutoScroll = true;
-
-           cb_elegir.Items.Add("ESTACIONES");
-           cb_elegir.Items.Add("PARADAS EN LAS CALLES");
-           cb_elegir.Items.Add("PATIOS");
-
-            lecturaParadas();
-
-            markerOverlay = new GMapOverlay("Marcador");
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(3.4372201,-76.5224991), markerMio);
-            markerOverlay.Markers.Add(marker);
-
-            marker.ToolTipMode = MarkerTooltipMode.Always;
-            marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlay);
-        }
+        private void Form1_Load(object sender, EventArgs e){}
 
          public void lecturaParadas(){
 
@@ -115,10 +90,8 @@ namespace App_MetroCali{
         }
 
         private void filter(){
-            switch (cb_elegir.Text)
-            {
+            switch (cb_elegir.Text){
                 case "":
-
                     MessageBox.Show("Por favor seleccione una opción.");
                     break;
 
@@ -151,5 +124,33 @@ namespace App_MetroCali{
         }
 
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
+
+        private void GControl_Load_1(object sender, EventArgs e)
+        {
+            gControl.DragButton = MouseButtons.Left;
+            gControl.CanDragMap = true;
+            gControl.MapProvider = GMapProviders.GoogleMap;
+            gControl.Position = new PointLatLng(latitudCali, longitudCali);
+            gControl.MinZoom = 0;
+            gControl.MaxZoom = 24;
+            gControl.Zoom = 18;
+            gControl.AutoScroll = true;
+
+            cb_elegir.Items.Add("ESTACIONES");
+            cb_elegir.Items.Add("PARADAS EN LAS CALLES");
+            cb_elegir.Items.Add("PATIOS");
+
+            lecturaParadas();
+
+            markerOverlay = new GMapOverlay("Marcador");
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+            marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
+            markerOverlay.Markers.Add(marker);
+
+            marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipText = String.Format("Este es el mio");
+            gControl.Overlays.Add(markerOverlay);
+
+        }
     }
 }
