@@ -32,33 +32,58 @@ namespace App_MetroCali{
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e){}
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            gControl.DragButton = MouseButtons.Left;
+            gControl.CanDragMap = true;
+            gControl.MapProvider = GMapProviders.GoogleMap;
+            gControl.Position = new PointLatLng(latitudCali, longitudCali);
+            gControl.MinZoom = 0;
+            gControl.MaxZoom = 24;
+            gControl.Zoom = 18;
+            gControl.AutoScroll = true;
 
-         public void lecturaParadas(){
+            cb_elegir.Items.Add("ESTACIONES");
+            cb_elegir.Items.Add("PARADAS EN LAS CALLES");
+            cb_elegir.Items.Add("PATIOS");
+
+            lecturaParadas();
+
+            markerOverlay = new GMapOverlay("Marcador");
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+            marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
+            markerOverlay.Markers.Add(marker);
+
+            marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipText = String.Format("Este es el mio");
+            gControl.Overlays.Add(markerOverlay);
+        }
+
+        public void lecturaParadas(){
 
             StreamReader lector = new StreamReader(@"STOPS.txt");
             String line = lector.ReadLine();
+        
 
              while (line != null){
 
                 String[] arregloString = line.Split(',');
-
+              
                 String STOPID = arregloString[0];
                 String PLANVERSIONID = arregloString[1];
                 String SHORTNAME = arregloString[2];
                 String LONGNAME = arregloString[3];
                 String GPS_X = arregloString[4];
                 String GPS_y = arregloString[5];
-
                 double DECIMALLONGITUD = double.Parse(arregloString[6],CultureInfo.InvariantCulture);
                 double DECIMALLATITUD = double.Parse(arregloString[7], CultureInfo.InvariantCulture);
 
-
-
                 Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_y, DECIMALLONGITUD, DECIMALLATITUD);
                 Paradas.Add(parada);
-                line = lector.ReadLine();
+
                 i++;
+                line = lector.ReadLine();
+               
             }
              lector.Close();
 
@@ -127,30 +152,10 @@ namespace App_MetroCali{
 
         private void GControl_Load_1(object sender, EventArgs e)
         {
-            gControl.DragButton = MouseButtons.Left;
-            gControl.CanDragMap = true;
-            gControl.MapProvider = GMapProviders.GoogleMap;
-            gControl.Position = new PointLatLng(latitudCali, longitudCali);
-            gControl.MinZoom = 0;
-            gControl.MaxZoom = 24;
-            gControl.Zoom = 18;
-            gControl.AutoScroll = true;
-
-            cb_elegir.Items.Add("ESTACIONES");
-            cb_elegir.Items.Add("PARADAS EN LAS CALLES");
-            cb_elegir.Items.Add("PATIOS");
-
-            lecturaParadas();
-
-            markerOverlay = new GMapOverlay("Marcador");
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
-            markerOverlay.Markers.Add(marker);
-
-            marker.ToolTipMode = MarkerTooltipMode.Always;
-            marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlay);
+           
 
         }
+
+        
     }
 }
