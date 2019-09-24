@@ -36,7 +36,7 @@
             // cb_elegir
             // 
             this.cb_elegir.FormattingEnabled = true;
-            this.cb_elegir.Location = new System.Drawing.Point(62, 11);
+            this.cb_elegir.Location = new System.Drawing.Point(72, 17);
             this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_elegir.Name = "cb_elegir";
             this.cb_elegir.Size = new System.Drawing.Size(176, 24);
@@ -45,10 +45,10 @@
             // 
             // Bguardar
             // 
-            this.Bguardar.Location = new System.Drawing.Point(269, 12);
+            this.Bguardar.Location = new System.Drawing.Point(264, 11);
             this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(75, 23);
+            this.Bguardar.Size = new System.Drawing.Size(84, 35);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar";
             this.Bguardar.UseVisualStyleBackColor = true;
@@ -62,7 +62,7 @@
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(62, 70);
+            this.gControl.Location = new System.Drawing.Point(72, 51);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
             this.gControl.MinZoom = 2;

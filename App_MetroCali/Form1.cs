@@ -48,6 +48,7 @@ namespace App_MetroCali{
             cb_elegir.Items.Add("PATIOS");
 
             lecturaParadas();
+            separarListasDeParadas();
 
             markerOverlay = new GMapOverlay("Marcador");
             Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
@@ -90,14 +91,10 @@ namespace App_MetroCali{
           }
 
         public void separarListasDeParadas() {
-            for(int i = 0; i< Paradas.Count; i++)
-            {
-                if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6"))
-                {
+            for(int i = 0; i< Paradas.Count; i++){
+                if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6")){
                     ParadasEstaciones.Add(Paradas[i]);
-                }
-                else if(retornarLista()[i].STOPID.Substring(0,1).Equals("5"))
-                {
+                }else if(retornarLista()[i].STOPID.Substring(0,1).Equals("5")){
                     ParadasCalle.Add(Paradas[i]);
                 }
             }
@@ -135,6 +132,7 @@ namespace App_MetroCali{
         }
 
         public void mostrarMarcadores(List<Stops> a){
+            MessageBox.Show("Preparando para mostrar marcadores");
             for(int i =0; i<a.Count(); i++){
                 marker = new GMarkerGoogle(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD),GMarkerGoogleType.red);
                 markerOverlay.Markers.Add(marker);
@@ -144,17 +142,11 @@ namespace App_MetroCali{
                 gControl.Overlays.Add(markerOverlay);
 
             }
-
-
         }
 
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
 
-        private void GControl_Load_1(object sender, EventArgs e)
-        {
-           
-
-        }
+        private void GControl_Load_1(object sender, EventArgs e){}
 
         
     }
