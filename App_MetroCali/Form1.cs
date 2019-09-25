@@ -46,8 +46,7 @@ namespace App_MetroCali{
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
             cb_elegir.Items.Add("PATIOS");
 
-            lecturaParadas();
-            separarListasDeParadas();
+       
 
             markerOverlay = new GMapOverlay("Marcador");
             Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
@@ -57,13 +56,14 @@ namespace App_MetroCali{
             marker.ToolTipMode = MarkerTooltipMode.Always;
             marker.ToolTipText = String.Format("Este es el mio");
             gControl.Overlays.Add(markerOverlay);
-        }
 
-        public void lecturaParadas(){
+            
+        }
+        
+            public void lecturaParadas(){
 
             StreamReader lector = new StreamReader(@"STOPS.txt");
             String line = lector.ReadLine();
-        
 
              while (line != null){
 
@@ -90,6 +90,7 @@ namespace App_MetroCali{
              Console.WriteLine("EL ARCHIVO FUE LEIDO");
           }
 
+
         public void separarListasDeParadas() {
             for(int i = 0; i< Paradas.Count; i++){
                 if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6")){
@@ -110,6 +111,8 @@ namespace App_MetroCali{
         private void GControl_Load(object sender, EventArgs e){}
 
         private void Bguardar_Click(object sender, EventArgs e){
+            lecturaParadas();
+            separarListasDeParadas();
             filter();
         }
 
