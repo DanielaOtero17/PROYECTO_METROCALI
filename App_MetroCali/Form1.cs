@@ -22,7 +22,6 @@ namespace App_MetroCali{
         double latitudCali = 3.42158;
         double longitudCali = -76.5205;
 
-        int i = 0;
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
         List<Stops> ParadasCalle = new List<Stops>();
@@ -46,16 +45,17 @@ namespace App_MetroCali{
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
             cb_elegir.Items.Add("PATIOS");
 
-       
+            lecturaParadas();
+            separarListasDeParadas();
 
             markerOverlay = new GMapOverlay("Marcador");
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
+         //   Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+           /* marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
             markerOverlay.Markers.Add(marker);
 
             marker.ToolTipMode = MarkerTooltipMode.Always;
             marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlay);
+            gControl.Overlays.Add(markerOverlay);*/
 
             
         }
@@ -64,8 +64,8 @@ namespace App_MetroCali{
 
             StreamReader lector = new StreamReader(@"STOPS.txt");
             String line = lector.ReadLine();
-
-             while (line != null){
+            int i = 0;
+            while (line != null){
 
                 String[] arregloString = line.Split(',');
               
@@ -78,16 +78,18 @@ namespace App_MetroCali{
                 double DECIMALLONGITUD = double.Parse(arregloString[6],CultureInfo.InvariantCulture);
                 double DECIMALLATITUD = double.Parse(arregloString[7], CultureInfo.InvariantCulture);
 
+               /* MessageBox.Show("STOPID" + STOPID + " PVID " + PLANVERSIONID + " SN " + SHORTNAME + " LN" + LONGNAME + " GPSX " + GPS_X + " GPSY " + GPS_y + " dl "+
+                    DECIMALLONGITUD + "dL" + DECIMALLATITUD);*/
                 Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_y, DECIMALLONGITUD, DECIMALLATITUD);
                 Paradas.Add(parada);
 
-                Console.WriteLine("PARADA : "+Paradas[i].LONGNAME);
+             
                 i++;
                 line = lector.ReadLine();
               
             }
              lector.Close();
-             Console.WriteLine("EL ARCHIVO FUE LEIDO");
+           
           }
 
 
@@ -101,6 +103,8 @@ namespace App_MetroCali{
                     // Console.WriteLine("CALLE : "+ParadasCalle[i].LONGNAME);
                 }
             }
+
+       
         }
 
 
@@ -111,8 +115,7 @@ namespace App_MetroCali{
         private void GControl_Load(object sender, EventArgs e){}
 
         private void Bguardar_Click(object sender, EventArgs e){
-            lecturaParadas();
-            separarListasDeParadas();
+            
             filter();
         }
 
@@ -137,20 +140,22 @@ namespace App_MetroCali{
         }
 
         public void mostrarMarcadores(List<Stops> a){
-            MessageBox.Show("Preparando para mostrar marcadores");
-            int  i = 0;
-            while(i<a.Count){
-              marker = new GMarkerGoogle(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD),GMarkerGoogleType.red);
-              markerOverlay.Markers.Add(marker);
 
-              marker.ToolTipMode = MarkerTooltipMode.Always;
-                marker.ToolTipText = String.Format("Parada:" + a[i].SHORTNAME);
-                gControl.Overlays.Add(markerOverlay);
-                Console.WriteLine(a[i].LONGNAME);
-                i++;
-              }                             
-   
-            }
+            MessageBox.Show("Preparando para mostrar marcadores");
+            int  S = 0;
+            
+                for(int i =0; i<a.Count(); i++) { 
+               marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD),GMarkerGoogleType.red);
+               markerOverlay.Markers.Add(marker);
+               marker.ToolTipMode = MarkerTooltipMode.Always;
+                 marker.ToolTipText = String.Format("Parada:" + a[S].SHORTNAME);
+                 
+                 Console.WriteLine(S);
+                 S++;
+               }
+            gControl.Overlays.Add(markerOverlay);
+            Console.WriteLine(a.Count());
+        }
         
     
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
