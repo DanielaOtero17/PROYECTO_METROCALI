@@ -32,8 +32,7 @@ namespace App_MetroCali{
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e){
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
             gControl.MapProvider = GMapProviders.GoogleMap;
@@ -133,21 +132,25 @@ namespace App_MetroCali{
 
         public void mostrarMarcadores(List<Stops> a){
             MessageBox.Show("Preparando para mostrar marcadores");
-            for(int i =0; i<a.Count(); i++){
-                marker = new GMarkerGoogle(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD),GMarkerGoogleType.red);
-                markerOverlay.Markers.Add(marker);
+            int  i = 0;
+            while(i<a.Count){
+              marker = new GMarkerGoogle(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD),GMarkerGoogleType.red);
+              markerOverlay.Markers.Add(marker);
 
-                marker.ToolTipMode = MarkerTooltipMode.Always;
+              marker.ToolTipMode = MarkerTooltipMode.Always;
                 marker.ToolTipText = String.Format("Parada:" + a[i].SHORTNAME);
                 gControl.Overlays.Add(markerOverlay);
-
+                Console.WriteLine(a[i].LONGNAME);
+                i++;
+              }                             
+   
             }
-        }
-
+        
+    
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
 
         private void GControl_Load_1(object sender, EventArgs e){}
-
+       
         
     }
 }
