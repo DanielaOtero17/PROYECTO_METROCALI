@@ -81,20 +81,23 @@ namespace App_MetroCali{
                 Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_y, DECIMALLONGITUD, DECIMALLATITUD);
                 Paradas.Add(parada);
 
+                Console.WriteLine("PARADA : "+Paradas[i].LONGNAME);
                 i++;
                 line = lector.ReadLine();
-               
+              
             }
              lector.Close();
-
+             Console.WriteLine("EL ARCHIVO FUE LEIDO");
           }
 
         public void separarListasDeParadas() {
             for(int i = 0; i< Paradas.Count; i++){
                 if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6")){
                     ParadasEstaciones.Add(Paradas[i]);
+                    //Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
                 }else if(retornarLista()[i].STOPID.Substring(0,1).Equals("5")){
                     ParadasCalle.Add(Paradas[i]);
+                    // Console.WriteLine("CALLE : "+ParadasCalle[i].LONGNAME);
                 }
             }
         }
