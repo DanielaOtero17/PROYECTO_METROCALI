@@ -164,4 +164,14 @@ namespace App_MetroCali{
        
         
     }
+
+    private void ButEliminar_Click(Object sender, EventArgs e)  {
+        removeMakers();
+    }
+
+    private void removeMakers() {
+      if(markerOverlay.Count > 0) {
+            marker.Refresh();
+        }
+    }
 }
