@@ -15,7 +15,7 @@ using System.IO;
 using System.Globalization;
 
 namespace App_MetroCali{
-    public partial class Form1 : Form{
+    public partial class Form1 : Form {
 
         GMarkerGoogle marker;
         GMapOverlay markerOverlay;
@@ -25,6 +25,7 @@ namespace App_MetroCali{
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
         List<Stops> ParadasCalle = new List<Stops>();
+        List<ZONA> Zonas = new List<ZONA>();
 
         MdiClient oMDI;
 
@@ -176,7 +177,7 @@ namespace App_MetroCali{
 
         private void Button1_Click(object sender, EventArgs e){
 
-             
+            leerZonasCiudad();
 
 
         }
@@ -188,20 +189,50 @@ namespace App_MetroCali{
             while(line!=null){
                 String[] arregloZonas = line.Split(',');
 
+                String nom = arregloZonas[0];
+                String lat = arregloZonas[1];
+                String longi = arregloZonas[2];
+
+                double latitud = double.Parse(arregloZonas[1], CultureInfo.InvariantCulture);
+                double longitud = double.Parse(arregloZonas[2], CultureInfo.InvariantCulture);
+
+                ZONA zone = new ZONA(nom,latitud,longitud);
+                Zonas.Add(zone);
+                i++;
+                line = lector.ReadLine();
+
             }
+            lector.Close();
+        }
+
+        public void mostrarMarcadoresZonas(){
+            int S = 0;
+            for (int i = 0; i < Zonas.Count(); i++){
+                marker = new GMarkerGoogle(new PointLatLng(Zonas[S].latitud, Zonas[S].longitud), GMarkerGoogleType.red);
+                markerOverlay.Markers.Add(marker);
+                marker.ToolTipMode = MarkerTooltipMode.Always;
+                Console.WriteLine(S);
+                S++;
+            }
+            gControl.Overlays.Add(markerOverlay);
         }
 
 
-        /*private void removeMakers() {
-            if (markerOverlay.Count > 0){
-                marker.
+        public void hacerPoligonoZonas(){
+
+        }
+
+
+            private void removeMakers() {
+            if (gControl.Overlays.Count > 0){
+                gControl.Overlays.Clear();
             }
 
         }
 
         private void BEliminar_Click(object sender, EventArgs e){
             removeMakers();
-        }*/
+        }
 
 
     }
