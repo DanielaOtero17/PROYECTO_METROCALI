@@ -35,10 +35,6 @@ namespace App_MetroCali{
 
         private void Form1_Load(object sender, EventArgs e){
             
-          
-          
-            
-            
 
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
@@ -156,10 +152,7 @@ namespace App_MetroCali{
                     break;
             }  
         }
-
-
-
-
+        
         public void mostrarMarcadores(List<Stops> a){
 
             MessageBox.Show("Preparando para mostrar marcadores");
@@ -196,14 +189,19 @@ namespace App_MetroCali{
             StreamReader lector = new StreamReader(@"ZONAS.txt");
             String line = lector.ReadLine();
             int i = 0;
+            Console.WriteLine(line);
             while (line != null)
             {
 
                 String[] arregloZonas = line.Split(',');
 
                 String nom = arregloZonas[0];
+
                 String lat = arregloZonas[1];
+                
                 String longi = arregloZonas[2];
+
+                 MessageBox.Show("iteración " + i +" nombre" + nom + "longitud" + longi);
 
                 double latitud = double.Parse(lat, CultureInfo.InvariantCulture);
                 double longitud = double.Parse(longi, CultureInfo.InvariantCulture);
@@ -249,8 +247,10 @@ namespace App_MetroCali{
 
 
             private void removeMakers() {
-            if (gControl.Overlays.Count > 0){
-                gControl.Overlays.Clear();
+                
+            for(int i =0; i< gControl.Overlays.Count ; i++){
+            GMapOverlay item =  gControl.Overlays[i];
+                gControl.Overlays.Remove(item);
             }
 
         }
