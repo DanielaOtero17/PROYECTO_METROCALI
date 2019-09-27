@@ -27,7 +27,7 @@ namespace App_MetroCali{
         List<Stops> ParadasCalle = new List<Stops>();
         List<ZONA> Zonas = new List<ZONA>();
 
-        MdiClient oMDI;
+       
 
         public Form1(){
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace App_MetroCali{
         private void Form1_Load(object sender, EventArgs e){
             
           
-            oMDI.BackColor = Color.Black;
+          
             
             
 
@@ -176,7 +176,6 @@ namespace App_MetroCali{
 
 
         private void Button1_Click(object sender, EventArgs e){
-
             leerZonasCiudad();
 
 
@@ -193,8 +192,8 @@ namespace App_MetroCali{
                 String lat = arregloZonas[1];
                 String longi = arregloZonas[2];
 
-                double latitud = double.Parse(arregloZonas[1], CultureInfo.InvariantCulture);
-                double longitud = double.Parse(arregloZonas[2], CultureInfo.InvariantCulture);
+                double latitud = double.Parse(lat, CultureInfo.InvariantCulture);
+                double longitud = double.Parse(longi, CultureInfo.InvariantCulture);
 
                 ZONA zone = new ZONA(nom,latitud,longitud);
                 Zonas.Add(zone);
@@ -219,6 +218,16 @@ namespace App_MetroCali{
 
 
         public void hacerPoligonoZonas(){
+            GMapOverlay poligono = new GMapOverlay("Poligono");
+            List<PointLatLng> puntos = new List<PointLatLng>();
+            for(int i = 0; i < Zonas.Count; i++){
+                puntos.Add(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud));
+            }
+            GMapPolygon poligonoPuntos = new GMapPolygon(puntos,"Poligono");
+            poligono.Polygons.Add(poligonoPuntos);
+            gControl.Overlays.Add(poligono);
+            gControl.Zoom = gControl.Zoom+1;
+            gControl.Zoom = gControl.Zoom-1;
 
         }
 
