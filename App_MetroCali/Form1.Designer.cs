@@ -36,6 +36,7 @@
             this.BEliminar = new System.Windows.Forms.Button();
             this.pbIMAGEN = new System.Windows.Forms.PictureBox();
             this.BmostrarZonas = new System.Windows.Forms.Button();
+            this.cbZonas = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +106,7 @@
             // 
             // BEliminar
             // 
-            this.BEliminar.Location = new System.Drawing.Point(1121, 420);
+            this.BEliminar.Location = new System.Drawing.Point(1121, 485);
             this.BEliminar.Name = "BEliminar";
             this.BEliminar.Size = new System.Drawing.Size(120, 37);
             this.BEliminar.TabIndex = 6;
@@ -122,7 +123,7 @@
             // 
             // BmostrarZonas
             // 
-            this.BmostrarZonas.Location = new System.Drawing.Point(1121, 480);
+            this.BmostrarZonas.Location = new System.Drawing.Point(1121, 417);
             this.BmostrarZonas.Name = "BmostrarZonas";
             this.BmostrarZonas.Size = new System.Drawing.Size(120, 40);
             this.BmostrarZonas.TabIndex = 8;
@@ -130,11 +131,20 @@
             this.BmostrarZonas.UseVisualStyleBackColor = true;
             this.BmostrarZonas.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // cbZonas
+            // 
+            this.cbZonas.FormattingEnabled = true;
+            this.cbZonas.Location = new System.Drawing.Point(917, 417);
+            this.cbZonas.Name = "cbZonas";
+            this.cbZonas.Size = new System.Drawing.Size(176, 24);
+            this.cbZonas.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 876);
+            this.Controls.Add(this.cbZonas);
             this.Controls.Add(this.BmostrarZonas);
             this.Controls.Add(this.pbIMAGEN);
             this.Controls.Add(this.BEliminar);
@@ -162,6 +172,7 @@
         private System.Windows.Forms.Button BEliminar;
         private System.Windows.Forms.PictureBox pbIMAGEN;
         private System.Windows.Forms.Button BmostrarZonas;
+        private System.Windows.Forms.ComboBox cbZonas;
     }
 }
 

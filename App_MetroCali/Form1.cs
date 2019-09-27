@@ -53,6 +53,15 @@ namespace App_MetroCali{
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
             cb_elegir.Items.Add("PATIOS");
 
+            cbZonas.Items.Add("0");
+            cbZonas.Items.Add("1");
+            cbZonas.Items.Add("2");
+            cbZonas.Items.Add("3");
+            cbZonas.Items.Add("4");
+            cbZonas.Items.Add("5");
+            cbZonas.Items.Add("6");
+            cbZonas.Items.Add("7");
+
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
            
 
@@ -89,8 +98,6 @@ namespace App_MetroCali{
                 double DECIMALLONGITUD = double.Parse(arregloString[6],CultureInfo.InvariantCulture);
                 double DECIMALLATITUD = double.Parse(arregloString[7], CultureInfo.InvariantCulture);
 
-               /* MessageBox.Show("STOPID" + STOPID + " PVID " + PLANVERSIONID + " SN " + SHORTNAME + " LN" + LONGNAME + " GPSX " + GPS_X + " GPSY " + GPS_y + " dl "+
-                    DECIMALLONGITUD + "dL" + DECIMALLATITUD);*/
                 Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_y, DECIMALLONGITUD, DECIMALLATITUD);
                 Paradas.Add(parada);
 
@@ -150,6 +157,9 @@ namespace App_MetroCali{
             }  
         }
 
+
+
+
         public void mostrarMarcadores(List<Stops> a){
 
             MessageBox.Show("Preparando para mostrar marcadores");
@@ -182,10 +192,13 @@ namespace App_MetroCali{
         }
 
         public void leerZonasCiudad(){
+
             StreamReader lector = new StreamReader(@"ZONAS.txt");
             String line = lector.ReadLine();
             int i = 0;
-            while(line!=null){
+            while (line != null)
+            {
+
                 String[] arregloZonas = line.Split(',');
 
                 String nom = arregloZonas[0];
@@ -195,13 +208,16 @@ namespace App_MetroCali{
                 double latitud = double.Parse(lat, CultureInfo.InvariantCulture);
                 double longitud = double.Parse(longi, CultureInfo.InvariantCulture);
 
-                ZONA zone = new ZONA(nom,latitud,longitud);
+                ZONA zone = new ZONA(nom, latitud, longitud);
                 Zonas.Add(zone);
+
+
                 i++;
                 line = lector.ReadLine();
 
             }
             lector.Close();
+
         }
 
         public void mostrarMarcadoresZonas(){
