@@ -25,13 +25,20 @@ namespace App_MetroCali{
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
         List<Stops> ParadasCalle = new List<Stops>();
-      
+
+        MdiClient oMDI;
 
         public Form1(){
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e){
+            
+          
+            oMDI.BackColor = Color.Black;
+            
+            
+
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
             gControl.MapProvider = GMapProviders.GoogleMap;
@@ -164,6 +171,26 @@ namespace App_MetroCali{
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
 
         private void GControl_Load_1(object sender, EventArgs e){}
+
+
+
+        private void Button1_Click(object sender, EventArgs e){
+
+             
+
+
+        }
+
+        public void leerZonasCiudad(){
+            StreamReader lector = new StreamReader(@"ZONAS.txt");
+            String line = lector.ReadLine();
+            int i = 0;
+            while(line!=null){
+                String[] arregloZonas = line.Split(',');
+
+            }
+        }
+
 
         /*private void removeMakers() {
             if (markerOverlay.Count > 0){

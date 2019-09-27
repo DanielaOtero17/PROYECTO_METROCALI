@@ -35,6 +35,7 @@
             this.LimagenLogo = new System.Windows.Forms.Label();
             this.BEliminar = new System.Windows.Forms.Button();
             this.pbIMAGEN = new System.Windows.Forms.PictureBox();
+            this.BmostrarZonas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +120,22 @@
             this.pbIMAGEN.TabIndex = 7;
             this.pbIMAGEN.TabStop = false;
             // 
+            // BmostrarZonas
+            // 
+            this.BmostrarZonas.Location = new System.Drawing.Point(1121, 480);
+            this.BmostrarZonas.Name = "BmostrarZonas";
+            this.BmostrarZonas.Size = new System.Drawing.Size(120, 40);
+            this.BmostrarZonas.TabIndex = 8;
+            this.BmostrarZonas.Text = "Mostrar zonas";
+            this.BmostrarZonas.UseVisualStyleBackColor = true;
+            this.BmostrarZonas.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 876);
+            this.Controls.Add(this.BmostrarZonas);
             this.Controls.Add(this.pbIMAGEN);
             this.Controls.Add(this.BEliminar);
             this.Controls.Add(this.LimagenLogo);
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Label LimagenLogo;
         private System.Windows.Forms.Button BEliminar;
         private System.Windows.Forms.PictureBox pbIMAGEN;
+        private System.Windows.Forms.Button BmostrarZonas;
     }
 }
 
