@@ -45,17 +45,20 @@ namespace App_MetroCali{
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
             cb_elegir.Items.Add("PATIOS");
 
+            pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
+           
+
             lecturaParadas();
             separarListasDeParadas();
 
             markerOverlay = new GMapOverlay("Marcador");
-         //   Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-           /* marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
-            markerOverlay.Markers.Add(marker);
+              Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+              marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
+              markerOverlay.Markers.Add(marker);
 
             marker.ToolTipMode = MarkerTooltipMode.Always;
             marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlay);*/
+            gControl.Overlays.Add(markerOverlay);
 
             
         }
@@ -161,17 +164,19 @@ namespace App_MetroCali{
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e){}
 
         private void GControl_Load_1(object sender, EventArgs e){}
-       
-        
-    }
 
-    private void ButEliminar_Click(Object sender, EventArgs e)  {
-        removeMakers();
-    }
+        /*private void removeMakers() {
+            if (markerOverlay.Count > 0){
+                marker.
+            }
 
-    private void removeMakers() {
-      if(markerOverlay.Count > 0) {
-            marker.Refresh();
         }
+
+        private void BEliminar_Click(object sender, EventArgs e){
+            removeMakers();
+        }*/
+
+
     }
+
 }

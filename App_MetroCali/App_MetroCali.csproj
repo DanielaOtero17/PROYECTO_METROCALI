@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MIO.cs" />
     <Compile Include="Stops.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

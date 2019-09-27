@@ -31,12 +31,17 @@
             this.cb_elegir = new System.Windows.Forms.ComboBox();
             this.Bguardar = new System.Windows.Forms.Button();
             this.gControl = new GMap.NET.WindowsForms.GMapControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LimagenLogo = new System.Windows.Forms.Label();
+            this.BEliminar = new System.Windows.Forms.Button();
+            this.pbIMAGEN = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             this.SuspendLayout();
             // 
             // cb_elegir
             // 
             this.cb_elegir.FormattingEnabled = true;
-            this.cb_elegir.Location = new System.Drawing.Point(72, 17);
+            this.cb_elegir.Location = new System.Drawing.Point(917, 357);
             this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_elegir.Name = "cb_elegir";
             this.cb_elegir.Size = new System.Drawing.Size(176, 24);
@@ -45,10 +50,10 @@
             // 
             // Bguardar
             // 
-            this.Bguardar.Location = new System.Drawing.Point(264, 11);
+            this.Bguardar.Location = new System.Drawing.Point(1121, 350);
             this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(84, 35);
+            this.Bguardar.Size = new System.Drawing.Size(115, 36);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar";
             this.Bguardar.UseVisualStyleBackColor = true;
@@ -62,7 +67,7 @@
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(72, 51);
+            this.gControl.Location = new System.Drawing.Point(37, 35);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
             this.gControl.MinZoom = 2;
@@ -76,16 +81,53 @@
             this.gControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gControl.ShowTileGridLines = false;
-            this.gControl.Size = new System.Drawing.Size(1182, 682);
+            this.gControl.Size = new System.Drawing.Size(854, 778);
             this.gControl.TabIndex = 3;
             this.gControl.Zoom = 0D;
             this.gControl.Load += new System.EventHandler(this.GControl_Load_1);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(964, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.TabIndex = 4;
+            // 
+            // LimagenLogo
+            // 
+            this.LimagenLogo.AutoSize = true;
+            this.LimagenLogo.Location = new System.Drawing.Point(961, 52);
+            this.LimagenLogo.Name = "LimagenLogo";
+            this.LimagenLogo.Size = new System.Drawing.Size(0, 17);
+            this.LimagenLogo.TabIndex = 5;
+            // 
+            // BEliminar
+            // 
+            this.BEliminar.Location = new System.Drawing.Point(1121, 420);
+            this.BEliminar.Name = "BEliminar";
+            this.BEliminar.Size = new System.Drawing.Size(120, 37);
+            this.BEliminar.TabIndex = 6;
+            this.BEliminar.Text = "Eliminar";
+            this.BEliminar.UseVisualStyleBackColor = true;
+            // 
+            // pbIMAGEN
+            // 
+            this.pbIMAGEN.Location = new System.Drawing.Point(917, 35);
+            this.pbIMAGEN.Name = "pbIMAGEN";
+            this.pbIMAGEN.Size = new System.Drawing.Size(351, 295);
+            this.pbIMAGEN.TabIndex = 7;
+            this.pbIMAGEN.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 876);
+            this.ClientSize = new System.Drawing.Size(1297, 876);
+            this.Controls.Add(this.pbIMAGEN);
+            this.Controls.Add(this.BEliminar);
+            this.Controls.Add(this.LimagenLogo);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.gControl);
             this.Controls.Add(this.Bguardar);
             this.Controls.Add(this.cb_elegir);
@@ -93,7 +135,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,6 +145,10 @@
         private System.Windows.Forms.ComboBox cb_elegir;
         private System.Windows.Forms.Button Bguardar;
         private GMap.NET.WindowsForms.GMapControl gControl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LimagenLogo;
+        private System.Windows.Forms.Button BEliminar;
+        private System.Windows.Forms.PictureBox pbIMAGEN;
     }
 }
 
