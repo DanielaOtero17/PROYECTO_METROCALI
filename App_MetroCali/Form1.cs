@@ -17,8 +17,9 @@ using System.Globalization;
 namespace App_MetroCali{
     public partial class Form1 : Form {
 
-        GMarkerGoogle marker;
-        GMapOverlay markerOverlay;
+        GMarkerGoogle marker, marker2;
+        GMapOverlay markerOverlay,markerOverlay2;
+        
         double latitudCali = 3.42158;
         double longitudCali = -76.5205;
 
@@ -44,7 +45,6 @@ namespace App_MetroCali{
             gControl.MaxZoom = 24;
             gControl.Zoom = 18;
             gControl.AutoScroll = true;
-
             cb_elegir.Items.Add("ESTACIONES");
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
             cb_elegir.Items.Add("PATIOS");
@@ -180,6 +180,7 @@ namespace App_MetroCali{
 
         private void Button1_Click(object sender, EventArgs e){
             leerZonasCiudad();
+            mostrarMarcadoresZonas();
 
 
         }
@@ -201,8 +202,6 @@ namespace App_MetroCali{
                 
                 String longi = arregloZonas[2];
 
-                 MessageBox.Show("iteración " + i +" nombre" + nom + "longitud" + longi);
-
                 double latitud = double.Parse(lat, CultureInfo.InvariantCulture);
                 double longitud = double.Parse(longi, CultureInfo.InvariantCulture);
 
@@ -219,13 +218,14 @@ namespace App_MetroCali{
         }
 
         public void mostrarMarcadoresZonas(){
-            int S = 0;
+             
+
             for (int i = 0; i < Zonas.Count(); i++){
-                marker = new GMarkerGoogle(new PointLatLng(Zonas[S].latitud, Zonas[S].longitud), GMarkerGoogleType.red);
+                marker = new GMarkerGoogle(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud), GMarkerGoogleType.green);
                 markerOverlay.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
-                Console.WriteLine(S);
-                S++;
+                Console.WriteLine(i);
+            
             }
             gControl.Overlays.Add(markerOverlay);
         }
@@ -246,14 +246,15 @@ namespace App_MetroCali{
         }
 
 
-            private void removeMakers() {
+           private void removeMakers() {
                 
-            for(int i =0; i< gControl.Overlays.Count ; i++){
-            GMapOverlay item =  gControl.Overlays[i];
-                gControl.Overlays.Remove(item);
+            if(gControl.Overlays.Count > 0){
+                 gControl.Overlays.Clear();
+                 gControl.Refresh();
+            
             }
-
-        }
+           
+            }
 
         private void BEliminar_Click(object sender, EventArgs e){
             removeMakers();
