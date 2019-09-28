@@ -17,8 +17,10 @@ using System.Globalization;
 namespace App_MetroCali{
     public partial class Form1 : Form {
 
-        GMarkerGoogle marker, marker2;
-        GMapOverlay markerOverlay,markerOverlay2;
+        GMarkerGoogle marker;
+        GMapOverlay markerOverlayParada;
+        GMapOverlay markerOverlayMIO;
+        GMapOverlay markerOverlayZonas;
         
         double latitudCali = 3.42158;
         double longitudCali = -76.5205;
@@ -28,6 +30,15 @@ namespace App_MetroCali{
         List<Stops> ParadasCalle = new List<Stops>();
         List<ZONA> Zonas = new List<ZONA>();
 
+             List<ZONA> zona0 = new List<ZONA>();
+             List<ZONA> zona1 = new List<ZONA>();
+             List<ZONA> zona2 = new List<ZONA>();
+             List<ZONA> zona3 = new List<ZONA>();
+             List<ZONA> zona4 = new List<ZONA>();
+             List<ZONA> zona5 = new List<ZONA>();
+             List<ZONA> zona6 = new List<ZONA>();
+             List<ZONA> zona7 = new List<ZONA>();
+
        
 
         public Form1(){
@@ -36,6 +47,7 @@ namespace App_MetroCali{
 
         private void Form1_Load(object sender, EventArgs e){
             
+        
 
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
@@ -64,15 +76,16 @@ namespace App_MetroCali{
             lecturaParadas();
             separarListasDeParadas();
 
-            markerOverlay = new GMapOverlay("Marcador");
+              /*markerOverlayMIO = new GMapOverlay("markadorMIO");
               Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
               marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
-              markerOverlay.Markers.Add(marker);
+              markerOverlayMIO.Markers.Add(marker);
 
             marker.ToolTipMode = MarkerTooltipMode.Always;
             marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlay);
+            gControl.Overlays.Add(markerOverlayMIO);*/
 
+            
             
         }
         
@@ -96,7 +109,7 @@ namespace App_MetroCali{
 
                 Stops parada = new Stops(STOPID, PLANVERSIONID, SHORTNAME, LONGNAME, GPS_X, GPS_y, DECIMALLONGITUD, DECIMALLATITUD);
                 Paradas.Add(parada);
-
+               
              
                 i++;
                 line = lector.ReadLine();
@@ -157,17 +170,18 @@ namespace App_MetroCali{
 
             MessageBox.Show("Preparando para mostrar marcadores");
             int  S = 0;
-            
-                for(int i =0; i<a.Count(); i++) { 
+             markerOverlayParada = new GMapOverlay("markadorParada");
+            for (int i =0; i<a.Count(); i++) { 
                marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD),GMarkerGoogleType.red);
-               markerOverlay.Markers.Add(marker);
+               
+               markerOverlayParada.Markers.Add(marker);
                marker.ToolTipMode = MarkerTooltipMode.Always;
                  marker.ToolTipText = String.Format("Parada:" + a[S].SHORTNAME);
                  
                  Console.WriteLine(S);
                  S++;
                }
-            gControl.Overlays.Add(markerOverlay);
+            gControl.Overlays.Add(markerOverlayParada);
             Console.WriteLine(a.Count());
         }
         
@@ -180,9 +194,10 @@ namespace App_MetroCali{
 
         private void Button1_Click(object sender, EventArgs e){
             leerZonasCiudad();
-            mostrarMarcadoresZonas();
-
-
+           // mostrarMarcadoresZonas();
+            separarZonas();
+            seleccionZona();
+           
         }
 
         public void leerZonasCiudad(){
@@ -191,8 +206,7 @@ namespace App_MetroCali{
             String line = lector.ReadLine();
             int i = 0;
             Console.WriteLine(line);
-            while (line != null)
-            {
+            while (line != null){
 
                 String[] arregloZonas = line.Split(',');
 
@@ -208,6 +222,7 @@ namespace App_MetroCali{
                 ZONA zone = new ZONA(nom, latitud, longitud);
                 Zonas.Add(zone);
 
+              
 
                 i++;
                 line = lector.ReadLine();
@@ -217,25 +232,100 @@ namespace App_MetroCali{
 
         }
 
-        public void mostrarMarcadoresZonas(){
-             
+          public void mostrarMarcadoresZonas(){
 
+            markerOverlayZonas = new GMapOverlay("MarkadorZona");
             for (int i = 0; i < Zonas.Count(); i++){
+               
                 marker = new GMarkerGoogle(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud), GMarkerGoogleType.green);
-                markerOverlay.Markers.Add(marker);
+                
+                markerOverlayZonas.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
                 Console.WriteLine(i);
             
             }
-            gControl.Overlays.Add(markerOverlay);
+            gControl.Overlays.Add(markerOverlayZonas);
+        }
+
+        public void seleccionZona(){
+             switch (cbZonas.Text){
+                case "":
+                    MessageBox.Show("Debe seleccionar un numero de zona");
+                break;
+                case "0" :
+                    hacerPoligonoZonas(zona0);
+                break ;
+                case "1": 
+                    hacerPoligonoZonas(zona1);
+                 break ;
+                 case "2": 
+                    hacerPoligonoZonas(zona2);
+                 break ;
+                 case "3": 
+                    hacerPoligonoZonas(zona3);
+                 break ;
+                 case "4": 
+                    hacerPoligonoZonas(zona4);
+                 break ;
+                 case "5": 
+                    hacerPoligonoZonas(zona5);
+                 break ;
+                 case "6": 
+                    hacerPoligonoZonas(zona6);
+                 break ;
+                case "7": 
+                    hacerPoligonoZonas(zona7);
+                 break ;
+              }
+        }
+
+        public void separarZonas (){
+              for( int i = 0; i<Zonas.Count; i++){
+                
+                if(Zonas[i].nombreZONA.Equals("CENTRO(ZONA 0)")){
+ 
+                    zona0.Add(Zonas[i]);
+
+               }else if (Zonas[i].nombreZONA.Equals("UNIVERSIDADES(ZONA 1)")){
+                 
+                    zona1.Add(Zonas[i]);
+
+               }else if (Zonas[i].nombreZONA.Equals("MENGA(ZONA 2)"))  {
+                   
+                     zona2.Add(Zonas[i]);
+
+               }else if(Zonas[i].nombreZONA.Equals("PASO DEL COMERCIO(ZONA 3)")) {
+                    
+                     zona3.Add(Zonas[i]);
+
+               }else if(Zonas[i].nombreZONA.Equals("ANDRÉS SANÍN(ZONA 4)")) {
+                    
+                     zona4.Add(Zonas[i]);    
+
+                }else if(Zonas[i].nombreZONA.Equals("NUEVO LATIR(ZONA 5)")) {
+                   
+                     zona5.Add(Zonas[i]);
+                    
+                }else if(Zonas[i].nombreZONA.Equals("CAÑAVERALEJO(ZONA 6)")) {
+                   
+                     zona6.Add(Zonas[i]);    
+
+                }else if(Zonas[i].nombreZONA.Equals("CALIPSO-SIMÓN BOLIVAR(ZONA 7)")) {
+                    
+                     zona7.Add(Zonas[i]);    
+                }
+            }
+
         }
 
 
-        public void hacerPoligonoZonas(){
+        public void hacerPoligonoZonas(List<ZONA>a ){
+            
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
-            for(int i = 0; i < Zonas.Count; i++){
-                puntos.Add(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud));
+            for(int i = 0; i < a.Count; i++){
+                 //MessageBox.Show("ZONA"+a[i].nombreZONA+"LONGITUD"+a[i].longitud);
+                puntos.Add(new PointLatLng(a[i].latitud , a[i].longitud));
             }
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos,"Poligono");
             poligono.Polygons.Add(poligonoPuntos);
@@ -252,9 +342,9 @@ namespace App_MetroCali{
                  gControl.Overlays.Clear();
                  gControl.Refresh();
             
-            }
+             }
            
-            }
+            }   
 
         private void BEliminar_Click(object sender, EventArgs e){
             removeMakers();
