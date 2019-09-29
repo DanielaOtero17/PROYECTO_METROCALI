@@ -197,7 +197,7 @@ namespace App_MetroCali{
            // mostrarMarcadoresZonas();
             separarZonas();
             seleccionZona();
-           
+          
         }
 
         public void leerZonasCiudad(){
