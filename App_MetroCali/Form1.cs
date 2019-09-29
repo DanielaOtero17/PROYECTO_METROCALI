@@ -386,6 +386,7 @@ namespace App_MetroCali
                 for(int j = 0; j < Buses.Count; j++) {
                     if (cantidadBuses[i].BUSID.Equals(Buses[j].BUSID)){
 
+
                     }
                 }
             }
