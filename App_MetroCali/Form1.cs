@@ -98,7 +98,7 @@ namespace App_MetroCali
         public void lecturaParadas()
         {
 
-            StreamReader lector = new StreamReader(@"STOPS.txt");
+            StreamReader lector = new StreamReader(@"STOPS2.txt");
             String line = lector.ReadLine();
             int i = 0;
             while (line != null)
@@ -287,20 +287,19 @@ namespace App_MetroCali
                 {
                     zona3.Add(Zonas[i]);
                 }
-                else if (i >= 14 && i < 21)
+                else if (i >= 14 && i < 18)
                 {
                     zona4.Add(Zonas[i]);
                 }
-                else if (i >= 21 && i < 23)
+                else if (i >= 18 && i < 22)
                 {
                     zona5.Add(Zonas[i]);
                 }
-                else if (i >= 23 && i < 27)
+                else if (i >= 22 && i < 27)
                 {
                     zona6.Add(Zonas[i]);
                 }
-                else if (i >= 27 && i < 29)
-                {
+                else if (i >= 27 && i < 32){
                     zona7.Add(Zonas[i]);
                 }
             }
@@ -312,7 +311,9 @@ namespace App_MetroCali
             List<PointLatLng> puntos = new List<PointLatLng>();
             for (int i = 0; i < a.Count; i++)
             {
+                
                 puntos.Add(new PointLatLng(a[i].latitud, a[i].longitud));
+                MessageBox.Show(a[i].latitud+" "+a[i].longitud);
             }
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
             poligono.Polygons.Add(poligonoPuntos);
