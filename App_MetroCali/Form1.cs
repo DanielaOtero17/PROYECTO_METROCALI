@@ -51,8 +51,7 @@ namespace App_MetroCali
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e){
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
             gControl.MapProvider = GMapProviders.GoogleMap;
@@ -140,21 +139,17 @@ namespace App_MetroCali
         }
 
 
-        public List<Stops> retornarLista()
-        {
+        public List<Stops> retornarLista(){
             return Paradas;
         }
 
         private void GControl_Load(object sender, EventArgs e) { }
 
-        private void Bguardar_Click(object sender, EventArgs e)
-        {
-
+        private void Bguardar_Click(object sender, EventArgs e){
             filter();
         }
 
-        private void filter()
-        {
+        private void filter(){
             switch (cb_elegir.Text)
             {
                 case "":
@@ -175,9 +170,7 @@ namespace App_MetroCali
             }
         }
 
-        public void mostrarMarcadores(List<Stops> a)
-        {
-
+        public void mostrarMarcadores(List<Stops> a) { 
             MessageBox.Show("Preparando para mostrar marcadores");
             int S = 0;
             markerOverlayParada = new GMapOverlay("markadorParada");
@@ -200,13 +193,11 @@ namespace App_MetroCali
 
         private void GControl_Load_1(object sender, EventArgs e) { }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
+        private void Button1_Click(object sender, EventArgs e) { 
             seleccionZona();
         }
 
-        public void leerZonasCiudad()
-        {
+        public void leerZonasCiudad(){
             StreamReader lector = new StreamReader(@"ZONAS.txt");
             String line = lector.ReadLine();
             int i = 0;
@@ -226,16 +217,13 @@ namespace App_MetroCali
             lector.Close();
         }
 
-        public void mostrarLista()
-        {
-            for (int i = 0; i < zona0.Count; i++)
-            {
+        public void mostrarLista(){
+            for (int i = 0; i < zona0.Count; i++){
                 MessageBox.Show(zona0[i].longitud + " " + zona0[i].latitud);
             }
         }
 
-        public void mostrarMarcadoresZonas()
-        {
+        public void mostrarMarcadoresZonas(){
             markerOverlayZonas = new GMapOverlay("MarkadorZona");
             for (int i = 0; i < Zonas.Count(); i++)
             {
@@ -247,8 +235,7 @@ namespace App_MetroCali
             gControl.Overlays.Add(markerOverlayZonas);
         }
 
-        public void seleccionZona()
-        {
+        public void seleccionZona(){
             switch (cbZonas.Text)
             {
                 case "":
@@ -281,8 +268,7 @@ namespace App_MetroCali
             }
         }
 
-        public void separarZonas()
-        {
+        public void separarZonas(){
             for (int i = 0; i < Zonas.Count; i++)
             {
                 if (i < 4)
@@ -321,8 +307,7 @@ namespace App_MetroCali
 
         }
 
-        public void hacerPoligonoZonas(List<ZONA> a)
-        {
+        public void hacerPoligonoZonas(List<ZONA> a){
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
             for (int i = 0; i < a.Count; i++)
@@ -337,8 +322,7 @@ namespace App_MetroCali
         }
 
 
-        private void removeMakers()
-        {
+        private void removeMakers(){
             if (gControl.Overlays.Count > 0)
             {
                 gControl.Overlays.Clear();
@@ -346,19 +330,7 @@ namespace App_MetroCali
             }
         }
 
-        private void BPuntosZonas_Click(object sender, EventArgs e)
-        {
-            mostrarMarcadoresZonas();
-        }
-
-        private void BEliminar_Click_1(object sender, EventArgs e)
-        {
-            removeMakers();
-        }
-
-        public void lecturaDatagramas()
-        {
-
+        public void lecturaDatagramas(){
             StreamReader lector = new StreamReader(@"DATAGRAMS.txt");
             String line = lector.ReadLine();
             int i = 0;
@@ -392,9 +364,7 @@ namespace App_MetroCali
         }
 
 
-        public void separarBUSES()
-        {
-
+        public void separarBUSES(){
             for (int i = 0; i < Buses.Count; i++)
             {
                 if (!Buses[i].BUSID.Equals(Buses[i + 1].BUSID))
@@ -411,8 +381,13 @@ namespace App_MetroCali
 
         }
 
+        private void BPuntosZonas_Click_1(object sender, EventArgs e){
+            mostrarMarcadoresZonas();
+        }
 
-
+        private void BEliminar_Click(object sender, EventArgs e){
+            removeMakers();
+        }
     }
 
 }
