@@ -76,14 +76,14 @@ namespace App_MetroCali{
             lecturaParadas();
             separarListasDeParadas();
 
-              /*markerOverlayMIO = new GMapOverlay("markadorMIO");
+              markerOverlayMIO = new GMapOverlay("markadorMIO");
               Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
               marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
               markerOverlayMIO.Markers.Add(marker);
 
             marker.ToolTipMode = MarkerTooltipMode.Always;
             marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlayMIO);*/
+            gControl.Overlays.Add(markerOverlayMIO);
 
             
             
@@ -196,8 +196,9 @@ namespace App_MetroCali{
             leerZonasCiudad();
            // mostrarMarcadoresZonas();
             separarZonas();
-            seleccionZona();
-          
+            mostrarLista();
+            //seleccionZona();
+           
         }
 
         public void leerZonasCiudad(){
@@ -231,6 +232,12 @@ namespace App_MetroCali{
             lector.Close();
 
         }
+
+        public void mostrarLista(){
+            for(int i = 0; i<zona0.Count;i++){
+                MessageBox.Show(zona0[i].longitud+" "+zona0[i].latitud);
+              }
+           }
 
           public void mostrarMarcadoresZonas(){
 
@@ -319,8 +326,12 @@ namespace App_MetroCali{
         }
 
 
-        public void hacerPoligonoZonas(List<ZONA>a ){
-            
+        public void hacerPoligonoZonas(List <ZONA> a ){
+            for(int i = 0; i < a.Count; i++){
+
+                MessageBox.Show(a[i].latitud+" "+a[i].latitud);
+            }
+
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
             for(int i = 0; i < a.Count; i++){
@@ -330,8 +341,9 @@ namespace App_MetroCali{
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos,"Poligono");
             poligono.Polygons.Add(poligonoPuntos);
             gControl.Overlays.Add(poligono);
-            gControl.Zoom = gControl.Zoom+1;
-            gControl.Zoom = gControl.Zoom-1;
+            gControl.Zoom = gControl.Zoom + 1;
+            gControl.Zoom = gControl.Zoom - 1;
+
 
         }
 
