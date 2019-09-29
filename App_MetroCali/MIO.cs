@@ -12,8 +12,8 @@ namespace App_MetroCali
         public String REGISTERDATE { get; set; }
         public String STOPID { get; set; }
         public String ODOMETER { get; set; }
-        public double LATITUDE { get; set; }
-        public double LONGITUDE { get; set; }
+        public String LATITUDE { get; set; }
+        public String LONGITUDE { get; set; }
         public String TASKID { get; set; }
         public String LINEID { get; set; }
         public String TRIPID { get; set; }
@@ -21,7 +21,7 @@ namespace App_MetroCali
         public String DATAGRAMDATE { get; set; }
         public String BUSID { get; set; }
 
-        public MIO (String evt , String regis ,String stop,String odo, double lat , double longi ,String task,String line , String trip,
+        public MIO (String evt , String regis ,String stop,String odo, String lat , String longi ,String task,String line , String trip,
             String dataG,String dataGraM ,String bus){
 
             EVENTTYPE = evt;
