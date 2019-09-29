@@ -381,6 +381,17 @@ namespace App_MetroCali
 
         }
 
+        public void generarBloquesDEinfoCadaMio(){
+         for(int i = 0;i< cantidadBuses.Count; i++){
+                for(int j = 0; j < Buses.Count; j++) {
+                    if (cantidadBuses[i].BUSID.Equals(Buses[j].BUSID)){
+
+                    }
+                }
+            }
+
+        }
+
         private void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
         }
