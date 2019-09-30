@@ -120,6 +120,28 @@ namespace App_MetroCali
             lector.Close();
         }
 
+        public double ordenarDecimal(String num, int id)
+        {
+            int cant = num.Length;
+
+            double div = 0;
+            double result = 0;
+
+            double aux = double.Parse(num, CultureInfo.InvariantCulture);
+            if (id == 1)
+            {
+                div = Math.Pow(10, cant-1);
+                result = aux / div;
+            }
+            else
+            {
+                div = Math.Pow(10, cant - 3);
+                result = aux / div;
+            }
+
+            return result;
+
+        }
 
         public void separarListasDeParadas()
         {
@@ -428,29 +450,26 @@ namespace App_MetroCali
 
         public void runProcess()
         {
-           for (int i=0; i < Buses.Count; i++)
-            {
-              
-               MIO aux = Buses[i];
-               
-                for (int j=0; j<Buses[i].ways.Count; j++)
-                {
-                   // Thread.Sleep(50);
+            for (int i=0; i < Buses.Count; i++)
+             {
 
-                    String[] loc = aux.ways[j].Split(',');
-                    
-                    double latitude = double.Parse(loc[0], CultureInfo.InvariantCulture);
-                    double longitude = double.Parse(loc[1], CultureInfo.InvariantCulture);
+                //MIO aux = Buses[i];
+                //  String[] loc = aux.ways[j].Split(',');
 
-                    Buses[i].changeLocation(loc[0],loc[1]);
+                        double latitude = ordenarDecimal(Buses[i].LATITUDE,1);
+            double longitude = ordenarDecimal(Buses[i].LONGITUDE, 2);
 
-                    Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-                    marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
-                    markerOverlayMIO.Markers.Add(marker);
+           // MessageBox.Show(latitude + " -- " + longitude);
 
-                    gControl.Overlays.Add(markerOverlayMIO);
-                }
-            }
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+
+            marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+            markerOverlayMIO.Markers.Add(marker);
+            marker.ToolTipMode = MarkerTooltipMode.Always;
+     
+            gControl.Overlays.Add(markerOverlayMIO);
+             }
+
         }
         private void MostrarMIOS_Click(object sender, EventArgs e)
         {
