@@ -44,6 +44,7 @@
             // 
             // cb_elegir
             // 
+            this.cb_elegir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_elegir.FormattingEnabled = true;
             this.cb_elegir.Location = new System.Drawing.Point(917, 357);
             this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -54,6 +55,7 @@
             // 
             // Bguardar
             // 
+            this.Bguardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Bguardar.Location = new System.Drawing.Point(1121, 343);
             this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Bguardar.Name = "Bguardar";
@@ -65,13 +67,16 @@
             // 
             // gControl
             // 
+            this.gControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gControl.Bearing = 0F;
             this.gControl.CanDragMap = true;
             this.gControl.EmptyTileColor = System.Drawing.Color.Navy;
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(37, 34);
+            this.gControl.Location = new System.Drawing.Point(33, 21);
             this.gControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
@@ -109,6 +114,7 @@
             // 
             // BEliminar
             // 
+            this.BEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BEliminar.Location = new System.Drawing.Point(1121, 612);
             this.BEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BEliminar.Name = "BEliminar";
@@ -120,6 +126,7 @@
             // 
             // pbIMAGEN
             // 
+            this.pbIMAGEN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbIMAGEN.Location = new System.Drawing.Point(917, 34);
             this.pbIMAGEN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbIMAGEN.Name = "pbIMAGEN";
@@ -129,6 +136,7 @@
             // 
             // BmostrarZonas
             // 
+            this.BmostrarZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BmostrarZonas.Location = new System.Drawing.Point(1121, 406);
             this.BmostrarZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BmostrarZonas.Name = "BmostrarZonas";
@@ -140,6 +148,7 @@
             // 
             // cbZonas
             // 
+            this.cbZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbZonas.FormattingEnabled = true;
             this.cbZonas.Location = new System.Drawing.Point(917, 417);
             this.cbZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -149,6 +158,7 @@
             // 
             // bPuntosZonas
             // 
+            this.bPuntosZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bPuntosZonas.Location = new System.Drawing.Point(1121, 478);
             this.bPuntosZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bPuntosZonas.Name = "bPuntosZonas";
@@ -160,8 +170,9 @@
             // 
             // MostrarMIOS
             // 
+            this.MostrarMIOS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MostrarMIOS.Location = new System.Drawing.Point(1121, 545);
-            this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4);
             this.MostrarMIOS.Name = "MostrarMIOS";
             this.MostrarMIOS.Size = new System.Drawing.Size(120, 47);
             this.MostrarMIOS.TabIndex = 11;
