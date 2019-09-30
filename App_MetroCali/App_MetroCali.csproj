@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hilo.cs" />
     <Compile Include="ZONA.cs" />
     <Compile Include="MIO.cs" />
     <Compile Include="Stops.cs" />

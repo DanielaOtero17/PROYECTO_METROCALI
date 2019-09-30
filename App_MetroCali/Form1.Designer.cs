@@ -38,25 +38,26 @@
             this.BmostrarZonas = new System.Windows.Forms.Button();
             this.cbZonas = new System.Windows.Forms.ComboBox();
             this.bPuntosZonas = new System.Windows.Forms.Button();
+            this.MostrarMIOS = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             this.SuspendLayout();
             // 
             // cb_elegir
             // 
             this.cb_elegir.FormattingEnabled = true;
-            this.cb_elegir.Location = new System.Drawing.Point(917, 357);
-            this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cb_elegir.Location = new System.Drawing.Point(688, 290);
+            this.cb_elegir.Margin = new System.Windows.Forms.Padding(2);
             this.cb_elegir.Name = "cb_elegir";
-            this.cb_elegir.Size = new System.Drawing.Size(176, 24);
+            this.cb_elegir.Size = new System.Drawing.Size(133, 21);
             this.cb_elegir.TabIndex = 1;
             this.cb_elegir.SelectedIndexChanged += new System.EventHandler(this.Cb_elegir_SelectedIndexChanged);
             // 
             // Bguardar
             // 
-            this.Bguardar.Location = new System.Drawing.Point(1121, 343);
-            this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Bguardar.Location = new System.Drawing.Point(841, 279);
+            this.Bguardar.Margin = new System.Windows.Forms.Padding(2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(120, 51);
+            this.Bguardar.Size = new System.Drawing.Size(90, 41);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar";
             this.Bguardar.UseVisualStyleBackColor = true;
@@ -70,7 +71,8 @@
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(37, 35);
+            this.gControl.Location = new System.Drawing.Point(28, 28);
+            this.gControl.Margin = new System.Windows.Forms.Padding(2);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
             this.gControl.MinZoom = 2;
@@ -84,7 +86,7 @@
             this.gControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gControl.ShowTileGridLines = false;
-            this.gControl.Size = new System.Drawing.Size(854, 716);
+            this.gControl.Size = new System.Drawing.Size(640, 582);
             this.gControl.TabIndex = 3;
             this.gControl.Zoom = 0D;
             this.gControl.Load += new System.EventHandler(this.GControl_Load_1);
@@ -92,42 +94,47 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(964, 35);
+            this.label1.Location = new System.Drawing.Point(723, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 4;
             // 
             // LimagenLogo
             // 
             this.LimagenLogo.AutoSize = true;
-            this.LimagenLogo.Location = new System.Drawing.Point(961, 52);
+            this.LimagenLogo.Location = new System.Drawing.Point(721, 42);
+            this.LimagenLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LimagenLogo.Name = "LimagenLogo";
-            this.LimagenLogo.Size = new System.Drawing.Size(0, 17);
+            this.LimagenLogo.Size = new System.Drawing.Size(0, 13);
             this.LimagenLogo.TabIndex = 5;
             // 
             // BEliminar
             // 
-            this.BEliminar.Location = new System.Drawing.Point(1121, 544);
+            this.BEliminar.Location = new System.Drawing.Point(841, 497);
+            this.BEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.BEliminar.Name = "BEliminar";
-            this.BEliminar.Size = new System.Drawing.Size(120, 51);
+            this.BEliminar.Size = new System.Drawing.Size(90, 41);
             this.BEliminar.TabIndex = 6;
-            this.BEliminar.Text = "Eliminar";
+            this.BEliminar.Text = "Limpiar";
             this.BEliminar.UseVisualStyleBackColor = true;
             this.BEliminar.Click += new System.EventHandler(this.BEliminar_Click);
             // 
             // pbIMAGEN
             // 
-            this.pbIMAGEN.Location = new System.Drawing.Point(917, 35);
+            this.pbIMAGEN.Location = new System.Drawing.Point(688, 28);
+            this.pbIMAGEN.Margin = new System.Windows.Forms.Padding(2);
             this.pbIMAGEN.Name = "pbIMAGEN";
-            this.pbIMAGEN.Size = new System.Drawing.Size(351, 295);
+            this.pbIMAGEN.Size = new System.Drawing.Size(263, 240);
             this.pbIMAGEN.TabIndex = 7;
             this.pbIMAGEN.TabStop = false;
             // 
             // BmostrarZonas
             // 
-            this.BmostrarZonas.Location = new System.Drawing.Point(1121, 406);
+            this.BmostrarZonas.Location = new System.Drawing.Point(841, 330);
+            this.BmostrarZonas.Margin = new System.Windows.Forms.Padding(2);
             this.BmostrarZonas.Name = "BmostrarZonas";
-            this.BmostrarZonas.Size = new System.Drawing.Size(120, 51);
+            this.BmostrarZonas.Size = new System.Drawing.Size(90, 41);
             this.BmostrarZonas.TabIndex = 8;
             this.BmostrarZonas.Text = "Mostrar zonas";
             this.BmostrarZonas.UseVisualStyleBackColor = true;
@@ -136,26 +143,39 @@
             // cbZonas
             // 
             this.cbZonas.FormattingEnabled = true;
-            this.cbZonas.Location = new System.Drawing.Point(917, 417);
+            this.cbZonas.Location = new System.Drawing.Point(688, 339);
+            this.cbZonas.Margin = new System.Windows.Forms.Padding(2);
             this.cbZonas.Name = "cbZonas";
-            this.cbZonas.Size = new System.Drawing.Size(176, 24);
+            this.cbZonas.Size = new System.Drawing.Size(133, 21);
             this.cbZonas.TabIndex = 9;
             // 
             // bPuntosZonas
             // 
-            this.bPuntosZonas.Location = new System.Drawing.Point(1121, 477);
+            this.bPuntosZonas.Location = new System.Drawing.Point(841, 388);
+            this.bPuntosZonas.Margin = new System.Windows.Forms.Padding(2);
             this.bPuntosZonas.Name = "bPuntosZonas";
-            this.bPuntosZonas.Size = new System.Drawing.Size(120, 49);
+            this.bPuntosZonas.Size = new System.Drawing.Size(90, 40);
             this.bPuntosZonas.TabIndex = 10;
             this.bPuntosZonas.Text = "Mostrar Puntos zonas";
             this.bPuntosZonas.UseVisualStyleBackColor = true;
             this.bPuntosZonas.Click += new System.EventHandler(this.BPuntosZonas_Click_1);
             // 
+            // MostrarMIOS
+            // 
+            this.MostrarMIOS.Location = new System.Drawing.Point(841, 443);
+            this.MostrarMIOS.Name = "MostrarMIOS";
+            this.MostrarMIOS.Size = new System.Drawing.Size(90, 38);
+            this.MostrarMIOS.TabIndex = 11;
+            this.MostrarMIOS.Text = "Mostrar MIOs";
+            this.MostrarMIOS.UseVisualStyleBackColor = true;
+            this.MostrarMIOS.Click += new System.EventHandler(this.MostrarMIOS_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 876);
+            this.ClientSize = new System.Drawing.Size(973, 596);
+            this.Controls.Add(this.MostrarMIOS);
             this.Controls.Add(this.bPuntosZonas);
             this.Controls.Add(this.cbZonas);
             this.Controls.Add(this.BmostrarZonas);
@@ -166,9 +186,9 @@
             this.Controls.Add(this.gControl);
             this.Controls.Add(this.Bguardar);
             this.Controls.Add(this.cb_elegir);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "METROCALI";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).EndInit();
             this.ResumeLayout(false);
@@ -187,6 +207,7 @@
         private System.Windows.Forms.Button BmostrarZonas;
         private System.Windows.Forms.ComboBox cbZonas;
         private System.Windows.Forms.Button bPuntosZonas;
+        private System.Windows.Forms.Button MostrarMIOS;
     }
 }
 

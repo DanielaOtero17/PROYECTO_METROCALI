@@ -13,6 +13,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms.Markers;
 using System.IO;
 using System.Globalization;
+using System.Threading;
 
 namespace App_MetroCali
 {
@@ -23,9 +24,11 @@ namespace App_MetroCali
         GMapOverlay markerOverlayParada;
         GMapOverlay markerOverlayMIO;
         GMapOverlay markerOverlayZonas;
+        
 
         double latitudCali = 3.42158;
         double longitudCali = -76.5205;
+        int indexBus = 0;
 
         List<Stops> Paradas = new List<Stops>();
         List<Stops> ParadasEstaciones = new List<Stops>();
@@ -74,24 +77,21 @@ namespace App_MetroCali
             cbZonas.Items.Add("7");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
-
-
-            lecturaParadas();
-            separarListasDeParadas();
+           
 
             leerZonasCiudad();
             separarZonas();
 
             lecturaDatagramas();
-            separarBUSES();
+            //separarBUSES();
 
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
-            markerOverlayMIO.Markers.Add(marker);
+          // Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+            // marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
+           // markerOverlayMIO.Markers.Add(marker);
 
-            marker.ToolTipMode = MarkerTooltipMode.Always;
-            marker.ToolTipText = String.Format("Este es el mio");
+           // marker.ToolTipMode = MarkerTooltipMode.Always;
+           // marker.ToolTipText = String.Format("Este es el mio");
             gControl.Overlays.Add(markerOverlayMIO);
         }
 
@@ -146,6 +146,8 @@ namespace App_MetroCali
         private void GControl_Load(object sender, EventArgs e) { }
 
         private void Bguardar_Click(object sender, EventArgs e){
+            lecturaParadas();
+            separarListasDeParadas();
             filter();
         }
 
@@ -321,8 +323,7 @@ namespace App_MetroCali
             gControl.Zoom = gControl.Zoom - 1;
         }
 
-
-        private void removeMakers(){
+        public void removeMakers(){
             if (gControl.Overlays.Count > 0)
             {
                 gControl.Overlays.Clear();
@@ -333,11 +334,12 @@ namespace App_MetroCali
         public void lecturaDatagramas(){
             StreamReader lector = new StreamReader(@"DATAGRAMS.txt");
             String line = lector.ReadLine();
+            line = lector.ReadLine();
             int i = 0;
             while (line != null)
             {
                 String[] arregloDatagramas = line.Split(',');
-
+ 
                 String EVENTTYPE = arregloDatagramas[0];
                 String REGISTERDATE = arregloDatagramas[1];
                 String STOPID = arregloDatagramas[2];
@@ -355,7 +357,15 @@ namespace App_MetroCali
                 String BUSID = arregloDatagramas[11];
 
                 MIO bus = new MIO(EVENTTYPE, REGISTERDATE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
-                Buses.Add(bus);
+                if (busExist(bus))
+                {
+                    Buses[indexBus].addNewWay(LATITUDE, LONGITUDE);
+                }
+                else
+                {
+                    Buses.Add(bus);
+                }
+                   
                 i++;
                 line = lector.ReadLine();
             }
@@ -364,7 +374,7 @@ namespace App_MetroCali
         }
 
 
-        public void separarBUSES(){
+      /*  public void separarBUSES(){
             for (int i = 0; i < Buses.Count; i++)
             {
                 if (!Buses[i].BUSID.Equals(Buses[i + 1].BUSID))
@@ -379,9 +389,9 @@ namespace App_MetroCali
 
             }
 
-        }
+        }*/
 
-        public void generarBloquesDEinfoCadaMio(){
+      /*  public void generarBloquesDEinfoCadaMio(){
          for(int i = 0;i< cantidadBuses.Count; i++){
                 for(int j = 0; j < Buses.Count; j++) {
                     if (cantidadBuses[i].BUSID.Equals(Buses[j].BUSID)){
@@ -391,14 +401,65 @@ namespace App_MetroCali
                 }
             }
 
-        }
+        }*/
 
-        private void BPuntosZonas_Click_1(object sender, EventArgs e){
+        public void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
         }
 
-        private void BEliminar_Click(object sender, EventArgs e){
+        public void BEliminar_Click(object sender, EventArgs e){
             removeMakers();
+        }
+
+        public Boolean busExist(MIO idBus)
+        {
+            for(int i=0; i < Buses.Count(); i++)
+            {
+                if (Buses[i].BUSID.Equals(idBus.BUSID))
+                {
+                    indexBus = i;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void runProcess()
+        {
+           for (int i=0; i < Buses.Count; i++)
+            {
+              
+               MIO aux = Buses[i];
+               
+                for (int j=0; j<Buses[i].ways.Count; j++)
+                {
+                   // Thread.Sleep(50);
+
+                    String[] loc = aux.ways[j].Split(',');
+                    
+                    double latitude = double.Parse(loc[0], CultureInfo.InvariantCulture);
+                    double longitude = double.Parse(loc[1], CultureInfo.InvariantCulture);
+
+                    Buses[i].changeLocation(loc[0],loc[1]);
+
+                    Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+                    marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+                    markerOverlayMIO.Markers.Add(marker);
+
+                    gControl.Overlays.Add(markerOverlayMIO);
+                }
+            }
+        }
+        private void MostrarMIOS_Click(object sender, EventArgs e)
+        {
+          /*  ThreadStart delegado = new ThreadStart(runProcess);
+            //Creamos la instancia del hilo 
+            Thread hilo = new Thread(delegado);
+            //Iniciamos el hilo 
+            hilo.Start();*/
+
+            runProcess();
         }
     }
 
