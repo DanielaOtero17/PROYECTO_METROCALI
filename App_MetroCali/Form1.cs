@@ -128,7 +128,7 @@ namespace App_MetroCali
                 if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6"))
                 {
                     ParadasEstaciones.Add(Paradas[i]);
-                    //Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
+                    Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
                 }
                 else if (retornarLista()[i].STOPID.Substring(0, 1).Equals("5"))
                 {
@@ -322,10 +322,24 @@ namespace App_MetroCali
             gControl.Zoom = gControl.Zoom - 1;
         }
 
+        public void hacerPoligonoEstaciones(){
+         List<Stops> listaAux = new List<Stops>();
+         for(int i = 0; i < ParadasEstaciones.Count; i++){
+                if (ParadasEstaciones[i].shor) {
+                    listaAux.Add(ParadasEstaciones[i]);
+                }else{
+                    listaAux = nullt;
+                }
+                hacerPoligonoZonas(listaAux);
+            }
+
+
+        }
 
         private void removeMakers(){
             if (gControl.Overlays.Count > 0)
             {
+                
                 gControl.Overlays.Clear();
                 gControl.Refresh();
             }
@@ -382,18 +396,7 @@ namespace App_MetroCali
 
         }
 
-        public void generarBloquesDEinfoCadaMio(){
-         for(int i = 0;i< cantidadBuses.Count; i++){
-                for(int j = 0; j < Buses.Count; j++) {
-                    if (cantidadBuses[i].BUSID.Equals(Buses[j].BUSID)){
-
-
-                    }
-                }
-            }
-
-        }
-
+       
         private void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
         }
@@ -401,6 +404,7 @@ namespace App_MetroCali
         private void BEliminar_Click(object sender, EventArgs e){
             removeMakers();
         }
+
     }
 
 }
