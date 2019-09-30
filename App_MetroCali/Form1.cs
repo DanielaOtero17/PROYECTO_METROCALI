@@ -243,7 +243,7 @@ namespace App_MetroCali
                 marker = new GMarkerGoogle(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud), GMarkerGoogleType.green);
                 markerOverlayZonas.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
-                Console.WriteLine(i);
+               
             }
             gControl.Overlays.Add(markerOverlayZonas);
         }
@@ -406,7 +406,6 @@ namespace App_MetroCali
                 MIO bus = new MIO(EVENTTYPE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
 
                
-
                 if (busExist(bus))
                 {
                     
@@ -431,35 +430,6 @@ namespace App_MetroCali
 
         }
 
-
-      /*  public void separarBUSES(){
-            for (int i = 0; i < Buses.Count; i++)
-            {
-                if (!Buses[i].BUSID.Equals(Buses[i + 1].BUSID))
-                {
-                    cantidadBuses.Add(Buses[i]);
-                    Console.WriteLine(cantidadBuses[i].BUSID);
-                }
-                else if (Buses[i].BUSID.Equals(Buses[i + 1].BUSID))
-                {
-                    i = Buses.Count();
-                }
-
-            }
-
-        }*/
-
-      /*  public void generarBloquesDEinfoCadaMio(){
-         for(int i = 0;i< cantidadBuses.Count; i++){
-                for(int j = 0; j < Buses.Count; j++) {
-                    if (cantidadBuses[i].BUSID.Equals(Buses[j].BUSID)){
-
-
-                    }
-                }
-            }
-
-        }*/
 
         public void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
