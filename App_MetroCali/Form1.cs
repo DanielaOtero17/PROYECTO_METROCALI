@@ -470,11 +470,11 @@ namespace App_MetroCali
 
             for (int i=0; i < Buses.Count; i++)
                {
-                  //MIO aux = Buses[i];
-                  //  String[] loc = aux.ways[j].Split(',');
+                //MIO aux = Buses[i];
+                //  String[] loc = aux.ways[j].Split(',');
 
-                    if (Buses[i].LATITUDE.Equals("-1") == false)
-                    {
+                if (Buses[i].LATITUDE.Equals("-1") == false)
+                {
                     double latitude = ordenarDecimal(Buses[i].LATITUDE);
                     double longitude = ordenarDecimal(Buses[i].LONGITUDE);
                     Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
@@ -487,24 +487,27 @@ namespace App_MetroCali
                     gControl.Overlays.Add(markerOverlayMIO);
 
                     // MessageBox.Show("indice bus:  " + i);
-                    for (int a = 0; a < Buses[i].ways.Count; a++)
-                    {
-                       // MessageBox.Show("indice location " + a);
-                        Buses[i].changeLocation(a);
 
-                        latitude = ordenarDecimal(Buses[i].LATITUDE);
-                        longitude = ordenarDecimal(Buses[i].LONGITUDE);
+                } 
+            }
 
-                        Thread.Sleep(100);
+            for (int i = 0; i < Buses.Count; i++)
+            {
+                for (int a = 0; a < Buses[i].ways.Count; a++)
+                {
+                    // MessageBox.Show("indice location " + a);
+                    Buses[i].changeLocation(a);
 
-                        gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitude, longitude);
+                    double latitude = ordenarDecimal(Buses[i].LATITUDE);
+                    double longitude = ordenarDecimal(Buses[i].LONGITUDE);
 
-                    }
+                    Thread.Sleep(100);
+
+                    gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitude, longitude);
 
                 }
-
             }
-              
+
         }
      
         public void MostrarMIOS_Click(object sender, EventArgs e)
