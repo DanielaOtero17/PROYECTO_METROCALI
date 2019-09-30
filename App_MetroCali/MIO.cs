@@ -61,5 +61,10 @@ namespace App_MetroCali
             this.LATITUDE = lat;
             this.LONGITUDE = longi;
         }
+
+        public void moveBus(String lat, String longi)
+        {
+
+        }
     }
 }
