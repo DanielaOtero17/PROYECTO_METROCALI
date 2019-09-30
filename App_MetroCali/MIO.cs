@@ -21,6 +21,10 @@ namespace App_MetroCali
         public String DATAGRAMDATE { get; set; }
         public String BUSID { get; set; }
 
+        public List<String> LIST_LATITUDE { get; set; }
+
+        public List<String> LIST_LONGITUDE { get; set; }
+
         public List<String> ways { get; set; }
 
         public MIO (String evt , String regis ,String stop,String odo, String lat , String longi ,String task,String line , String trip,
@@ -39,6 +43,9 @@ namespace App_MetroCali
             DATAGRAMDATE = dataGraM;
             BUSID = bus;
 
+            LIST_LATITUDE = new List<String>();
+            LIST_LONGITUDE = new List<String>();
+
             ways = new List<string>();
             ways.Add(LATITUDE + "," + LONGITUDE);
 
@@ -53,6 +60,11 @@ namespace App_MetroCali
         {
             this.LATITUDE = lat;
             this.LONGITUDE = longi;
+        }
+
+        public void moveBus(String lat, String longi)
+        {
+
         }
     }
 }
