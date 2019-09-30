@@ -18,11 +18,9 @@ namespace App_MetroCali
 
         public Boolean continuar;
 
-        public Hilo(MIO mio, String longitude, String latitude)
+        public Hilo()
         {
-            this.mio = mio;
-            this.latitude = longitude;
-            this.latitude = latitude;
+          
 
             continuar = true;
         }

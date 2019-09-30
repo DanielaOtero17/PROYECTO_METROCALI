@@ -27,6 +27,8 @@ namespace App_MetroCali
 
         public List<String> ways { get; set; }
 
+        public int index { get; set; }
+
         public MIO (String evt , String regis ,String stop,String odo, String lat , String longi ,String task,String line , String trip,
             String dataG,String dataGraM ,String bus){
 
@@ -43,6 +45,7 @@ namespace App_MetroCali
             DATAGRAMDATE = dataGraM;
             BUSID = bus;
 
+
             LIST_LATITUDE = new List<String>();
             LIST_LONGITUDE = new List<String>();
 
@@ -56,10 +59,16 @@ namespace App_MetroCali
             ways.Add(latitud + "," + longitud);
         }
 
-        public void changeLocation(String lat,String longi)
+        public void changeLocation(int i)
         {
-            this.LATITUDE = lat;
-            this.LONGITUDE = longi;
+           
+                String[] info = ways[i].Split(',');
+
+                this.LATITUDE = info[0];
+                this.LONGITUDE = info[1];
+            
+
+            
         }
 
         public void moveBus(String lat, String longi)
