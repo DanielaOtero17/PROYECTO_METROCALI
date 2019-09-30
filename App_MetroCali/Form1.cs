@@ -152,12 +152,11 @@ namespace App_MetroCali
 
         public void separarListasDeParadas()
         {
-            for (int i = 0; i < Paradas.Count; i++)
-            {
+            for (int i = 0; i < Paradas.Count; i++) {
                 if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6"))
                 {
                     ParadasEstaciones.Add(Paradas[i]);
-                    //Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
+                   
                 }
                 else if (retornarLista()[i].STOPID.Substring(0, 1).Equals("5"))
                 {
@@ -189,6 +188,8 @@ namespace App_MetroCali
 
                 case "ESTACIONES":
                     mostrarMarcadores(ParadasEstaciones);
+                    //comprobarParadasEnMismaEstacion();
+                    comprobarParadasEnMismaEstacion();
                     break;
 
                 case "PARADAS EN LAS CALLES":
@@ -340,6 +341,7 @@ namespace App_MetroCali
         public void hacerPoligonoZonas(List<ZONA> a){
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
+            MessageBox.Show(a.Count+" ");
             for (int i = 0; i < a.Count; i++)
             {
                 
@@ -353,9 +355,38 @@ namespace App_MetroCali
             gControl.Zoom = gControl.Zoom - 1;
         }
 
+        public void comprobarParadasEnMismaEstacion(){
+         List<Stops> listaAux = new List<Stops>();
+         for(int i = 0; i < ParadasEstaciones.Count-1; i++){
+                if (ParadasEstaciones[i].SHORTNAME.Equals(ParadasEstaciones[i+1].SHORTNAME)) {
+                    listaAux.Add(ParadasEstaciones[i]);
+
+                }else{
+
+                 
+                }
+            }
+                hacerPoligonoEstaciones(listaAux);
+                
+        }
+
+        public void hacerPoligonoEstaciones(List<Stops> a){
+            GMapOverlay poligono = new GMapOverlay("Poligono");
+            List<PointLatLng> puntos = new List<PointLatLng>();
+            for (int i = 0; i < a.Count-1; i++) {
+                puntos.Add(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD));
+            }
+            GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
+            poligono.Polygons.Add(poligonoPuntos);
+            gControl.Overlays.Add(poligono);
+            gControl.Zoom = gControl.Zoom + 1;
+            gControl.Zoom = gControl.Zoom - 1;
+        }
+        
+
         public void removeMakers(){
-            if (gControl.Overlays.Count > 0)
-            {
+ 
+            if (gControl.Overlays.Count > 0) {
                 gControl.Overlays.Clear();
                 gControl.Refresh();
             }
@@ -387,28 +418,20 @@ namespace App_MetroCali
                 String BUSID = arregloDatagramas[11];
 
                 MIO bus = new MIO(EVENTTYPE, REGISTERDATE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
-                if (busExist(bus))
-                {
+                if (busExist(bus)) {
                     Buses[indexBus].addNewWay(LATITUDE, LONGITUDE);
-                }
-                else
-                {
+                }else{
                     Buses.Add(bus);
-                }
-                   
+                } 
                 i++;
                 line = lector.ReadLine();
             }
             lector.Close();
-
         }
 
-
-      /*  public void separarBUSES(){
-            for (int i = 0; i < Buses.Count; i++)
-            {
-                if (!Buses[i].BUSID.Equals(Buses[i + 1].BUSID))
-                {
+         public void separarBUSES(){
+            for (int i = 0; i < Buses.Count; i++){
+                if (!Buses[i].BUSID.Equals(Buses[i + 1].BUSID)) {
                     cantidadBuses.Add(Buses[i]);
                     Console.WriteLine(cantidadBuses[i].BUSID);
                 }
@@ -419,19 +442,9 @@ namespace App_MetroCali
 
             }
 
-        }*/
-
-      /*  public void generarBloquesDEinfoCadaMio(){
-         for(int i = 0;i< cantidadBuses.Count; i++){
-                for(int j = 0; j < Buses.Count; j++) {
-                    if (cantidadBuses[i].BUSID.Equals(Buses[j].BUSID)){
+        }
 
 
-                    }
-                }
-            }
-
-        }*/
 
         public void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
@@ -441,30 +454,33 @@ namespace App_MetroCali
             removeMakers();
         }
 
-        public Boolean busExist(MIO idBus)
-        {
+
+        public Boolean busExist(MIO idBus){
             for(int i=0; i < Buses.Count(); i++)
             {
-                if (Buses[i].BUSID.Equals(idBus.BUSID))
-                {
+                if (Buses[i].BUSID.Equals(idBus.BUSID)){
                     indexBus = i;
                     return true;
                 }
             }
-
             return false;
         }
 
         public void runProcess()
         {
-            for (int i=0; i < Buses.Count; i++)
-             {
+           for (int i=0; i < Buses.Count; i++)
+            {
+              
+               MIO aux = Buses[i];
+               
+                for (int j=0; j<Buses[i].ways.Count; j++)
+                {
+                   // Thread.Sleep(50);
 
-                //MIO aux = Buses[i];
-                //  String[] loc = aux.ways[j].Split(',');
-
-                        double latitude = ordenarDecimal(Buses[i].LATITUDE,1);
-            double longitude = ordenarDecimal(Buses[i].LONGITUDE, 2);
+                    String[] loc = aux.ways[j].Split(',');
+                    
+                    double latitude = double.Parse(loc[0], CultureInfo.InvariantCulture);
+                    double longitude = double.Parse(loc[1], CultureInfo.InvariantCulture);
 
            // MessageBox.Show(latitude + " -- " + longitude);
 
@@ -478,14 +494,12 @@ namespace App_MetroCali
              }
 
         }
-        private void MostrarMIOS_Click(object sender, EventArgs e)
-        {
+        private void MostrarMIOS_Click(object sender, EventArgs e){
           /*  ThreadStart delegado = new ThreadStart(runProcess);
             //Creamos la instancia del hilo 
             Thread hilo = new Thread(delegado);
             //Iniciamos el hilo 
             hilo.Start();*/
-
             runProcess();
         }
     }
