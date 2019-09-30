@@ -87,7 +87,7 @@ namespace App_MetroCali
 
             //Se crea un bus de prueba
             MIO bus = new MIO("0", "REGISTERDATE", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
-            //Se agrega la posicion a una lista de posiciones que sirve son las coordenadas del recorrido
+            //Se agrega la posicion a una lista de posiciones que sirve guarda las coordenadas del recorrido
             bus.LIST_LATITUDE.Add("3.4937867");
             bus.LIST_LONGITUDE.Add("-76.5035683");
 
