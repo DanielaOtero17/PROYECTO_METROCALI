@@ -80,7 +80,8 @@ namespace App_MetroCali
             cbZonas.Items.Add("7");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
-           
+            pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
+
 
             leerZonasCiudad();
             separarZonas();
