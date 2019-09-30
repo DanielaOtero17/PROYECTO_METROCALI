@@ -359,6 +359,7 @@ namespace App_MetroCali
          List<Stops> listaAux = new List<Stops>();
          for(int i = 0; i < ParadasEstaciones.Count-1; i++){
                 if (ParadasEstaciones[i].SHORTNAME.Equals(ParadasEstaciones[i+1].SHORTNAME)) {
+                    Console.WriteLine("Estacion"+" "+ ParadasEstaciones[i].LONGNAME);
                     listaAux.Add(ParadasEstaciones[i]);
 
                 }else{
@@ -494,7 +495,8 @@ namespace App_MetroCali
              }
 
         }
-        private void MostrarMIOS_Click(object sender, EventArgs e){
+   }
+        public  void MostrarMIOS_Click(object sender, EventArgs e){
           /*  ThreadStart delegado = new ThreadStart(runProcess);
             //Creamos la instancia del hilo 
             Thread hilo = new Thread(delegado);
@@ -502,6 +504,7 @@ namespace App_MetroCali
             hilo.Start();*/
             runProcess();
         }
-    }
 
+      }
+   
 }
