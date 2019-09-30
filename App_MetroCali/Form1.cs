@@ -85,10 +85,17 @@ namespace App_MetroCali
             lecturaDatagramas();
             //separarBUSES();
 
+            //Se crea un bus de prueba
+            MIO bus = new MIO("0", "REGISTERDATE", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
+            //Se agrega la posicion a una lista de posiciones que sirve son las coordenadas del recorrido
+            bus.LIST_LATITUDE.Add("3.4937867");
+            bus.LIST_LONGITUDE.Add("-76.5035683");
+
+            //Pinta el bus
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-          // Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            // marker = new GMarkerGoogle(new PointLatLng(3.4372201, -76.5224991), markerMio);
-           // markerOverlayMIO.Markers.Add(marker);
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+            marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
+            markerOverlayMIO.Markers.Add(marker);
 
            // marker.ToolTipMode = MarkerTooltipMode.Always;
            // marker.ToolTipText = String.Format("Este es el mio");
