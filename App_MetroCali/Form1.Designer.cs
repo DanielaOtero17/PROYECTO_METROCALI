@@ -48,7 +48,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_elegir.FormattingEnabled = true;
             this.cb_elegir.ItemHeight = 16;
-            this.cb_elegir.Location = new System.Drawing.Point(917, 346);
+            this.cb_elegir.Location = new System.Drawing.Point(917, 528);
             this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_elegir.Name = "cb_elegir";
             this.cb_elegir.Size = new System.Drawing.Size(176, 24);
@@ -58,12 +58,12 @@
             // Bguardar
             // 
             this.Bguardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Bguardar.Location = new System.Drawing.Point(1121, 332);
+            this.Bguardar.Location = new System.Drawing.Point(1100, 502);
             this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(120, 50);
+            this.Bguardar.Size = new System.Drawing.Size(165, 50);
             this.Bguardar.TabIndex = 2;
-            this.Bguardar.Text = "Buscar";
+            this.Bguardar.Text = "Buscar Paradas";
             this.Bguardar.UseVisualStyleBackColor = true;
             this.Bguardar.Click += new System.EventHandler(this.Bguardar_Click);
             // 
@@ -117,10 +117,10 @@
             // BEliminar
             // 
             this.BEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BEliminar.Location = new System.Drawing.Point(1121, 538);
+            this.BEliminar.Location = new System.Drawing.Point(1100, 335);
             this.BEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BEliminar.Name = "BEliminar";
-            this.BEliminar.Size = new System.Drawing.Size(120, 47);
+            this.BEliminar.Size = new System.Drawing.Size(168, 54);
             this.BEliminar.TabIndex = 6;
             this.BEliminar.Text = "Limpiar";
             this.BEliminar.UseVisualStyleBackColor = true;
@@ -139,10 +139,10 @@
             // BmostrarZonas
             // 
             this.BmostrarZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BmostrarZonas.Location = new System.Drawing.Point(1121, 406);
+            this.BmostrarZonas.Location = new System.Drawing.Point(1100, 582);
             this.BmostrarZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BmostrarZonas.Name = "BmostrarZonas";
-            this.BmostrarZonas.Size = new System.Drawing.Size(120, 50);
+            this.BmostrarZonas.Size = new System.Drawing.Size(165, 50);
             this.BmostrarZonas.TabIndex = 8;
             this.BmostrarZonas.Text = "Mostrar zonas";
             this.BmostrarZonas.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             // 
             this.cbZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbZonas.FormattingEnabled = true;
-            this.cbZonas.Location = new System.Drawing.Point(917, 420);
+            this.cbZonas.Location = new System.Drawing.Point(917, 596);
             this.cbZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbZonas.Name = "cbZonas";
             this.cbZonas.Size = new System.Drawing.Size(176, 24);
@@ -161,10 +161,10 @@
             // bPuntosZonas
             // 
             this.bPuntosZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bPuntosZonas.Location = new System.Drawing.Point(1121, 604);
+            this.bPuntosZonas.Location = new System.Drawing.Point(917, 427);
             this.bPuntosZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bPuntosZonas.Name = "bPuntosZonas";
-            this.bPuntosZonas.Size = new System.Drawing.Size(120, 49);
+            this.bPuntosZonas.Size = new System.Drawing.Size(176, 56);
             this.bPuntosZonas.TabIndex = 10;
             this.bPuntosZonas.Text = "Mostrar Puntos zonas";
             this.bPuntosZonas.UseVisualStyleBackColor = true;
@@ -173,10 +173,10 @@
             // MostrarMIOS
             // 
             this.MostrarMIOS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MostrarMIOS.Location = new System.Drawing.Point(1121, 471);
+            this.MostrarMIOS.Location = new System.Drawing.Point(917, 335);
             this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4);
             this.MostrarMIOS.Name = "MostrarMIOS";
-            this.MostrarMIOS.Size = new System.Drawing.Size(120, 47);
+            this.MostrarMIOS.Size = new System.Drawing.Size(176, 54);
             this.MostrarMIOS.TabIndex = 11;
             this.MostrarMIOS.Text = "Mostrar MIOs";
             this.MostrarMIOS.UseVisualStyleBackColor = true;
