@@ -285,35 +285,35 @@ namespace App_MetroCali
         public void separarZonas(){
             for (int i = 0; i < Zonas.Count; i++)
             {
-                if (i < 4)
+                if (i < 29)
                 {
                     zona0.Add(Zonas[i]);
                 }
-                else if (i >= 4 && i < 7)
+                else if (i >= 29 && i < 62)
                 {
                     zona1.Add(Zonas[i]);
                 }
-                else if (i >= 7 && i < 10)
+                else if (i >= 62 && i < 94)
                 {
                     zona2.Add(Zonas[i]);
                 }
-                else if (i >= 10 && i < 14)
+                else if (i >= 94 && i < 110)
                 {
                     zona3.Add(Zonas[i]);
                 }
-                else if (i >= 14 && i < 18)
+                else if (i >= 110 && i < 148)
                 {
                     zona4.Add(Zonas[i]);
                 }
-                else if (i >= 18 && i < 22)
+                else if (i >= 148 && i < 158)
                 {
                     zona5.Add(Zonas[i]);
                 }
-                else if (i >= 22 && i < 27)
+                else if (i >=158 && i <193)
                 {
                     zona6.Add(Zonas[i]);
                 }
-                else if (i >= 27 && i < 32){
+                else if (i >= 193 && i < 205){
                     zona7.Add(Zonas[i]);
                 }
             }
@@ -362,7 +362,7 @@ namespace App_MetroCali
             {
                 
                 puntos.Add(new PointLatLng(a[i].latitud, a[i].longitud));
-                MessageBox.Show(a[i].latitud+" "+a[i].longitud);
+                
             }
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
             poligono.Polygons.Add(poligonoPuntos);
