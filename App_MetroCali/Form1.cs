@@ -89,20 +89,20 @@ namespace App_MetroCali
             //separarBUSES();
 
             //Se crea un bus de prueba
-            MIO bus = new MIO("0", "REGISTERDATE", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
+            MIO bus = new MIO("0", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
             //Se agrega la posicion a una lista de posiciones que sirve guarda las coordenadas del recorrido
             bus.LIST_LATITUDE.Add("3.4937867");
             bus.LIST_LONGITUDE.Add("-76.5035683");
 
             //Pinta el bus
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+           /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
             marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
             markerOverlayMIO.Markers.Add(marker);
 
            // marker.ToolTipMode = MarkerTooltipMode.Always;
-           // marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlayMIO);
+           marker.ToolTipText = String.Format("Este es el mio");
+            gControl.Overlays.Add(markerOverlayMIO);*/
         }
 
         public void lecturaParadas()
@@ -319,6 +319,41 @@ namespace App_MetroCali
 
         }
 
+        public void comprobarParadasEnMismaEstacion()
+        {
+            List<Stops> listaAux = new List<Stops>();
+            for (int i = 0; i < ParadasEstaciones.Count - 1; i++)
+            {
+                if (ParadasEstaciones[i].SHORTNAME.Equals(ParadasEstaciones[i + 1].SHORTNAME))
+                {
+                    listaAux.Add(ParadasEstaciones[i]);
+
+                }
+                else
+                {
+
+
+                }
+            }
+            hacerPoligonoEstaciones(listaAux);
+
+        }
+
+        public void hacerPoligonoEstaciones(List<Stops> a)
+        {
+            GMapOverlay poligono = new GMapOverlay("Poligono");
+            List<PointLatLng> puntos = new List<PointLatLng>();
+            for (int i = 0; i < a.Count - 1; i++)
+            {
+                puntos.Add(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD));
+            }
+            GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
+            poligono.Polygons.Add(poligonoPuntos);
+            gControl.Overlays.Add(poligono);
+            gControl.Zoom = gControl.Zoom + 1;
+            gControl.Zoom = gControl.Zoom - 1;
+        }
+
         public void hacerPoligonoZonas(List<ZONA> a){
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
@@ -353,23 +388,22 @@ namespace App_MetroCali
             {
                 String[] arregloDatagramas = line.Split(',');
  
-                String EVENTTYPE = arregloDatagramas[0];
-                String REGISTERDATE = arregloDatagramas[1];
+                String EVENTTYPE = arregloDatagramas[9];
                 String STOPID = arregloDatagramas[2];
                 String ODOMETER = arregloDatagramas[3];
 
-                String LATITUDE = arregloDatagramas[4];
-                String LONGITUDE = arregloDatagramas[5];
+                String LATITUDE = arregloDatagramas[5];
+                String LONGITUDE = arregloDatagramas[4];
 
                 String TASKID = arregloDatagramas[6];
                 String LINEID = arregloDatagramas[7];
                 String TRIPID = arregloDatagramas[8];
 
                 String DATAGRAMID = arregloDatagramas[9];
-                String DATAGRAMDATE = arregloDatagramas[10];
-                String BUSID = arregloDatagramas[11];
+                String DATAGRAMDATE = arregloDatagramas[0];
+                String BUSID = arregloDatagramas[1];
 
-                MIO bus = new MIO(EVENTTYPE, REGISTERDATE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
+                MIO bus = new MIO(EVENTTYPE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
 
                
 
@@ -461,51 +495,45 @@ namespace App_MetroCali
         }
         public void runProcess()
         {
-            //MessageBox.Show("Total buses: " + Buses.Count() );
-            /*  for (int i=0; i < Buses.Count; i++)
+           // MessageBox.Show("Total buses: " + Buses.Count );
+
+            for (int i=0; i < Buses.Count; i++)
                {
                   //MIO aux = Buses[i];
                   //  String[] loc = aux.ways[j].Split(',');
 
                     if (Buses[i].LATITUDE.Equals("-1") == false)
                     {
-                        double latitude = ordenarDecimal(Buses[i].LATITUDE);
-                        double longitude = ordenarDecimal(Buses[i].LONGITUDE);
-                        Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+                    double latitude = ordenarDecimal(Buses[i].LATITUDE);
+                    double longitude = ordenarDecimal(Buses[i].LONGITUDE);
+                    Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
 
-                        marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
-                        markerOverlayMIO.Markers.Add(marker);
-                        marker.ToolTipMode = MarkerTooltipMode.Always;
+                    marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+                    markerOverlayMIO.Markers.Add(marker);
+                    marker.ToolTipMode = MarkerTooltipMode.Always;
+                    marker.ToolTipText = String.Format(Buses[i].BUSID);
 
-                        gControl.Overlays.Add(markerOverlayMIO);
+                    gControl.Overlays.Add(markerOverlayMIO);
+
+                    // MessageBox.Show("indice bus:  " + i);
+                    for (int a = 0; a < Buses[i].ways.Count; a++)
+                    {
+                       // MessageBox.Show("indice location " + a);
+                        Buses[i].changeLocation(a);
+
+                        latitude = ordenarDecimal(Buses[i].LATITUDE);
+                        longitude = ordenarDecimal(Buses[i].LONGITUDE);
+
+                        Thread.Sleep(100);
+
+                        gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitude, longitude);
+
                     }
 
-              }
-              */
-
-            
-                double latitude = ordenarDecimal(Buses[0].LATITUDE);
-                double longitude = ordenarDecimal(Buses[0].LONGITUDE);
-                Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-
-                marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
-                markerOverlayMIO.Markers.Add(marker);
-                // marker.ToolTipMode = MarkerTooltipMode.Always;
-
-                for (int a = 0; a < Buses[0].ways.Count; a++)
-                {
-
-                    Buses[0].changeLocation(a);
-
-                    latitude = ordenarDecimal(Buses[0].LATITUDE);
-                    longitude = ordenarDecimal(Buses[0].LONGITUDE);
-
-                    Thread.Sleep(500);
-
-                    gControl.Overlays[0].Markers[0].Position = new PointLatLng(latitude, longitude);
-
                 }
-          
+
+            }
+              
         }
      
         public void MostrarMIOS_Click(object sender, EventArgs e)
