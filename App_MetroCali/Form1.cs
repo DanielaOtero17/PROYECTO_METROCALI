@@ -325,7 +325,12 @@ namespace App_MetroCali
             List<Stops> listaAux = new List<Stops>();
             for (int i = 0; i < ParadasEstaciones.Count - 1; i++)
             {
+                if (ParadasEstaciones[i].SHORTNAME.Substring(0, 4).Equals(ParadasEstaciones[i + 1].SHORTNAME.Substring(0, 4)))
+                {
+                    listaAux.Add(ParadasEstaciones[i]);
+                    listaAux.Add(ParadasEstaciones[i + 1]);
 
+                }
 
                 if (ParadasEstaciones[i].SHORTNAME.Substring(0, 4).Equals("PCOMERC".Substring(0, 4)))
                 {
