@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App_MetroCali
 {
-    class MIO{
+    public class MIO{
 
         public String EVENTTYPE { get; set; }
         public String REGISTERDATE { get; set; }
@@ -20,6 +20,8 @@ namespace App_MetroCali
         public String DATAGRAMID { get; set; }
         public String DATAGRAMDATE { get; set; }
         public String BUSID { get; set; }
+
+        public List<String> ways { get; set; }
 
         public MIO (String evt , String regis ,String stop,String odo, String lat , String longi ,String task,String line , String trip,
             String dataG,String dataGraM ,String bus){
@@ -37,7 +39,20 @@ namespace App_MetroCali
             DATAGRAMDATE = dataGraM;
             BUSID = bus;
 
+            ways = new List<string>();
+            ways.Add(LATITUDE + "," + LONGITUDE);
+
         }
 
+        public void addNewWay(String latitud, String longitud)
+        {
+            ways.Add(latitud + "," + longitud);
+        }
+
+        public void changeLocation(String lat,String longi)
+        {
+            this.LATITUDE = lat;
+            this.LONGITUDE = longi;
+        }
     }
 }
