@@ -15,6 +15,7 @@ using System.IO;
 using System.Globalization;
 using System.Threading;
 
+
 namespace App_MetroCali
 {
     public partial class Form1 : Form
@@ -24,8 +25,7 @@ namespace App_MetroCali
         GMapOverlay markerOverlayParada;
         GMapOverlay markerOverlayMIO;
         GMapOverlay markerOverlayZonas;
-        
-
+       
         double latitudCali = 3.42158;
         double longitudCali = -76.5205;
         int indexBus = 0;
@@ -46,7 +46,6 @@ namespace App_MetroCali
         List<ZONA> zona5 = new List<ZONA>();
         List<ZONA> zona6 = new List<ZONA>();
         List<ZONA> zona7 = new List<ZONA>();
-
 
 
         public Form1()
@@ -127,28 +126,7 @@ namespace App_MetroCali
             lector.Close();
         }
 
-        public double ordenarDecimal(String num, int id)
-        {
-            int cant = num.Length;
-
-            double div = 0;
-            double result = 0;
-
-            double aux = double.Parse(num, CultureInfo.InvariantCulture);
-            if (id == 1)
-            {
-                div = Math.Pow(10, cant-1);
-                result = aux / div;
-            }
-            else
-            {
-                div = Math.Pow(10, cant - 3);
-                result = aux / div;
-            }
-
-            return result;
-
-        }
+     
 
         public void separarListasDeParadas()
         {
@@ -366,6 +344,7 @@ namespace App_MetroCali
             String line = lector.ReadLine();
             line = lector.ReadLine();
             int i = 0;
+            
             while (line != null)
             {
                 String[] arregloDatagramas = line.Split(',');
@@ -387,13 +366,24 @@ namespace App_MetroCali
                 String BUSID = arregloDatagramas[11];
 
                 MIO bus = new MIO(EVENTTYPE, REGISTERDATE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
+
+               
+
                 if (busExist(bus))
                 {
-                    Buses[indexBus].addNewWay(LATITUDE, LONGITUDE);
+                    
+                  //  MessageBox.Show("index " + index + " , bus:" + bus.BUSID);
+                    Buses[bus.index].addNewWay(LATITUDE, LONGITUDE);
+                    
                 }
                 else
                 {
+                    int index = Buses.Count;
+                    bus.index = index;
                     Buses.Add(bus);
+                   
+                    
+                  //  MessageBox.Show("bus " + bus.BUSID);
                 }
                    
                 i++;
@@ -455,38 +445,75 @@ namespace App_MetroCali
             return false;
         }
 
-        public void runProcess()
+        public double ordenarDecimal(String num)
         {
-            for (int i=0; i < Buses.Count; i++)
-             {
 
-                //MIO aux = Buses[i];
-                //  String[] loc = aux.ways[j].Split(',');
+            double aux = double.Parse(num, CultureInfo.InvariantCulture);
 
-                        double latitude = ordenarDecimal(Buses[i].LATITUDE,1);
-            double longitude = ordenarDecimal(Buses[i].LONGITUDE, 2);
+            double result = aux / 10000000;
 
-           // MessageBox.Show(latitude + " -- " + longitude);
-
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-
-            marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
-            markerOverlayMIO.Markers.Add(marker);
-            marker.ToolTipMode = MarkerTooltipMode.Always;
-     
-            gControl.Overlays.Add(markerOverlayMIO);
-             }
+            return result;
 
         }
-        private void MostrarMIOS_Click(object sender, EventArgs e)
+        public void runProcess()
         {
-          /*  ThreadStart delegado = new ThreadStart(runProcess);
+            //MessageBox.Show("Total buses: " + Buses.Count() );
+            /*  for (int i=0; i < Buses.Count; i++)
+               {
+                  //MIO aux = Buses[i];
+                  //  String[] loc = aux.ways[j].Split(',');
+
+                    if (Buses[i].LATITUDE.Equals("-1") == false)
+                    {
+                        double latitude = ordenarDecimal(Buses[i].LATITUDE);
+                        double longitude = ordenarDecimal(Buses[i].LONGITUDE);
+                        Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+
+                        marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+                        markerOverlayMIO.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayMIO);
+                    }
+
+              }
+              */
+
+            
+                double latitude = ordenarDecimal(Buses[0].LATITUDE);
+                double longitude = ordenarDecimal(Buses[0].LONGITUDE);
+                Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+
+                marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+                markerOverlayMIO.Markers.Add(marker);
+                // marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                for (int a = 0; a < Buses[0].ways.Count; a++)
+                {
+
+                    Buses[0].changeLocation(a);
+
+                    latitude = ordenarDecimal(Buses[0].LATITUDE);
+                    longitude = ordenarDecimal(Buses[0].LONGITUDE);
+
+                    Thread.Sleep(500);
+
+                    gControl.Overlays[0].Markers[0].Position = new PointLatLng(latitude, longitude);
+
+                }
+          
+        }
+     
+        public void MostrarMIOS_Click(object sender, EventArgs e)
+        {
+
+           ThreadStart delegado = new ThreadStart(runProcess);
             //Creamos la instancia del hilo 
             Thread hilo = new Thread(delegado);
             //Iniciamos el hilo 
-            hilo.Start();*/
+            hilo.Start();
 
-            runProcess();
+            
         }
     }
 
