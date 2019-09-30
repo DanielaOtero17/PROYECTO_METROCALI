@@ -89,7 +89,7 @@ namespace App_MetroCali
             //separarBUSES();
 
             //Se crea un bus de prueba
-            MIO bus = new MIO("0", "REGISTERDATE", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
+            MIO bus = new MIO("0", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
             //Se agrega la posicion a una lista de posiciones que sirve guarda las coordenadas del recorrido
             bus.LIST_LATITUDE.Add("3.4937867");
             bus.LIST_LONGITUDE.Add("-76.5035683");
@@ -353,23 +353,22 @@ namespace App_MetroCali
             {
                 String[] arregloDatagramas = line.Split(',');
  
-                String EVENTTYPE = arregloDatagramas[0];
-                String REGISTERDATE = arregloDatagramas[1];
+                String EVENTTYPE = arregloDatagramas[9];
                 String STOPID = arregloDatagramas[2];
                 String ODOMETER = arregloDatagramas[3];
 
-                String LATITUDE = arregloDatagramas[4];
-                String LONGITUDE = arregloDatagramas[5];
+                String LATITUDE = arregloDatagramas[5];
+                String LONGITUDE = arregloDatagramas[4];
 
                 String TASKID = arregloDatagramas[6];
                 String LINEID = arregloDatagramas[7];
                 String TRIPID = arregloDatagramas[8];
 
                 String DATAGRAMID = arregloDatagramas[9];
-                String DATAGRAMDATE = arregloDatagramas[10];
-                String BUSID = arregloDatagramas[11];
+                String DATAGRAMDATE = arregloDatagramas[0];
+                String BUSID = arregloDatagramas[1];
 
-                MIO bus = new MIO(EVENTTYPE, REGISTERDATE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
+                MIO bus = new MIO(EVENTTYPE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
 
                
 
@@ -476,7 +475,7 @@ namespace App_MetroCali
 
                     marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
                     markerOverlayMIO.Markers.Add(marker);
-                    // marker.ToolTipMode = MarkerTooltipMode.Always;
+                    marker.ToolTipMode = MarkerTooltipMode.Always;
                     marker.ToolTipText = String.Format(Buses[i].BUSID);
 
                     gControl.Overlays.Add(markerOverlayMIO);
@@ -500,9 +499,6 @@ namespace App_MetroCali
 
             }
               
-
-            
-                
         }
      
         public void MostrarMIOS_Click(object sender, EventArgs e)
