@@ -319,6 +319,41 @@ namespace App_MetroCali
 
         }
 
+        public void comprobarParadasEnMismaEstacion()
+        {
+            List<Stops> listaAux = new List<Stops>();
+            for (int i = 0; i < ParadasEstaciones.Count - 1; i++)
+            {
+                if (ParadasEstaciones[i].SHORTNAME.Equals(ParadasEstaciones[i + 1].SHORTNAME))
+                {
+                    listaAux.Add(ParadasEstaciones[i]);
+
+                }
+                else
+                {
+
+
+                }
+            }
+            hacerPoligonoEstaciones(listaAux);
+
+        }
+
+        public void hacerPoligonoEstaciones(List<Stops> a)
+        {
+            GMapOverlay poligono = new GMapOverlay("Poligono");
+            List<PointLatLng> puntos = new List<PointLatLng>();
+            for (int i = 0; i < a.Count - 1; i++)
+            {
+                puntos.Add(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD));
+            }
+            GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
+            poligono.Polygons.Add(poligonoPuntos);
+            gControl.Overlays.Add(poligono);
+            gControl.Zoom = gControl.Zoom + 1;
+            gControl.Zoom = gControl.Zoom - 1;
+        }
+
         public void hacerPoligonoZonas(List<ZONA> a){
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
