@@ -127,6 +127,7 @@ namespace App_MetroCali
                 Paradas.Add(parada);
                 i++;
                 line = lector.ReadLine();
+                //Console.WriteLine(parada.SHORTNAME);
             }
             lector.Close();
         }
@@ -137,15 +138,20 @@ namespace App_MetroCali
         {
             for (int i = 0; i < Paradas.Count; i++)
             {
-                if (retornarLista()[i].STOPID.Substring(0, 1).Equals("6"))
-                {
-                    ParadasEstaciones.Add(Paradas[i]);
-                    //Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
-                }
-                else if (retornarLista()[i].STOPID.Substring(0, 1).Equals("5"))
+
+                if (Paradas[i].LONGNAME.Contains("Kr ") || Paradas[i].LONGNAME.Contains("Cl ") || Paradas[i].LONGNAME.Contains("entre"))
                 {
                     ParadasCalle.Add(Paradas[i]);
-                    // Console.WriteLine("CALLE : "+ParadasCalle[i].LONGNAME);
+                    //Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
+                }
+                else if (Paradas[i].LONGNAME.Contains("Patio"))
+                {
+                    //ParadasCalle.Add(Paradas[i]);
+                    //Console.WriteLine("CALLE : "+ParadasCalle[i].LONGNAME);
+                }
+                else
+                {
+                    ParadasEstaciones.Add(Paradas[i]);
                 }
             }
         }
@@ -161,6 +167,7 @@ namespace App_MetroCali
             lecturaParadas();
             separarListasDeParadas();
             filter();
+            comprobarParadasEnMismaEstacion();
         }
 
         private void filter(){
@@ -196,7 +203,7 @@ namespace App_MetroCali
                 marker.ToolTipMode = MarkerTooltipMode.Always;
                 marker.ToolTipText = String.Format("Parada:" + a[S].SHORTNAME);
 
-                Console.WriteLine(S);
+                //Console.WriteLine(S);
                 S++;
             }
             gControl.Overlays.Add(markerOverlayParada);
@@ -323,30 +330,26 @@ namespace App_MetroCali
         public void comprobarParadasEnMismaEstacion()
         {
             List<Stops> listaAux = new List<Stops>();
-            for (int i = 0; i < ParadasEstaciones.Count - 1; i++)
+            String name = ParadasEstaciones[0].SHORTNAME;
+            for (int i = 0; i < ParadasEstaciones.Count; i++)
             {
-                if (ParadasEstaciones[i].SHORTNAME.Substring(0, 4).Equals(ParadasEstaciones[i + 1].SHORTNAME.Substring(0, 4)))
+
+                if (ParadasEstaciones[i].SHORTNAME.Substring(0, ParadasEstaciones[i].SHORTNAME.Length-2).Equals(name.Substring(0, name.Length-2)))
                 {
                     listaAux.Add(ParadasEstaciones[i]);
-                    listaAux.Add(ParadasEstaciones[i + 1]);
-
-                }
-
-                if (ParadasEstaciones[i].SHORTNAME.Substring(0, 4).Equals("PCOMERC".Substring(0, 4)))
-                {
-                    listaAux.Add(ParadasEstaciones[i]);
-                    listaAux.Add(ParadasEstaciones[i + 1]);
-                    Console.WriteLine(ParadasEstaciones[i].SHORTNAME);
-
+                    //Console.WriteLine(ParadasEstaciones[i].SHORTNAME);
                 }
                 else
                 {
-
-
+                    hacerPoligonoEstaciones(listaAux);
+                    name = ParadasEstaciones[i].SHORTNAME;
+                    listaAux.Clear();
+                    listaAux.Add(ParadasEstaciones[i]);
                 }
+                //hacerPoligonoEstaciones(listaAux);
             }
-            hacerPoligonoEstaciones(listaAux);
 
+            //hacerPoligonoEstaciones(listaAux);
 
         }
 
@@ -354,11 +357,13 @@ namespace App_MetroCali
         {
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
-            for (int i = 0; i < a.Count - 1; i++)
+            for (int i = 0; i < a.Count; i++)
             {
                 puntos.Add(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD));
             }
+
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
+            poligonoPuntos.Fill = new SolidBrush(Color.FromArgb(50, Color.Red));
             poligono.Polygons.Add(poligonoPuntos);
             gControl.Overlays.Add(poligono);
             gControl.Zoom = gControl.Zoom + 1;
