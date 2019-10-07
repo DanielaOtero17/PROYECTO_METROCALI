@@ -523,11 +523,8 @@ namespace App_MetroCali
         {
            // MessageBox.Show("Total buses: " + Buses.Count );
 
-            for (int i=0; i < 3; i++)
+            for (int i=0; i < Buses.Count; i++)
                {
-                //MIO aux = Buses[i];
-                //  String[] loc = aux.ways[j].Split(',');
-
                     double latitude = ordenarDecimal(Buses[i].LATITUDE);
                     double longitude = ordenarDecimal(Buses[i].LONGITUDE);
                     Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
@@ -542,8 +539,8 @@ namespace App_MetroCali
             }
             MessageBox.Show("marcadores agregados y serán mostrados. ");
             gControl.Overlays.Add(markerOverlayMIO);
-            gControl.Zoom = gControl.Zoom + 1;
-            gControl.Zoom = gControl.Zoom - 1;
+            gControl.Zoom = gControl.Zoom + 0.1;
+            gControl.Zoom = gControl.Zoom - 0.1;
 
 
         }

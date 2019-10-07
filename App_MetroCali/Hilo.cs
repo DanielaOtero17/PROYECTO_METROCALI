@@ -34,22 +34,24 @@ namespace App_MetroCali
 
             while (true)
             {
-                //MessageBox.Show(" ejecutando ");
-                 for (int i = 0; i < 1; i++) {
-
-                ventana.Buses[i].changeLocation();
+                
+                 for (int i = 0; i < ventana.Buses.Count; i++) {
+                   // MessageBox.Show(" ejecutando " + i);
+                    ventana.Buses[i].changeLocation();
 
                     double latitud = ventana.ordenarDecimal(ventana.Buses[i].LATITUDE);
                     double longitud = ventana.ordenarDecimal(ventana.Buses[i].LONGITUDE);
 
-                    Console.Write(i + "");
-                    ventana.gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitud, longitud);
+                 //   Console.Write(i + "");
+                    ventana.gControl.Overlays[0].Markers[i].Position = new PointLatLng(latitud, longitud);
+                   ventana.gControl.Zoom = ventana.gControl.Zoom + 0.1;
+                    ventana.gControl.Zoom = ventana.gControl.Zoom - 0.1;
                 }
 
 
                 try
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                 }
                 catch (ThreadInterruptedException e)
                 {
