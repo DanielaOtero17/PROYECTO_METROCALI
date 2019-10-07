@@ -523,7 +523,7 @@ namespace App_MetroCali
         {
            // MessageBox.Show("Total buses: " + Buses.Count );
 
-            for (int i=0; i < Buses.Count; i++)
+            for (int i=0; i < 3; i++)
                {
                 //MIO aux = Buses[i];
                 //  String[] loc = aux.ways[j].Split(',');
