@@ -23,7 +23,7 @@ namespace App_MetroCali
 
         GMarkerGoogle marker;
         GMapOverlay markerOverlayParada;
-        GMapOverlay markerOverlayMIO;
+        public GMapOverlay markerOverlayMIO { get; set; }
         GMapOverlay markerOverlayZonas;
        
         double latitudCali = 3.42158;
@@ -47,6 +47,8 @@ namespace App_MetroCali
         List<ZONA> zona6 = new List<ZONA>();
         List<ZONA> zona7 = new List<ZONA>();
         List<ZONA> zona8 = new List<ZONA>();
+
+        Queue<List<MIO>> cola = new Queue<List<MIO>>();
 
 
         public Form1()
@@ -442,25 +444,8 @@ namespace App_MetroCali
                 String BUSID = arregloDatagramas[11];
 
                 MIO bus = new MIO(EVENTTYPE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
-
-               
-                if (busExist(bus))
-                {
-                    
-                  //  MessageBox.Show("index " + index + " , bus:" + bus.BUSID);
-                    Buses[bus.index].addNewWay(LATITUDE, LONGITUDE);
-                    
-                }
-                else
-                {
-                    int index = Buses.Count;
-                    bus.index = index;
-                    Buses.Add(bus);
-                   
-                    
-                  //  MessageBox.Show("bus " + bus.BUSID);
-                }
-                   
+                Buses.Add(bus);
+             
                 i++;
                 line = lector.ReadLine();
             }
@@ -468,6 +453,48 @@ namespace App_MetroCali
 
         }
 
+        public Boolean ListExist(List<MIO> item)
+        {
+
+            return cola.Contains(item);
+
+        }
+
+      
+        public void ordenarCola()
+        {
+          
+            String hora = "";
+            String minutos = "";
+            String auxh = "";
+            String auxm = "";
+
+            
+
+            for (int i = 0; i < Buses.Count; i++)
+            {
+
+                String[] data = Buses[i].DATAGRAMDATE.Split(' ');
+                String[] data2 = data[1].Split('.');
+                auxh = data2[0];
+                auxm = data2[1];
+                if(auxh.Equals(hora) && auxm.Equals(minutos))
+                {
+                    cola.Last().Add(Buses[i]);
+                   
+                }
+                else
+                {
+                    cola.Enqueue(new List<MIO>());
+                    cola.Last().Add(Buses[i]);
+
+                    hora = auxh;
+                    minutos = auxm;
+                }
+
+            }
+
+        }
 
         public void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
@@ -502,71 +529,64 @@ namespace App_MetroCali
 
         }
 
-     /*   public void movement(MIO busesito,int i)
-        {
-            double latitude = ordenarDecimal(busesito.LATITUDE);
-            double longitude = ordenarDecimal(busesito.LONGITUDE);
+       
 
-                busesito.changeLocation();
-
-              latitude = ordenarDecimal(busesito.LATITUDE);
-              longitude = ordenarDecimal(busesito.LONGITUDE);
-
-             //   Thread.Sleep(1000);
-
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
-            markerOverlayMIO.Markers.Add(marker);
-           
-            gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitude, longitude);
-        }*/
         public void runProcess()
         {
-           // MessageBox.Show("Total buses: " + Buses.Count );
 
-            for (int i=0; i < Buses.Count; i++)
-               {
-                    double latitude = ordenarDecimal(Buses[i].LATITUDE);
-                    double longitude = ordenarDecimal(Buses[i].LONGITUDE);
-                    Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+            ordenarCola();
+
+            MessageBox.Show("Se han agregado las colas, en" + cola.Count);
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+
+            while (cola.Count>0)
+            {
+
+               
+                List<MIO> auxi = cola.Dequeue();
+               
+                
+
+                for (int j = 0; j < auxi.Count; j++)
+                {
+                   
+                    double latitude = ordenarDecimal(auxi[j].LATITUDE);
+                    double longitude = ordenarDecimal(auxi[j].LONGITUDE);
 
                     marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+
                     markerOverlayMIO.Markers.Add(marker);
+
                     marker.ToolTipMode = MarkerTooltipMode.Always;
-                    marker.ToolTipText = String.Format(Buses[i].BUSID);
+                    marker.ToolTipText = String.Format(auxi[j].BUSID);
+                   
+                }
+                gControl.Overlays.Add(markerOverlayMIO);
+                    gControl.Zoom = gControl.Zoom + 0.1;
+                    gControl.Zoom = gControl.Zoom - 0.1;
+                // Thread.Sleep(100);
 
-                    // MessageBox.Show("indice bus:  " + i);               
-                
+                markerOverlayMIO.Clear();
+
+               
+
             }
-            MessageBox.Show("marcadores agregados y serán mostrados. ");
-            gControl.Overlays.Add(markerOverlayMIO);
-            gControl.Zoom = gControl.Zoom + 0.1;
-            gControl.Zoom = gControl.Zoom - 0.1;
 
+            
+      
 
         }
-     
-        public void MostrarMIOS_Click(object sender, EventArgs e)
+
+
+
+       public void MostrarMIOS_Click(object sender, EventArgs e)
         {
 
             runProcess();
-            Hilo hilo = new Hilo(Buses,this);
-            
-            hilo.run();                             
+          
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-
-          /*  for(int i=0; i<Buses.Count; i++)
-            {
-                {
-                    if (Buses[i].LATITUDE.Equals("-1") == false)
-                        movement(Buses[i], i);
-                }
-            }*/
-            
-        }
+        
 
         private void PboxFondoDeco_Click(object sender, EventArgs e)
         {
