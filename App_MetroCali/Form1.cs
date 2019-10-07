@@ -197,11 +197,12 @@ namespace App_MetroCali
             for (int i = 0; i < a.Count(); i++)
             {
                 marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD), GMarkerGoogleType.red);
-
+                
                 markerOverlayParada.Markers.Add(marker);
-                marker.ToolTipMode = MarkerTooltipMode.Always;
-                marker.ToolTipText = String.Format("Parada:" + a[S].SHORTNAME);
-
+                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                marker.ToolTipText = String.Format("Parada: " + a[S].LONGNAME + "\n" + "ID " + a[S].STOPID + "\n" + "Latitud: " + a[S].DECIMALLATITUD + "\n" + "Longitud: " + a[S].DECIMALLONGITUD);
+                marker.ToolTip.TextPadding = new Size(10, 100);
+                marker.ToolTip.Fill = Brushes.Aqua;
                 //Console.WriteLine(S);
                 S++;
             }
