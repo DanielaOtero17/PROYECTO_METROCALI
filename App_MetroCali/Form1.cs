@@ -70,15 +70,15 @@ namespace App_MetroCali
             cb_elegir.Items.Add("PATIOS");
 
 
-            cbZonas.Items.Add("0");
-            cbZonas.Items.Add("1");
-            cbZonas.Items.Add("2");
-            cbZonas.Items.Add("3");
-            cbZonas.Items.Add("4");
-            cbZonas.Items.Add("5");
-            cbZonas.Items.Add("6");
-            cbZonas.Items.Add("7");
-            cbZonas.Items.Add("8");
+            cbZonas.Items.Add("0 - CENTRO");
+            cbZonas.Items.Add("1 - UNIVERSIDADES");
+            cbZonas.Items.Add("2 - MENGA");
+            cbZonas.Items.Add("3 - PASO DEL COMERCIO");
+            cbZonas.Items.Add("4 - ANDRÉS SANÍN");
+            cbZonas.Items.Add("5 - NUEVO LATIR");
+            cbZonas.Items.Add("6 - CAÑAVERALEJO");
+            cbZonas.Items.Add("7 - SIMÓN BOLIVAR");
+            cbZonas.Items.Add("8 - CALIPSO");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
             pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
@@ -249,8 +249,7 @@ namespace App_MetroCali
                 marker = new GMarkerGoogle(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud), GMarkerGoogleType.green);
                 markerOverlayZonas.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
-                gControl.Zoom = gControl.Zoom + 1;
-                gControl.Zoom = gControl.Zoom - 1;
+                
             }
             gControl.Overlays.Add(markerOverlayZonas);
         }
@@ -262,42 +261,42 @@ namespace App_MetroCali
                 case "":
                     MessageBox.Show("Debe seleccionar un numero de zona");
                     break;
-                case "0":
+                case "0 - CENTRO":
                     Color color = Color.FromArgb(50, Color.Blue);
                     hacerPoligonoZonas(zona0, color);
                     
                     break;
-                case "1":
+                case "1 - UNIVERSIDADES":
                     Color color1 = Color.FromArgb(50, Color.Yellow);
                     hacerPoligonoZonas(zona1, color1);
                     break;
-                case "2":
+                case "2 - MENGA":
                     Color color2 = Color.FromArgb(50, Color.Red);
                     hacerPoligonoZonas(zona2, color2);
                     break;
-                case "3":
+                case "3 - PASO DEL COMERCIO":
                     Color color3 = Color.FromArgb(50, Color.Black);
                     hacerPoligonoZonas(zona3, color3);
                     break;
-                case "4":
+                case "4 - ANDRÉS SANÍN":
                     Color color4 = Color.FromArgb(50, Color.Green);
                     hacerPoligonoZonas(zona4, color4);
                     break;
-                case "5":
+                case "5 - NUEVO LATIR":
                     Color color5 = Color.FromArgb(50, Color.Gray);
                     hacerPoligonoZonas(zona5, color5);
                     break;
-                case "6":
+                case "6 - CAÑAVERALEJO":
                     Color color6 = Color.FromArgb(50, Color.Aquamarine);
                     hacerPoligonoZonas(zona6, color6);
                     break;
 
-                case "7":
+                case "7 - SIMÓN BOLIVAR":
                     Color color7 = Color.FromArgb(50, Color.Brown);
                     hacerPoligonoZonas(zona7, color7);
                     break;
 
-                    case "8":
+                    case "8 - CALIPSO":
                     Color color8 = Color.FromArgb(50, Color.DarkMagenta);
                     hacerPoligonoZonas(zona8, color8);
                     break;
@@ -385,8 +384,8 @@ namespace App_MetroCali
             poligono.Polygons.Add(poligonoPuntos);
            
             gControl.Overlays.Add(poligono);
-            gControl.Zoom = gControl.Zoom + 1;
-            gControl.Zoom = gControl.Zoom - 1;
+            //gControl.Zoom = gControl.Zoom + 1;
+            //gControl.Zoom = gControl.Zoom - 1;
         }
 
         public void hacerPoligonoZonas(List<ZONA> a , Color color){
