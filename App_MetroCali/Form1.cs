@@ -72,15 +72,16 @@ namespace App_MetroCali
             cb_elegir.Items.Add("PATIOS");
 
 
-            cbZonas.Items.Add("0");
-            cbZonas.Items.Add("1");
-            cbZonas.Items.Add("2");
-            cbZonas.Items.Add("3");
-            cbZonas.Items.Add("4");
-            cbZonas.Items.Add("5");
-            cbZonas.Items.Add("6");
-            cbZonas.Items.Add("7");
-            cbZonas.Items.Add("8");
+            cbZonas.Items.Add("0 - CENTRO");
+            cbZonas.Items.Add("1 - UNIVERSIDADES");
+            cbZonas.Items.Add("2 - MENGA");
+            cbZonas.Items.Add("3 - PASO DEL COMERCIO");
+            cbZonas.Items.Add("4 - ANDRÉS SANÍN");
+            cbZonas.Items.Add("5 - NUEVO LATIR");
+            cbZonas.Items.Add("6 - CAÑAVERALEJO");
+            cbZonas.Items.Add("7 - SIMÓN BOLIVAR");
+            cbZonas.Items.Add("8 - CALIPSO");
+            cbZonas.Items.Add("MOSTRAR TODAS");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
             pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
@@ -198,11 +199,12 @@ namespace App_MetroCali
             for (int i = 0; i < a.Count(); i++)
             {
                 marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD), GMarkerGoogleType.red);
-
+                
                 markerOverlayParada.Markers.Add(marker);
-                marker.ToolTipMode = MarkerTooltipMode.Always;
-                marker.ToolTipText = String.Format("Parada:" + a[S].SHORTNAME);
-
+                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                marker.ToolTipText = String.Format("Parada: " + a[S].LONGNAME + "\n" + "ID " + a[S].STOPID + "\n" + "Latitud: " + a[S].DECIMALLATITUD + "\n" + "Longitud: " + a[S].DECIMALLONGITUD);
+                marker.ToolTip.TextPadding = new Size(10, 100);
+                marker.ToolTip.Fill = Brushes.Aqua;
                 //Console.WriteLine(S);
                 S++;
             }
@@ -251,57 +253,77 @@ namespace App_MetroCali
                 marker = new GMarkerGoogle(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud), GMarkerGoogleType.green);
                 markerOverlayZonas.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
-                gControl.Zoom = gControl.Zoom + 1;
-                gControl.Zoom = gControl.Zoom - 1;
+                
             }
             gControl.Overlays.Add(markerOverlayZonas);
         }
 
         public void seleccionZona(){
-            
+            Color color = Color.FromArgb(50, Color.Blue);
+            Color color1 = Color.FromArgb(50, Color.Yellow);
+            Color color2 = Color.FromArgb(50, Color.Red);
+            Color color3 = Color.FromArgb(50, Color.Black);
+            Color color4 = Color.FromArgb(50, Color.Green);
+            Color color5 = Color.FromArgb(50, Color.Gray);
+            Color color6 = Color.FromArgb(50, Color.Aquamarine);
+            Color color7 = Color.FromArgb(50, Color.Brown);
+            Color color8 = Color.FromArgb(50, Color.DarkMagenta);
             switch (cbZonas.Text)
             {
                 case "":
                     MessageBox.Show("Debe seleccionar un numero de zona");
                     break;
-                case "0":
-                    Color color = Color.FromArgb(50, Color.Blue);
+                case "0 - CENTRO":
+                    
                     hacerPoligonoZonas(zona0, color);
                     
                     break;
-                case "1":
-                    Color color1 = Color.FromArgb(50, Color.Yellow);
+                case "1 - UNIVERSIDADES":
+                   
                     hacerPoligonoZonas(zona1, color1);
                     break;
-                case "2":
-                    Color color2 = Color.FromArgb(50, Color.Red);
+                case "2 - MENGA":
+                   
                     hacerPoligonoZonas(zona2, color2);
                     break;
-                case "3":
-                    Color color3 = Color.FromArgb(50, Color.Black);
+                case "3 - PASO DEL COMERCIO":
+                   
                     hacerPoligonoZonas(zona3, color3);
                     break;
-                case "4":
-                    Color color4 = Color.FromArgb(50, Color.Green);
+                case "4 - ANDRÉS SANÍN":
+                   
                     hacerPoligonoZonas(zona4, color4);
                     break;
-                case "5":
-                    Color color5 = Color.FromArgb(50, Color.Gray);
+                case "5 - NUEVO LATIR":
+                   
                     hacerPoligonoZonas(zona5, color5);
                     break;
-                case "6":
-                    Color color6 = Color.FromArgb(50, Color.Aquamarine);
+                case "6 - CAÑAVERALEJO":
+                   
                     hacerPoligonoZonas(zona6, color6);
                     break;
 
-                case "7":
-                    Color color7 = Color.FromArgb(50, Color.Brown);
+                case "7 - SIMÓN BOLIVAR":
+                   
                     hacerPoligonoZonas(zona7, color7);
                     break;
 
-                    case "8":
-                    Color color8 = Color.FromArgb(50, Color.DarkMagenta);
+                    case "8 - CALIPSO":
+                    
                     hacerPoligonoZonas(zona8, color8);
+                    break;  
+                    
+                case "MOSTRAR TODAS":
+                    hacerPoligonoZonas(zona0, color);
+                    hacerPoligonoZonas(zona1, color1);
+                    hacerPoligonoZonas(zona2, color2);
+                    hacerPoligonoZonas(zona3, color3);
+                    hacerPoligonoZonas(zona4, color4);
+                    hacerPoligonoZonas(zona5, color5);
+                    hacerPoligonoZonas(zona6, color6);
+                    hacerPoligonoZonas(zona7, color7);
+                    hacerPoligonoZonas(zona8, color8);
+
                     break;
             }
         }
@@ -347,6 +369,54 @@ namespace App_MetroCali
 
         }
 
+        public int orientacion(Stops p, Stops q, Stops r)
+        {
+            double val = (q.DECIMALLATITUD - p.DECIMALLATITUD) * (r.DECIMALLONGITUD - q.DECIMALLONGITUD) -(q.DECIMALLONGITUD - p.DECIMALLONGITUD) * (r.DECIMALLATITUD - q.DECIMALLATITUD);
+
+            if(val == 0)
+            {
+                return 0;
+            }
+
+            return (val > 0) ? 1 : 2;
+        }
+
+        public List<Stops> convexHull(List<Stops> lista, int n)
+        {
+            //if (n < 3) return;
+
+            List<Stops> hull = new List<Stops>();
+            int l = 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                if(lista[i].DECIMALLONGITUD < lista[l].DECIMALLONGITUD)
+                {
+                    l = i;
+                }
+            }
+
+            int p = l, q;
+
+            do
+            {
+                hull.Add(lista[p]);
+
+                q = (p + 1) % n;
+
+                for (int i = 0; i < n; i++)
+                {
+       
+                    if (orientacion(lista[p], lista[i], lista[q])== 2)
+                        q = i;
+                }
+                p = q;
+            } while (p != l);
+
+            //lista = hull;
+            return hull;
+        }
+
         public void comprobarParadasEnMismaEstacion()
         {
             List<Stops> listaAux = new List<Stops>();
@@ -361,7 +431,8 @@ namespace App_MetroCali
                 }
                 else
                 {
-                    hacerPoligonoEstaciones(listaAux);
+                    //convexHull(listaAux, listaAux.Count);
+                    hacerPoligonoEstaciones(convexHull(listaAux, listaAux.Count));
                     name = ParadasEstaciones[i].SHORTNAME;
                     listaAux.Clear();
                     listaAux.Add(ParadasEstaciones[i]);
@@ -387,8 +458,8 @@ namespace App_MetroCali
             poligono.Polygons.Add(poligonoPuntos);
            
             gControl.Overlays.Add(poligono);
-            gControl.Zoom = gControl.Zoom + 1;
-            gControl.Zoom = gControl.Zoom - 1;
+            //gControl.Zoom = gControl.Zoom + 1;
+            //gControl.Zoom = gControl.Zoom - 1;
         }
 
         public void hacerPoligonoZonas(List<ZONA> a , Color color){
