@@ -569,6 +569,11 @@ namespace App_MetroCali
             }*/
             
         }
+
+        private void PboxFondoDeco_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
