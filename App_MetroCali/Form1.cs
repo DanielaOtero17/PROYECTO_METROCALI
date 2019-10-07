@@ -249,7 +249,8 @@ namespace App_MetroCali
                 marker = new GMarkerGoogle(new PointLatLng(Zonas[i].latitud, Zonas[i].longitud), GMarkerGoogleType.green);
                 markerOverlayZonas.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
-               
+                gControl.Zoom = gControl.Zoom + 1;
+                gControl.Zoom = gControl.Zoom - 1;
             }
             gControl.Overlays.Add(markerOverlayZonas);
         }
