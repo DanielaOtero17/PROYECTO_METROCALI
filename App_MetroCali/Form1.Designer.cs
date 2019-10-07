@@ -197,21 +197,21 @@
             // 
             // lTitulo
             // 
-            this.lTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lTitulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lTitulo.AutoSize = true;
             this.lTitulo.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTitulo.Location = new System.Drawing.Point(353, 21);
+            this.lTitulo.Location = new System.Drawing.Point(386, 21);
             this.lTitulo.Name = "lTitulo";
             this.lTitulo.Size = new System.Drawing.Size(232, 26);
             this.lTitulo.TabIndex = 13;
             this.lTitulo.Text = "MAPA DE GOOGLE";
+            this.lTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 823);
-            this.Controls.Add(this.lTitulo);
             this.Controls.Add(this.pbIMAGEN);
             this.Controls.Add(this.MostrarMIOS);
             this.Controls.Add(this.bPuntosZonas);
@@ -224,6 +224,7 @@
             this.Controls.Add(this.Bguardar);
             this.Controls.Add(this.cb_elegir);
             this.Controls.Add(this.pboxFondoDeco);
+            this.Controls.Add(this.lTitulo);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "METROCALI";

@@ -64,7 +64,7 @@ namespace App_MetroCali
             gControl.Zoom = 18;
             gControl.AutoScroll = true;
 
-            
+           
 
             cb_elegir.Items.Add("ESTACIONES");
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
