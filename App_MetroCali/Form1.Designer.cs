@@ -75,7 +75,9 @@
             this.gControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gControl.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.gControl.Bearing = 0F;
+            this.gControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gControl.CanDragMap = true;
             this.gControl.EmptyTileColor = System.Drawing.Color.Navy;
             this.gControl.GrayScaleMode = false;
