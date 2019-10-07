@@ -35,7 +35,7 @@ namespace App_MetroCali
         List<Stops> ParadasCalle = new List<Stops>();
         List<ZONA> Zonas = new List<ZONA>();
 
-        List<MIO> Buses = new List<MIO>();
+        public List<MIO> Buses = new List<MIO>();
         List<MIO> cantidadBuses = new List<MIO>();
 
         List<ZONA> zona0 = new List<ZONA>();
@@ -52,7 +52,6 @@ namespace App_MetroCali
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e){
             gControl.DragButton = MouseButtons.Left;
             gControl.CanDragMap = true;
@@ -89,13 +88,7 @@ namespace App_MetroCali
             lecturaDatagramas();
             //separarBUSES();
 
-            //Se crea un bus de prueba
-            MIO bus = new MIO("0", "-1", "-1", "3.4937867", "-76.5035683", "TASKID", "LINEID", "TRIPID", "DATAGRAMID", "DATAGRAMDATE", "BUSID");
-            //Se agrega la posicion a una lista de posiciones que sirve guarda las coordenadas del recorrido
-            bus.LIST_LATITUDE.Add("3.4937867");
-            bus.LIST_LONGITUDE.Add("-76.5035683");
-
-            //Pinta el bus
+            
             markerOverlayMIO = new GMapOverlay("markadorMIO");
            /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
             marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
@@ -155,6 +148,10 @@ namespace App_MetroCali
             return Paradas;
         }
 
+        public GMapControl returnControl()
+        {
+            return gControl;
+        }
         private void GControl_Load(object sender, EventArgs e) { }
 
         private void Bguardar_Click(object sender, EventArgs e){
@@ -399,20 +396,20 @@ namespace App_MetroCali
             {
                 String[] arregloDatagramas = line.Split(',');
  
-                String EVENTTYPE = arregloDatagramas[9];
+                String EVENTTYPE = arregloDatagramas[0];
                 String STOPID = arregloDatagramas[2];
                 String ODOMETER = arregloDatagramas[3];
-
-                String LATITUDE = arregloDatagramas[5];
-                String LONGITUDE = arregloDatagramas[4];
+                
+                String LATITUDE = arregloDatagramas[4];
+                String LONGITUDE = arregloDatagramas[5];
 
                 String TASKID = arregloDatagramas[6];
                 String LINEID = arregloDatagramas[7];
                 String TRIPID = arregloDatagramas[8];
 
                 String DATAGRAMID = arregloDatagramas[9];
-                String DATAGRAMDATE = arregloDatagramas[0];
-                String BUSID = arregloDatagramas[1];
+                String DATAGRAMDATE = arregloDatagramas[10];
+                String BUSID = arregloDatagramas[11];
 
                 MIO bus = new MIO(EVENTTYPE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
 
@@ -474,6 +471,25 @@ namespace App_MetroCali
             return result;
 
         }
+
+     /*   public void movement(MIO busesito,int i)
+        {
+            double latitude = ordenarDecimal(busesito.LATITUDE);
+            double longitude = ordenarDecimal(busesito.LONGITUDE);
+
+                busesito.changeLocation();
+
+              latitude = ordenarDecimal(busesito.LATITUDE);
+              longitude = ordenarDecimal(busesito.LONGITUDE);
+
+             //   Thread.Sleep(1000);
+
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+            marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+            markerOverlayMIO.Markers.Add(marker);
+           
+            gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitude, longitude);
+        }*/
         public void runProcess()
         {
            // MessageBox.Show("Total buses: " + Buses.Count );
@@ -483,8 +499,6 @@ namespace App_MetroCali
                 //MIO aux = Buses[i];
                 //  String[] loc = aux.ways[j].Split(',');
 
-                if (Buses[i].LATITUDE.Equals("-1") == false)
-                {
                     double latitude = ordenarDecimal(Buses[i].LATITUDE);
                     double longitude = ordenarDecimal(Buses[i].LONGITUDE);
                     Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
@@ -494,41 +508,36 @@ namespace App_MetroCali
                     marker.ToolTipMode = MarkerTooltipMode.Always;
                     marker.ToolTipText = String.Format(Buses[i].BUSID);
 
-                    gControl.Overlays.Add(markerOverlayMIO);
-
-                    // MessageBox.Show("indice bus:  " + i);
-
-                } 
+                    // MessageBox.Show("indice bus:  " + i);               
+                
             }
+            MessageBox.Show("marcadores agregados y serán mostrados. ");
+            gControl.Overlays.Add(markerOverlayMIO);
+            gControl.Zoom = gControl.Zoom + 1;
+            gControl.Zoom = gControl.Zoom - 1;
 
-            for (int i = 0; i < Buses.Count; i++)
-            {
-                for (int a = 0; a < Buses[i].ways.Count; a++)
-                {
-                    // MessageBox.Show("indice location " + a);
-                    Buses[i].changeLocation(a);
-
-                    double latitude = ordenarDecimal(Buses[i].LATITUDE);
-                    double longitude = ordenarDecimal(Buses[i].LONGITUDE);
-
-                    Thread.Sleep(100);
-
-                    gControl.Overlays[i].Markers[i].Position = new PointLatLng(latitude, longitude);
-
-                }
-            }
 
         }
      
         public void MostrarMIOS_Click(object sender, EventArgs e)
         {
 
-           ThreadStart delegado = new ThreadStart(runProcess);
-            //Creamos la instancia del hilo 
-            Thread hilo = new Thread(delegado);
-            //Iniciamos el hilo 
-            hilo.Start();
+            runProcess();
+            Hilo hilo = new Hilo(Buses,this);
+            
+            hilo.run();                             
+        }
 
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+
+          /*  for(int i=0; i<Buses.Count; i++)
+            {
+                {
+                    if (Buses[i].LATITUDE.Equals("-1") == false)
+                        movement(Buses[i], i);
+                }
+            }*/
             
         }
     }

@@ -20,6 +20,7 @@ namespace App_MetroCali
         public String DATAGRAMID { get; set; }
         public String DATAGRAMDATE { get; set; }
         public String BUSID { get; set; }
+        int run { get; set; }
 
         public List<String> LIST_LATITUDE { get; set; }
 
@@ -51,6 +52,7 @@ namespace App_MetroCali
 
             ways = new List<string>();
             ways.Add(LATITUDE + "," + LONGITUDE);
+            run = 0;
 
         }
 
@@ -59,15 +61,17 @@ namespace App_MetroCali
             ways.Add(latitud + "," + longitud);
         }
 
-        public void changeLocation(int i)
+        public void changeLocation()
         {
-           
-                String[] info = ways[i].Split(',');
+
+            if (run < ways.Count)
+            {
+                String[] info = ways[run].Split(',');
 
                 this.LATITUDE = info[0];
                 this.LONGITUDE = info[1];
-            
-
+            }
+            run++;
             
         }
 
