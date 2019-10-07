@@ -40,6 +40,7 @@
             this.bPuntosZonas = new System.Windows.Forms.Button();
             this.MostrarMIOS = new System.Windows.Forms.Button();
             this.pboxFondoDeco = new System.Windows.Forms.PictureBox();
+            this.lTitulo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxFondoDeco)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_elegir.FormattingEnabled = true;
             this.cb_elegir.ItemHeight = 16;
-            this.cb_elegir.Location = new System.Drawing.Point(917, 422);
+            this.cb_elegir.Location = new System.Drawing.Point(917, 346);
             this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_elegir.Name = "cb_elegir";
             this.cb_elegir.Size = new System.Drawing.Size(176, 24);
@@ -60,10 +61,10 @@
             // Bguardar
             // 
             this.Bguardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Bguardar.Location = new System.Drawing.Point(917, 465);
+            this.Bguardar.Location = new System.Drawing.Point(917, 374);
             this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(176, 50);
+            this.Bguardar.Size = new System.Drawing.Size(131, 50);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar Paradas";
             this.Bguardar.UseVisualStyleBackColor = true;
@@ -74,13 +75,15 @@
             this.gControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gControl.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.gControl.Bearing = 0F;
+            this.gControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gControl.CanDragMap = true;
             this.gControl.EmptyTileColor = System.Drawing.Color.Navy;
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(33, 21);
+            this.gControl.Location = new System.Drawing.Point(33, 66);
             this.gControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
@@ -95,7 +98,7 @@
             this.gControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gControl.ShowTileGridLines = false;
-            this.gControl.Size = new System.Drawing.Size(853, 767);
+            this.gControl.Size = new System.Drawing.Size(853, 722);
             this.gControl.TabIndex = 3;
             this.gControl.Zoom = 0D;
             this.gControl.Load += new System.EventHandler(this.GControl_Load_1);
@@ -119,10 +122,10 @@
             // BEliminar
             // 
             this.BEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BEliminar.Location = new System.Drawing.Point(1016, 569);
+            this.BEliminar.Location = new System.Drawing.Point(917, 579);
             this.BEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BEliminar.Name = "BEliminar";
-            this.BEliminar.Size = new System.Drawing.Size(168, 54);
+            this.BEliminar.Size = new System.Drawing.Size(131, 54);
             this.BEliminar.TabIndex = 6;
             this.BEliminar.Text = "Limpiar";
             this.BEliminar.UseVisualStyleBackColor = true;
@@ -141,10 +144,10 @@
             // BmostrarZonas
             // 
             this.BmostrarZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BmostrarZonas.Location = new System.Drawing.Point(1111, 465);
+            this.BmostrarZonas.Location = new System.Drawing.Point(1137, 374);
             this.BmostrarZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BmostrarZonas.Name = "BmostrarZonas";
-            this.BmostrarZonas.Size = new System.Drawing.Size(165, 50);
+            this.BmostrarZonas.Size = new System.Drawing.Size(131, 50);
             this.BmostrarZonas.TabIndex = 8;
             this.BmostrarZonas.Text = "Mostrar zonas";
             this.BmostrarZonas.UseVisualStyleBackColor = true;
@@ -154,19 +157,19 @@
             // 
             this.cbZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbZonas.FormattingEnabled = true;
-            this.cbZonas.Location = new System.Drawing.Point(1109, 422);
+            this.cbZonas.Location = new System.Drawing.Point(1137, 346);
             this.cbZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbZonas.Name = "cbZonas";
-            this.cbZonas.Size = new System.Drawing.Size(176, 24);
+            this.cbZonas.Size = new System.Drawing.Size(79, 24);
             this.cbZonas.TabIndex = 9;
             // 
             // bPuntosZonas
             // 
             this.bPuntosZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bPuntosZonas.Location = new System.Drawing.Point(1100, 333);
+            this.bPuntosZonas.Location = new System.Drawing.Point(1137, 467);
             this.bPuntosZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bPuntosZonas.Name = "bPuntosZonas";
-            this.bPuntosZonas.Size = new System.Drawing.Size(176, 56);
+            this.bPuntosZonas.Size = new System.Drawing.Size(131, 56);
             this.bPuntosZonas.TabIndex = 10;
             this.bPuntosZonas.Text = "Mostrar Puntos zonas";
             this.bPuntosZonas.UseVisualStyleBackColor = true;
@@ -175,10 +178,10 @@
             // MostrarMIOS
             // 
             this.MostrarMIOS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MostrarMIOS.Location = new System.Drawing.Point(917, 335);
+            this.MostrarMIOS.Location = new System.Drawing.Point(917, 467);
             this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4);
             this.MostrarMIOS.Name = "MostrarMIOS";
-            this.MostrarMIOS.Size = new System.Drawing.Size(176, 54);
+            this.MostrarMIOS.Size = new System.Drawing.Size(131, 56);
             this.MostrarMIOS.TabIndex = 11;
             this.MostrarMIOS.Text = "Mostrar MIOs";
             this.MostrarMIOS.UseVisualStyleBackColor = true;
@@ -188,11 +191,23 @@
             // 
             this.pboxFondoDeco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pboxFondoDeco.Location = new System.Drawing.Point(907, 12);
+            this.pboxFondoDeco.Location = new System.Drawing.Point(901, 3);
             this.pboxFondoDeco.Name = "pboxFondoDeco";
-            this.pboxFondoDeco.Size = new System.Drawing.Size(389, 761);
+            this.pboxFondoDeco.Size = new System.Drawing.Size(397, 817);
             this.pboxFondoDeco.TabIndex = 12;
             this.pboxFondoDeco.TabStop = false;
+            // 
+            // lTitulo
+            // 
+            this.lTitulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lTitulo.AutoSize = true;
+            this.lTitulo.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTitulo.Location = new System.Drawing.Point(386, 21);
+            this.lTitulo.Name = "lTitulo";
+            this.lTitulo.Size = new System.Drawing.Size(232, 26);
+            this.lTitulo.TabIndex = 13;
+            this.lTitulo.Text = "MAPA DE GOOGLE";
+            this.lTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
@@ -211,6 +226,7 @@
             this.Controls.Add(this.Bguardar);
             this.Controls.Add(this.cb_elegir);
             this.Controls.Add(this.pboxFondoDeco);
+            this.Controls.Add(this.lTitulo);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "METROCALI";
@@ -235,6 +251,7 @@
         private System.Windows.Forms.Button bPuntosZonas;
         private System.Windows.Forms.Button MostrarMIOS;
         private System.Windows.Forms.PictureBox pboxFondoDeco;
+        private System.Windows.Forms.Label lTitulo;
     }
 }
 

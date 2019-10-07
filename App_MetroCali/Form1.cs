@@ -46,6 +46,7 @@ namespace App_MetroCali
         List<ZONA> zona5 = new List<ZONA>();
         List<ZONA> zona6 = new List<ZONA>();
         List<ZONA> zona7 = new List<ZONA>();
+        List<ZONA> zona8 = new List<ZONA>();
 
 
         public Form1()
@@ -62,8 +63,8 @@ namespace App_MetroCali
             gControl.MaxZoom = 24;
             gControl.Zoom = 18;
             gControl.AutoScroll = true;
+
            
-            
 
             cb_elegir.Items.Add("ESTACIONES");
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
@@ -78,6 +79,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("5");
             cbZonas.Items.Add("6");
             cbZonas.Items.Add("7");
+            cbZonas.Items.Add("8");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
             pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
@@ -134,8 +136,7 @@ namespace App_MetroCali
 
      
 
-        public void separarListasDeParadas()
-        {
+        public void separarListasDeParadas(){
             for (int i = 0; i < Paradas.Count; i++)
             {
 
@@ -257,34 +258,50 @@ namespace App_MetroCali
         }
 
         public void seleccionZona(){
+            
             switch (cbZonas.Text)
             {
                 case "":
                     MessageBox.Show("Debe seleccionar un numero de zona");
                     break;
                 case "0":
-                    hacerPoligonoZonas(zona0);
+                    Color color = Color.FromArgb(50, Color.Blue);
+                    hacerPoligonoZonas(zona0, color);
+                    
                     break;
                 case "1":
-                    hacerPoligonoZonas(zona1);
+                    Color color1 = Color.FromArgb(50, Color.Yellow);
+                    hacerPoligonoZonas(zona1, color1);
                     break;
                 case "2":
-                    hacerPoligonoZonas(zona2);
+                    Color color2 = Color.FromArgb(50, Color.Red);
+                    hacerPoligonoZonas(zona2, color2);
                     break;
                 case "3":
-                    hacerPoligonoZonas(zona3);
+                    Color color3 = Color.FromArgb(50, Color.Black);
+                    hacerPoligonoZonas(zona3, color3);
                     break;
                 case "4":
-                    hacerPoligonoZonas(zona4);
+                    Color color4 = Color.FromArgb(50, Color.Green);
+                    hacerPoligonoZonas(zona4, color4);
                     break;
                 case "5":
-                    hacerPoligonoZonas(zona5);
+                    Color color5 = Color.FromArgb(50, Color.Gray);
+                    hacerPoligonoZonas(zona5, color5);
                     break;
                 case "6":
-                    hacerPoligonoZonas(zona6);
+                    Color color6 = Color.FromArgb(50, Color.Aquamarine);
+                    hacerPoligonoZonas(zona6, color6);
                     break;
+
                 case "7":
-                    hacerPoligonoZonas(zona7);
+                    Color color7 = Color.FromArgb(50, Color.Brown);
+                    hacerPoligonoZonas(zona7, color7);
+                    break;
+
+                    case "8":
+                    Color color8 = Color.FromArgb(50, Color.DarkMagenta);
+                    hacerPoligonoZonas(zona8, color8);
                     break;
             }
         }
@@ -292,37 +309,40 @@ namespace App_MetroCali
         public void separarZonas(){
             for (int i = 0; i < Zonas.Count; i++)
             {
-                if (i < 29)
+                if (i < 14)
                 {
                     zona0.Add(Zonas[i]);
                 }
-                else if (i >= 29 && i < 62)
+                else if (i >= 14 && i < 42)
                 {
                     zona1.Add(Zonas[i]);
                 }
-                else if (i >= 62 && i < 94)
+                else if (i >= 42 && i < 69)
                 {
                     zona2.Add(Zonas[i]);
                 }
-                else if (i >= 94 && i < 110)
+                else if (i >= 69 && i < 78)
                 {
                     zona3.Add(Zonas[i]);
                 }
-                else if (i >= 110 && i < 148)
+                else if (i >= 78 && i < 93)
                 {
                     zona4.Add(Zonas[i]);
                 }
-                else if (i >= 148 && i < 158)
+                else if (i >= 93 && i < 113)
                 {
                     zona5.Add(Zonas[i]);
                 }
-                else if (i >=158 && i <193)
+                else if (i >=114 && i <135)
                 {
                     zona6.Add(Zonas[i]);
                 }
-                else if (i >= 193 && i < 205){
+                else if (i >= 135 && i < 150){
                     zona7.Add(Zonas[i]);
-                }
+
+                }else if (i >= 150 && i < 158){
+                     zona8.Add(Zonas[i]);
+                    }
             }
 
         }
@@ -365,12 +385,13 @@ namespace App_MetroCali
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
             poligonoPuntos.Fill = new SolidBrush(Color.FromArgb(50, Color.Red));
             poligono.Polygons.Add(poligonoPuntos);
+           
             gControl.Overlays.Add(poligono);
             gControl.Zoom = gControl.Zoom + 1;
             gControl.Zoom = gControl.Zoom - 1;
         }
 
-        public void hacerPoligonoZonas(List<ZONA> a){
+        public void hacerPoligonoZonas(List<ZONA> a , Color color){
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
             for (int i = 0; i < a.Count; i++)
@@ -381,9 +402,12 @@ namespace App_MetroCali
             }
             GMapPolygon poligonoPuntos = new GMapPolygon(puntos, "Poligono");
             poligono.Polygons.Add(poligonoPuntos);
+            poligonoPuntos.Fill = new SolidBrush(Color.FromArgb(50, color));
             gControl.Overlays.Add(poligono);
             gControl.Zoom = gControl.Zoom + 1;
             gControl.Zoom = gControl.Zoom - 1;
+
+            
         }
 
         public void removeMakers(){
