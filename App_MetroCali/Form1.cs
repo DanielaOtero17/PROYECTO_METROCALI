@@ -271,7 +271,7 @@ namespace App_MetroCali
                     hacerPoligonoZonas(zona2, color2);
                     break;
                 case "3":
-                    Color color3 = Color.FromArgb(50, Color.White);
+                    Color color3 = Color.FromArgb(50, Color.Black);
                     hacerPoligonoZonas(zona3, color3);
                     break;
                 case "4":
