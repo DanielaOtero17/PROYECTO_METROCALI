@@ -309,8 +309,8 @@ namespace App_MetroCali
                     case "8 - CALIPSO":
                     
                     hacerPoligonoZonas(zona8, color8);
-                    break;
-
+                    break;  
+                    
                 case "MOSTRAR TODAS":
                     hacerPoligonoZonas(zona0, color);
                     hacerPoligonoZonas(zona1, color1);
