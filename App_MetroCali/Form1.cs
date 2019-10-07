@@ -46,6 +46,7 @@ namespace App_MetroCali
         List<ZONA> zona5 = new List<ZONA>();
         List<ZONA> zona6 = new List<ZONA>();
         List<ZONA> zona7 = new List<ZONA>();
+        List<ZONA> zona8 = new List<ZONA>();
 
 
         public Form1()
@@ -78,6 +79,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("5");
             cbZonas.Items.Add("6");
             cbZonas.Items.Add("7");
+            cbZonas.Items.Add("8");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
             pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
@@ -279,43 +281,50 @@ namespace App_MetroCali
                 case "7":
                     hacerPoligonoZonas(zona7);
                     break;
+
+                    case "8":
+                    hacerPoligonoZonas(zona8);
+                    break;
             }
         }
 
         public void separarZonas(){
             for (int i = 0; i < Zonas.Count; i++)
             {
-                if (i < 29)
+                if (i < 14)
                 {
                     zona0.Add(Zonas[i]);
                 }
-                else if (i >= 29 && i < 62)
+                else if (i >= 14 && i < 42)
                 {
                     zona1.Add(Zonas[i]);
                 }
-                else if (i >= 62 && i < 94)
+                else if (i >= 42 && i < 69)
                 {
                     zona2.Add(Zonas[i]);
                 }
-                else if (i >= 94 && i < 110)
+                else if (i >= 69 && i < 78)
                 {
                     zona3.Add(Zonas[i]);
                 }
-                else if (i >= 110 && i < 148)
+                else if (i >= 78 && i < 93)
                 {
                     zona4.Add(Zonas[i]);
                 }
-                else if (i >= 148 && i < 158)
+                else if (i >= 93 && i < 113)
                 {
                     zona5.Add(Zonas[i]);
                 }
-                else if (i >=158 && i <193)
+                else if (i >=114 && i <135)
                 {
                     zona6.Add(Zonas[i]);
                 }
-                else if (i >= 193 && i < 205){
+                else if (i >= 135 && i < 150){
                     zona7.Add(Zonas[i]);
-                }
+
+                }else if (i >= 150 && i < 158){
+                     zona8.Add(Zonas[i]);
+                    }
             }
 
         }
