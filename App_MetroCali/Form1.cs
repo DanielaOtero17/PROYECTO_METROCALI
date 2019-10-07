@@ -367,6 +367,54 @@ namespace App_MetroCali
 
         }
 
+        public int orientacion(Stops p, Stops q, Stops r)
+        {
+            double val = (q.DECIMALLATITUD - p.DECIMALLATITUD) * (r.DECIMALLONGITUD - q.DECIMALLONGITUD) -(q.DECIMALLONGITUD - p.DECIMALLONGITUD) * (r.DECIMALLATITUD - q.DECIMALLATITUD);
+
+            if(val == 0)
+            {
+                return 0;
+            }
+
+            return (val > 0) ? 1 : 2;
+        }
+
+        public List<Stops> convexHull(List<Stops> lista, int n)
+        {
+            //if (n < 3) return;
+
+            List<Stops> hull = new List<Stops>();
+            int l = 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                if(lista[i].DECIMALLONGITUD < lista[l].DECIMALLONGITUD)
+                {
+                    l = i;
+                }
+            }
+
+            int p = l, q;
+
+            do
+            {
+                hull.Add(lista[p]);
+
+                q = (p + 1) % n;
+
+                for (int i = 0; i < n; i++)
+                {
+       
+                    if (orientacion(lista[p], lista[i], lista[q])== 2)
+                        q = i;
+                }
+                p = q;
+            } while (p != l);
+
+            //lista = hull;
+            return hull;
+        }
+
         public void comprobarParadasEnMismaEstacion()
         {
             List<Stops> listaAux = new List<Stops>();
@@ -381,7 +429,8 @@ namespace App_MetroCali
                 }
                 else
                 {
-                    hacerPoligonoEstaciones(listaAux);
+                    //convexHull(listaAux, listaAux.Count);
+                    hacerPoligonoEstaciones(convexHull(listaAux, listaAux.Count));
                     name = ParadasEstaciones[i].SHORTNAME;
                     listaAux.Clear();
                     listaAux.Add(ParadasEstaciones[i]);
