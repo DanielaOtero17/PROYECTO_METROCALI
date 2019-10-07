@@ -79,6 +79,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("6 - CAÑAVERALEJO");
             cbZonas.Items.Add("7 - SIMÓN BOLIVAR");
             cbZonas.Items.Add("8 - CALIPSO");
+            cbZonas.Items.Add("MOSTRAR TODAS");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
             pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
@@ -255,50 +256,71 @@ namespace App_MetroCali
         }
 
         public void seleccionZona(){
-            
+            Color color = Color.FromArgb(50, Color.Blue);
+            Color color1 = Color.FromArgb(50, Color.Yellow);
+            Color color2 = Color.FromArgb(50, Color.Red);
+            Color color3 = Color.FromArgb(50, Color.Black);
+            Color color4 = Color.FromArgb(50, Color.Green);
+            Color color5 = Color.FromArgb(50, Color.Gray);
+            Color color6 = Color.FromArgb(50, Color.Aquamarine);
+            Color color7 = Color.FromArgb(50, Color.Brown);
+            Color color8 = Color.FromArgb(50, Color.DarkMagenta);
             switch (cbZonas.Text)
             {
                 case "":
                     MessageBox.Show("Debe seleccionar un numero de zona");
                     break;
                 case "0 - CENTRO":
-                    Color color = Color.FromArgb(50, Color.Blue);
+                    
                     hacerPoligonoZonas(zona0, color);
                     
                     break;
                 case "1 - UNIVERSIDADES":
-                    Color color1 = Color.FromArgb(50, Color.Yellow);
+                   
                     hacerPoligonoZonas(zona1, color1);
                     break;
                 case "2 - MENGA":
-                    Color color2 = Color.FromArgb(50, Color.Red);
+                   
                     hacerPoligonoZonas(zona2, color2);
                     break;
                 case "3 - PASO DEL COMERCIO":
-                    Color color3 = Color.FromArgb(50, Color.Black);
+                   
                     hacerPoligonoZonas(zona3, color3);
                     break;
                 case "4 - ANDRÉS SANÍN":
-                    Color color4 = Color.FromArgb(50, Color.Green);
+                   
                     hacerPoligonoZonas(zona4, color4);
                     break;
                 case "5 - NUEVO LATIR":
-                    Color color5 = Color.FromArgb(50, Color.Gray);
+                   
                     hacerPoligonoZonas(zona5, color5);
                     break;
                 case "6 - CAÑAVERALEJO":
-                    Color color6 = Color.FromArgb(50, Color.Aquamarine);
+                   
                     hacerPoligonoZonas(zona6, color6);
                     break;
 
                 case "7 - SIMÓN BOLIVAR":
-                    Color color7 = Color.FromArgb(50, Color.Brown);
+                   
                     hacerPoligonoZonas(zona7, color7);
                     break;
 
                     case "8 - CALIPSO":
-                    Color color8 = Color.FromArgb(50, Color.DarkMagenta);
+                    
                     hacerPoligonoZonas(zona8, color8);
+                    break;
+
+                case "MOSTRAR TODAS":
+                    hacerPoligonoZonas(zona0, color);
+                    hacerPoligonoZonas(zona1, color1);
+                    hacerPoligonoZonas(zona2, color2);
+                    hacerPoligonoZonas(zona3, color3);
+                    hacerPoligonoZonas(zona4, color4);
+                    hacerPoligonoZonas(zona5, color5);
+                    hacerPoligonoZonas(zona6, color6);
+                    hacerPoligonoZonas(zona7, color7);
+                    hacerPoligonoZonas(zona8, color8);
+
                     break;
             }
         }
