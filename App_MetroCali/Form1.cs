@@ -95,13 +95,16 @@ namespace App_MetroCali
 
             
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-           /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
-            markerOverlayMIO.Markers.Add(marker);
+            /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+             marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
+             markerOverlayMIO.Markers.Add(marker);
 
-           // marker.ToolTipMode = MarkerTooltipMode.Always;
-           marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlayMIO);*/
+            // marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipText = String.Format("Este es el mio");
+             gControl.Overlays.Add(markerOverlayMIO);*/
+
+            timer1.Start();
+
         }
 
         public void lecturaParadas()
@@ -642,13 +645,7 @@ namespace App_MetroCali
                
 
             }
-
-            
-      
-
         }
-
-
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
@@ -667,6 +664,45 @@ namespace App_MetroCali
         private void cbZonas_SelectedIndexChanged(object sender, EventArgs e)
         {
             seleccionZona();
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            
+            label4.Text = DateTime.Now.ToString();
+            timer1.Enabled = true;
+            timer1.Interval = 10;
+           
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
