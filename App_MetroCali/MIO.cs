@@ -30,6 +30,8 @@ namespace App_MetroCali
 
         public int index { get; set; }
 
+     
+
         public MIO (String evt  ,String stop,String odo, String lat , String longi ,String task,String line , String trip,
             String dataG,String dataGraM ,String bus){
 
@@ -53,6 +55,7 @@ namespace App_MetroCali
             ways = new List<string>();
             ways.Add(LATITUDE + "," + LONGITUDE);
             run = 0;
+           
 
         }
 
@@ -70,14 +73,15 @@ namespace App_MetroCali
 
                 this.LATITUDE = info[0];
                 this.LONGITUDE = info[1];
+                run++;
             }
-            run++;
+            
             
         }
 
-        public void moveBus(String lat, String longi)
+        public void moveBus()
         {
-
+           
         }
     }
 }

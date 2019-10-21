@@ -16,18 +16,16 @@ namespace App_MetroCali
     public class Hilo
     {
 
-        public MIO mio;
-
-        private List<MIO> mios;
+        public MIO mios;
         private Form1 ventana;
 
-        public Hilo(List<MIO> mio, Form1 forma)
+        public Hilo(MIO mio, Form1 forma)
         {
             mios = mio;
             ventana = forma;
         }
 
-        public void run()
+        public void run(int i)
         {
 
             MessageBox.Show("entrando ");
@@ -35,20 +33,15 @@ namespace App_MetroCali
             while (true)
             {
                 
-                 for (int i = 0; i < ventana.Buses.Count; i++) {
-                   // MessageBox.Show(" ejecutando " + i);
-                    ventana.Buses[i].changeLocation();
+                    mios.changeLocation();
 
-                    double latitud = ventana.ordenarDecimal(ventana.Buses[i].LATITUDE);
-                    double longitud = ventana.ordenarDecimal(ventana.Buses[i].LONGITUDE);
+                    double latitud = ventana.ordenarDecimal(mios.LATITUDE);
+                    double longitud = ventana.ordenarDecimal(mios.LONGITUDE);
 
-                 //   Console.Write(i + "");
-                    ventana.gControl.Overlays[0].Markers[i].Position = new PointLatLng(latitud, longitud);
-                   ventana.gControl.Zoom = ventana.gControl.Zoom + 0.1;
-                    ventana.gControl.Zoom = ventana.gControl.Zoom - 0.1;
-                }
+               
+                    ventana.markerOverlayMIO.Markers[i].Position = new PointLatLng(latitud, longitud);
 
-
+                ventana.gControl.Refresh();
                 try
                 {
                     Thread.Sleep(100);
@@ -60,6 +53,13 @@ namespace App_MetroCali
 
                 }
             }
+        }
+
+        public static void main(String[] args)
+        {
+
+           
+
         }
 
 
