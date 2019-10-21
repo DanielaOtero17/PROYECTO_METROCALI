@@ -95,13 +95,16 @@ namespace App_MetroCali
 
             
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-           /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
-            markerOverlayMIO.Markers.Add(marker);
+            /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+             marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
+             markerOverlayMIO.Markers.Add(marker);
 
-           // marker.ToolTipMode = MarkerTooltipMode.Always;
-           marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlayMIO);*/
+            // marker.ToolTipMode = MarkerTooltipMode.Always;
+            marker.ToolTipText = String.Format("Este es el mio");
+             gControl.Overlays.Add(markerOverlayMIO);*/
+
+            timer1.Start();
+
         }
 
         public void lecturaParadas()
@@ -146,7 +149,8 @@ namespace App_MetroCali
                     //ParadasCalle.Add(Paradas[i]);
                     //Console.WriteLine("CALLE : "+ParadasCalle[i].LONGNAME);
                 }
-                else{
+                else
+                {
                     ParadasEstaciones.Add(Paradas[i]);
                 }
             }
@@ -368,7 +372,8 @@ namespace App_MetroCali
 
         }
 
-        public int orientacion(Stops p, Stops q, Stops r){
+        public int orientacion(Stops p, Stops q, Stops r)
+        {
             double val = (q.DECIMALLATITUD - p.DECIMALLATITUD) * (r.DECIMALLONGITUD - q.DECIMALLONGITUD) -(q.DECIMALLONGITUD - p.DECIMALLONGITUD) * (r.DECIMALLATITUD - q.DECIMALLATITUD);
 
             if(val == 0)
@@ -442,7 +447,8 @@ namespace App_MetroCali
 
         }
 
-        public void hacerPoligonoEstaciones(List<Stops> a){
+        public void hacerPoligonoEstaciones(List<Stops> a)
+        {
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
             for (int i = 0; i < a.Count; i++)
@@ -643,19 +649,59 @@ namespace App_MetroCali
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
-            runProcess(); 
+
+            runProcess();
+          
         }
 
         
 
-        private void PboxFondoDeco_Click(object sender, EventArgs e){ }
+        private void PboxFondoDeco_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void cbZonas_SelectedIndexChanged(object sender, EventArgs e)
         {
             seleccionZona();
         }
 
-        public void filtrarMiosParaMostrar() {
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            
+            label4.Text = DateTime.Now.ToString();
+            timer1.Enabled = true;
+            timer1.Interval = 10;
+           
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
