@@ -35,6 +35,7 @@ namespace App_MetroCali
         List<Stops> ParadasCalle = new List<Stops>();
         List<ZONA> Zonas = new List<ZONA>();
 
+
         public List<MIO> Buses = new List<MIO>();
         List<MIO> cantidadBuses = new List<MIO>();
 
@@ -47,6 +48,8 @@ namespace App_MetroCali
         List<ZONA> zona6 = new List<ZONA>();
         List<ZONA> zona7 = new List<ZONA>();
         List<ZONA> zona8 = new List<ZONA>();
+
+        List<String> lines = new List <String>();
 
         Queue<List<MIO>> cola = new Queue<List<MIO>>();
 
@@ -708,6 +711,26 @@ namespace App_MetroCali
         private void Label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void lecturaLines() {
+            StreamReader lector = new StreamReader(@"STOPS2.txt");
+            String line = lector.ReadLine();
+            int i = 0;
+
+            while (line != null){
+                lines.Add(line);
+                i++;
+                line = lector.ReadLine();
+            }
+            lector.Close();
+        }
+
+
+        public void filtrarMios(){
+            if (buscarRutaUsuario.Text.Equals("")){
+
+            }
         }
     }
 
