@@ -9,7 +9,6 @@ namespace App_MetroCali
     public class MIO{
 
         public String EVENTTYPE { get; set; }
-      
         public String STOPID { get; set; }
         public String ODOMETER { get; set; }
         public String LATITUDE { get; set; }

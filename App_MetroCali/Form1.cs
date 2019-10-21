@@ -146,8 +146,7 @@ namespace App_MetroCali
                     //ParadasCalle.Add(Paradas[i]);
                     //Console.WriteLine("CALLE : "+ParadasCalle[i].LONGNAME);
                 }
-                else
-                {
+                else{
                     ParadasEstaciones.Add(Paradas[i]);
                 }
             }
@@ -369,8 +368,7 @@ namespace App_MetroCali
 
         }
 
-        public int orientacion(Stops p, Stops q, Stops r)
-        {
+        public int orientacion(Stops p, Stops q, Stops r){
             double val = (q.DECIMALLATITUD - p.DECIMALLATITUD) * (r.DECIMALLONGITUD - q.DECIMALLONGITUD) -(q.DECIMALLONGITUD - p.DECIMALLONGITUD) * (r.DECIMALLATITUD - q.DECIMALLATITUD);
 
             if(val == 0)
@@ -444,8 +442,7 @@ namespace App_MetroCali
 
         }
 
-        public void hacerPoligonoEstaciones(List<Stops> a)
-        {
+        public void hacerPoligonoEstaciones(List<Stops> a){
             GMapOverlay poligono = new GMapOverlay("Poligono");
             List<PointLatLng> puntos = new List<PointLatLng>();
             for (int i = 0; i < a.Count; i++)
@@ -642,31 +639,24 @@ namespace App_MetroCali
                
 
             }
-
-            
-      
-
         }
-
-
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
-
-            runProcess();
-          
+            runProcess(); 
         }
 
         
 
-        private void PboxFondoDeco_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void PboxFondoDeco_Click(object sender, EventArgs e){ }
 
         private void cbZonas_SelectedIndexChanged(object sender, EventArgs e)
         {
             seleccionZona();
+        }
+
+        public void filtrarMiosParaMostrar() {
+
         }
     }
 
