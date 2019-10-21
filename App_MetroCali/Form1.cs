@@ -492,6 +492,7 @@ namespace App_MetroCali
             }
         }
 
+        //Aquí se guarda la información de los buses, en la lista de buses.
         public void lecturaDatagramas(){
             StreamReader lector = new StreamReader(@"DATAGRAMS.txt");
             String line = lector.ReadLine();
@@ -642,8 +643,6 @@ namespace App_MetroCali
 
                 markerOverlayMIO.Clear();
 
-               
-
             }
         }
 
@@ -688,7 +687,7 @@ namespace App_MetroCali
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            
+            //   DateTime.Parse(01-NOV-18 05.35.29.).ToString();
             label4.Text = DateTime.Now.ToString();
             timer1.Enabled = true;
             timer1.Interval = 10;

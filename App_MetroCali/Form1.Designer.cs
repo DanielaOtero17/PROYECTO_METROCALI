@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Panel panel1;
             this.cb_elegir = new System.Windows.Forms.ComboBox();
             this.Bguardar = new System.Windows.Forms.Button();
             this.gControl = new GMap.NET.WindowsForms.GMapControl();
@@ -42,7 +43,6 @@
             this.pboxFondoDeco = new System.Windows.Forms.PictureBox();
             this.lTitulo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,9 +50,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxFondoDeco)).BeginInit();
-            this.panel1.SuspendLayout();
+            panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -249,19 +250,23 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.ForestGreen;
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.cbZonas);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.bPuntosZonas);
-            this.panel1.Location = new System.Drawing.Point(701, 312);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 79);
-            this.panel1.TabIndex = 17;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            panel1.AutoSize = true;
+            panel1.BackColor = System.Drawing.Color.ForestGreen;
+            panel1.Controls.Add(this.label3);
+            panel1.Controls.Add(this.cbZonas);
+            panel1.Controls.Add(this.label2);
+            panel1.Controls.Add(this.bPuntosZonas);
+            panel1.Location = new System.Drawing.Point(701, 312);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(271, 79);
+            panel1.TabIndex = 17;
+            panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.Crimson;
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.MostrarMIOS);
@@ -272,6 +277,8 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.AutoSize = true;
             this.panel3.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.Bguardar);
@@ -341,7 +348,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(panel1);
             this.Controls.Add(this.pbIMAGEN);
             this.Controls.Add(this.BEliminar);
             this.Controls.Add(this.LimagenLogo);
@@ -355,8 +362,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxFondoDeco)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -380,7 +387,6 @@
         private System.Windows.Forms.Label lTitulo;
         public GMap.NET.WindowsForms.GMapControl gControl;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
