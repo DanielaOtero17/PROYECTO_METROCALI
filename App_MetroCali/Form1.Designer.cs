@@ -49,6 +49,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxFondoDeco)).BeginInit();
             this.panel1.SuspendLayout();
@@ -72,13 +73,16 @@
             // Bguardar
             // 
             this.Bguardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Bguardar.BackColor = System.Drawing.Color.SkyBlue;
+            this.Bguardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Bguardar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bguardar.Location = new System.Drawing.Point(11, 43);
             this.Bguardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Bguardar.Name = "Bguardar";
             this.Bguardar.Size = new System.Drawing.Size(100, 21);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar";
-            this.Bguardar.UseVisualStyleBackColor = true;
+            this.Bguardar.UseVisualStyleBackColor = false;
             this.Bguardar.Click += new System.EventHandler(this.Bguardar_Click);
             // 
             // gControl
@@ -135,13 +139,16 @@
             // BEliminar
             // 
             this.BEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BEliminar.Location = new System.Drawing.Point(781, 572);
+            this.BEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.BEliminar.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BEliminar.ForeColor = System.Drawing.Color.White;
+            this.BEliminar.Location = new System.Drawing.Point(782, 572);
             this.BEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BEliminar.Name = "BEliminar";
             this.BEliminar.Size = new System.Drawing.Size(98, 44);
             this.BEliminar.TabIndex = 6;
             this.BEliminar.Text = "Limpiar";
-            this.BEliminar.UseVisualStyleBackColor = true;
+            this.BEliminar.UseVisualStyleBackColor = false;
             this.BEliminar.Click += new System.EventHandler(this.BEliminar_Click);
             // 
             // pbIMAGEN
@@ -187,18 +194,25 @@
             // MostrarMIOS
             // 
             this.MostrarMIOS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MostrarMIOS.Location = new System.Drawing.Point(80, 6);
+            this.MostrarMIOS.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.MostrarMIOS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.MostrarMIOS.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MostrarMIOS.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MostrarMIOS.Location = new System.Drawing.Point(81, 48);
             this.MostrarMIOS.Name = "MostrarMIOS";
-            this.MostrarMIOS.Size = new System.Drawing.Size(98, 46);
+            this.MostrarMIOS.Size = new System.Drawing.Size(98, 22);
             this.MostrarMIOS.TabIndex = 11;
             this.MostrarMIOS.Text = "Mostrar Buses";
-            this.MostrarMIOS.UseVisualStyleBackColor = true;
+            this.MostrarMIOS.UseVisualStyleBackColor = false;
             this.MostrarMIOS.Click += new System.EventHandler(this.MostrarMIOS_Click);
             // 
             // pboxFondoDeco
             // 
             this.pboxFondoDeco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pboxFondoDeco.BackColor = System.Drawing.Color.White;
+            this.pboxFondoDeco.ErrorImage = null;
+            this.pboxFondoDeco.InitialImage = null;
             this.pboxFondoDeco.Location = new System.Drawing.Point(692, -20);
             this.pboxFondoDeco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pboxFondoDeco.Name = "pboxFondoDeco";
@@ -235,7 +249,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.BackColor = System.Drawing.Color.ForestGreen;
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.cbZonas);
             this.panel1.Controls.Add(this.label2);
@@ -248,6 +262,8 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.Crimson;
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.MostrarMIOS);
             this.panel2.Location = new System.Drawing.Point(701, 402);
             this.panel2.Name = "panel2";
@@ -286,7 +302,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(796, 28);
+            this.label4.Location = new System.Drawing.Point(773, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 20;
@@ -304,10 +320,23 @@
             this.label5.TabIndex = 21;
             this.label5.Text = "PARADAS";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Britannic Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Gold;
+            this.label6.Location = new System.Drawing.Point(95, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 22);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "BUSES";
+            this.label6.Click += new System.EventHandler(this.Label6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(988, 638);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel3);
@@ -329,6 +358,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -357,6 +387,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
 
