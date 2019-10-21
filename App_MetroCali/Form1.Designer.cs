@@ -35,12 +35,12 @@
             this.LimagenLogo = new System.Windows.Forms.Label();
             this.BEliminar = new System.Windows.Forms.Button();
             this.pbIMAGEN = new System.Windows.Forms.PictureBox();
-            this.BmostrarZonas = new System.Windows.Forms.Button();
             this.cbZonas = new System.Windows.Forms.ComboBox();
             this.bPuntosZonas = new System.Windows.Forms.Button();
             this.MostrarMIOS = new System.Windows.Forms.Button();
             this.pboxFondoDeco = new System.Windows.Forms.PictureBox();
             this.lTitulo = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxFondoDeco)).BeginInit();
             this.SuspendLayout();
@@ -141,27 +141,16 @@
             this.pbIMAGEN.TabIndex = 7;
             this.pbIMAGEN.TabStop = false;
             // 
-            // BmostrarZonas
-            // 
-            this.BmostrarZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BmostrarZonas.Location = new System.Drawing.Point(1140, 374);
-            this.BmostrarZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BmostrarZonas.Name = "BmostrarZonas";
-            this.BmostrarZonas.Size = new System.Drawing.Size(131, 50);
-            this.BmostrarZonas.TabIndex = 8;
-            this.BmostrarZonas.Text = "Mostrar zonas";
-            this.BmostrarZonas.UseVisualStyleBackColor = true;
-            this.BmostrarZonas.Click += new System.EventHandler(this.Button1_Click);
-            // 
             // cbZonas
             // 
             this.cbZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbZonas.FormattingEnabled = true;
-            this.cbZonas.Location = new System.Drawing.Point(1131, 346);
+            this.cbZonas.Location = new System.Drawing.Point(1131, 352);
             this.cbZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbZonas.Name = "cbZonas";
             this.cbZonas.Size = new System.Drawing.Size(174, 24);
             this.cbZonas.TabIndex = 9;
+            this.cbZonas.SelectedIndexChanged += new System.EventHandler(this.cbZonas_SelectedIndexChanged);
             // 
             // bPuntosZonas
             // 
@@ -211,16 +200,25 @@
             this.lTitulo.Text = "MAPA DE GOOGLE";
             this.lTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1162, 333);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 17);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Zonas de Cali";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1317, 785);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.pbIMAGEN);
             this.Controls.Add(this.MostrarMIOS);
             this.Controls.Add(this.bPuntosZonas);
             this.Controls.Add(this.cbZonas);
-            this.Controls.Add(this.BmostrarZonas);
             this.Controls.Add(this.BEliminar);
             this.Controls.Add(this.LimagenLogo);
             this.Controls.Add(this.label1);
@@ -247,13 +245,13 @@
         private System.Windows.Forms.Label LimagenLogo;
         private System.Windows.Forms.Button BEliminar;
         private System.Windows.Forms.PictureBox pbIMAGEN;
-        private System.Windows.Forms.Button BmostrarZonas;
         private System.Windows.Forms.ComboBox cbZonas;
         private System.Windows.Forms.Button bPuntosZonas;
         private System.Windows.Forms.Button MostrarMIOS;
         private System.Windows.Forms.PictureBox pboxFondoDeco;
         private System.Windows.Forms.Label lTitulo;
         public GMap.NET.WindowsForms.GMapControl gControl;
+        private System.Windows.Forms.Label label2;
     }
 }
 

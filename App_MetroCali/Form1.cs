@@ -272,8 +272,8 @@ namespace App_MetroCali
                     MessageBox.Show("Debe seleccionar un numero de zona");
                     break;
                 case "0 - CENTRO":
-                    
                     hacerPoligonoZonas(zona0, color);
+
                     
                     break;
                 case "1 - UNIVERSIDADES":
@@ -642,6 +642,11 @@ namespace App_MetroCali
         private void PboxFondoDeco_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbZonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            seleccionZona();
         }
     }
 
