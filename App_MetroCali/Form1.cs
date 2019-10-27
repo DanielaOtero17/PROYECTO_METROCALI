@@ -220,7 +220,9 @@ namespace App_MetroCali
 
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void GControl_Load_1(object sender, EventArgs e) { }
+        private void GControl_Load_1(object sender, EventArgs e) {
+
+         }
 
         private void Button1_Click(object sender, EventArgs e) { 
             seleccionZona();
@@ -713,7 +715,7 @@ namespace App_MetroCali
         }
 
         public void lecturaLines() {
-            StreamReader lector = new StreamReader(@"STOPS2.txt");
+            StreamReader lector = new StreamReader(@"lines.txt");
             String line = lector.ReadLine();
             int i = 0;
 
@@ -722,14 +724,47 @@ namespace App_MetroCali
                 i++;
                 line = lector.ReadLine();
             }
+
             lector.Close();
+           
         }
 
 
-        public void filtrarMios(){
-            if (buscarRutaUsuario.Text.Equals("")){
+        public void filtrarMios() {
+
+            String lineId = "";
+            int i = 0;
+
+            List<String> linesPos3 = new List <String>();
+            List<String> linesPos1 = new List<String>();
+         
+            for (int j = 0; j < lines.Count; j++){
+              
+                String[] arreglo = lines[j].Split(',');
+                linesPos3.Add(arreglo[2]);
+                linesPos1.Add(arreglo[0]);
 
             }
+            
+
+            while (i<linesPos3.Count){
+                if (buscarRutasUsuarios.Text.Equals(linesPos3[i], StringComparison.InvariantCultureIgnoreCase)){
+                   
+                    lineId = linesPos1[i];
+                    MessageBox.Show("El line id de la "+buscarRutasUsuarios.Text + " ES :"+ linesPos1[i]);
+                    i = linesPos3.Count;
+                    
+                }
+                else{
+                    i++;
+                }
+            }
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e){
+            lecturaLines();
+            filtrarMios();
         }
     }
 
