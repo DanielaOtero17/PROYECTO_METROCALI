@@ -106,8 +106,6 @@ namespace App_MetroCali
             marker.ToolTipText = String.Format("Este es el mio");
              gControl.Overlays.Add(markerOverlayMIO);*/
 
-            timer1.Start();
-
         }
 
         public void lecturaParadas()
@@ -137,7 +135,6 @@ namespace App_MetroCali
         }
 
      
-
         public void separarListasDeParadas(){
             for (int i = 0; i < Paradas.Count; i++)
             {
@@ -158,17 +155,6 @@ namespace App_MetroCali
                 }
             }
         }
-
-
-        public List<Stops> retornarLista(){
-            return Paradas;
-        }
-
-        public GMapControl returnControl()
-        {
-            return gControl;
-        }
-        private void GControl_Load(object sender, EventArgs e) { }
 
         private void Bguardar_Click(object sender, EventArgs e){
             lecturaParadas();
@@ -197,7 +183,7 @@ namespace App_MetroCali
                     break;
             }
         }
-
+        
         public void mostrarMarcadores(List<Stops> a) { 
             MessageBox.Show("Preparando para mostrar marcadores");
             int S = 0;
@@ -220,7 +206,9 @@ namespace App_MetroCali
 
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void GControl_Load_1(object sender, EventArgs e) { }
+        private void GControl_Load_1(object sender, EventArgs e) {
+
+        }
 
         private void Button1_Click(object sender, EventArgs e) { 
             seleccionZona();
@@ -607,56 +595,40 @@ namespace App_MetroCali
 
         }
 
-       
-
-        public void runProcess()
+        public void runProcess(List<MIO> lista)
         {
-
-            ordenarCola();
-
-            MessageBox.Show("Se han agregado las colas, en" + cola.Count);
+            
             Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
 
-            while (cola.Count>0)
-            {
-
                
-                List<MIO> auxi = cola.Dequeue();
-               
-                
-
-                for (int j = 0; j < auxi.Count; j++)
+                for (int j = 0; j < lista.Count; j++)
                 {
                    
-                    double latitude = ordenarDecimal(auxi[j].LATITUDE);
-                    double longitude = ordenarDecimal(auxi[j].LONGITUDE);
+                    double latitude = ordenarDecimal(lista[j].LATITUDE);
+                    double longitude = ordenarDecimal(lista[j].LONGITUDE);
 
                     marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
 
                     markerOverlayMIO.Markers.Add(marker);
 
                     marker.ToolTipMode = MarkerTooltipMode.Always;
-                    marker.ToolTipText = String.Format(auxi[j].BUSID);
+                    marker.ToolTipText = String.Format(lista[j].BUSID);
                    
                 }
                 gControl.Overlays.Add(markerOverlayMIO);
                     gControl.Zoom = gControl.Zoom + 0.1;
                     gControl.Zoom = gControl.Zoom - 0.1;
                 // Thread.Sleep(100);
-
-                markerOverlayMIO.Clear();
-
-            }
-        }
+           }
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
-
-            runProcess();
+            ordenarCola();
+            MessageBox.Show("Se han agregado las colas, en" + cola.Count);
+            timer2.Start();
           
         }
 
-        
 
         private void PboxFondoDeco_Click(object sender, EventArgs e)
         {
@@ -702,11 +674,6 @@ namespace App_MetroCali
 
         }
 
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Label6_Click(object sender, EventArgs e)
         {
 
@@ -727,9 +694,29 @@ namespace App_MetroCali
 
 
         public void filtrarMios(){
-            if (buscarRutaUsuario.Text.Equals("")){
+          //  if ( buscarRutaUsuario.Text.Equals("")){
 
+           // }
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            markerOverlayMIO.Clear();
+
+
+            if (cola.Count > 0)
+            {
+                List<MIO> aux = cola.Dequeue();
+                runProcess(aux);
+                timer1.Start();
             }
+            else
+            {
+                timer2.Stop();
+            }
+
+            timer2.Interval = 10;
+
         }
     }
 
