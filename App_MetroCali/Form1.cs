@@ -87,7 +87,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("MOSTRAR TODAS");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
-            pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
+            //pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
 
 
             leerZonasCiudad();
@@ -205,12 +205,17 @@ namespace App_MetroCali
             for (int i = 0; i < a.Count(); i++)
             {
                 marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD), GMarkerGoogleType.red);
-                
+               //var point = new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD);
+                //Bitmap markerParada = (Bitmap)Image.FromFile(@"MIO.png");
+                //marker = new GMarkerGoogle(point, markerParada);
+
+
+
                 markerOverlayParada.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                marker.ToolTipText = String.Format("Parada: " + a[S].LONGNAME + "\n" + "ID " + a[S].STOPID + "\n" + "Latitud: " + a[S].DECIMALLATITUD + "\n" + "Longitud: " + a[S].DECIMALLONGITUD);
-                marker.ToolTip.TextPadding = new Size(10, 100);
-                marker.ToolTip.Fill = Brushes.Aqua;
+                marker.ToolTipText = String.Format("PARADA: " + a[S].LONGNAME + "\n" + "ID " + a[S].STOPID + "\n" + "LATITUD: " + a[S].DECIMALLATITUD + "\n" + "LONGITUD: " + a[S].DECIMALLONGITUD);
+                marker.ToolTip.TextPadding = new Size(10, 20);
+                marker.ToolTip.Fill = Brushes.AntiqueWhite;
                 //Console.WriteLine(S);
                 S++;
             }
@@ -765,6 +770,11 @@ namespace App_MetroCali
         private void button1_Click_1(object sender, EventArgs e){
             lecturaLines();
             filtrarMios();
+        }
+
+        private void PbIMAGEN_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
