@@ -100,7 +100,7 @@ namespace App_MetroCali
 
             
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-      
+            progressBar1.Visible = false;
         }
 
         public void lecturaParadas()
@@ -774,7 +774,7 @@ namespace App_MetroCali
                 timer2.Stop();
             }
 
-            timer2.Interval = 100;
+            timer2.Interval = 1000;
         }
 
         private void PbIMAGEN_Click(object sender, EventArgs e)
