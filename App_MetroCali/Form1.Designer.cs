@@ -45,13 +45,14 @@
             this.pboxFondoDeco = new System.Windows.Forms.PictureBox();
             this.lTitulo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buscarRutasUsuarios = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
-            this.buscarRutasUsuarios = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
@@ -65,12 +66,13 @@
             panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             panel1.AutoSize = true;
             panel1.BackColor = System.Drawing.Color.ForestGreen;
+            panel1.Controls.Add(this.button2);
             panel1.Controls.Add(this.label3);
             panel1.Controls.Add(this.cbZonas);
             panel1.Controls.Add(this.label2);
             panel1.Controls.Add(this.bPuntosZonas);
             panel1.Location = new System.Drawing.Point(935, 384);
-            panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            panel1.Margin = new System.Windows.Forms.Padding(4);
             panel1.Name = "panel1";
             panel1.Size = new System.Drawing.Size(361, 97);
             panel1.TabIndex = 17;
@@ -241,7 +243,7 @@
             this.MostrarMIOS.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MostrarMIOS.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MostrarMIOS.Location = new System.Drawing.Point(108, 59);
-            this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4);
             this.MostrarMIOS.Name = "MostrarMIOS";
             this.MostrarMIOS.Size = new System.Drawing.Size(131, 27);
             this.MostrarMIOS.TabIndex = 11;
@@ -286,10 +288,27 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.MostrarMIOS);
             this.panel2.Location = new System.Drawing.Point(935, 495);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 92);
             this.panel2.TabIndex = 18;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(246, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // buscarRutasUsuarios
+            // 
+            this.buscarRutasUsuarios.Location = new System.Drawing.Point(108, 31);
+            this.buscarRutasUsuarios.Name = "buscarRutasUsuarios";
+            this.buscarRutasUsuarios.Size = new System.Drawing.Size(131, 22);
+            this.buscarRutasUsuarios.TabIndex = 23;
             // 
             // label6
             // 
@@ -313,7 +332,7 @@
             this.panel3.Controls.Add(this.Bguardar);
             this.panel3.Controls.Add(this.cb_elegir);
             this.panel3.Location = new System.Drawing.Point(935, 601);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(361, 92);
             this.panel3.TabIndex = 18;
@@ -347,22 +366,15 @@
             this.label4.Text = "Hora del sistema";
             this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
-            // buscarRutasUsuarios
+            // button2
             // 
-            this.buscarRutasUsuarios.Location = new System.Drawing.Point(108, 31);
-            this.buscarRutasUsuarios.Name = "buscarRutasUsuarios";
-            this.buscarRutasUsuarios.Size = new System.Drawing.Size(131, 22);
-            this.buscarRutasUsuarios.TabIndex = 23;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(246, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button2.Location = new System.Drawing.Point(246, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 21;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -421,6 +433,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox buscarRutasUsuarios;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
