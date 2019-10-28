@@ -834,11 +834,8 @@ namespace App_MetroCali
             filtrarEstacionesEnZonas();
         }
 
-        private void PbIMAGEN_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
+ 
         private void LTitulo_Click(object sender, EventArgs e)
         {
 
