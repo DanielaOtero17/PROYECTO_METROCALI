@@ -21,6 +21,8 @@ namespace App_MetroCali
         public String BUSID { get; set; }
         int run { get; set; }
 
+       public  String id { get; set; }
+
         public List<String> LIST_LATITUDE { get; set; }
 
         public List<String> LIST_LONGITUDE { get; set; }
@@ -54,7 +56,7 @@ namespace App_MetroCali
             ways = new List<string>();
             ways.Add(LATITUDE + "," + LONGITUDE);
             run = 0;
-           
+            id = "";
 
         }
 
