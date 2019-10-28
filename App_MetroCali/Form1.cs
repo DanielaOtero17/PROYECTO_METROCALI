@@ -617,8 +617,8 @@ namespace App_MetroCali
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
 
-           MessageBox.Show("Se han agregado las colas, en" + cola.Count);
-
+            lecturaLines();
+            ordenarCola(filtrarMios());
             timer2.Start();
 
         }
@@ -632,7 +632,7 @@ namespace App_MetroCali
         {
             seleccionZona();
         }
-
+        
         private void Label2_Click(object sender, EventArgs e)
         {
 

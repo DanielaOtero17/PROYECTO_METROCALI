@@ -216,7 +216,6 @@
             this.pbIMAGEN.Size = new System.Drawing.Size(269, 240);
             this.pbIMAGEN.TabIndex = 7;
             this.pbIMAGEN.TabStop = false;
-           
             // 
             // MostrarMIOS
             // 
