@@ -35,6 +35,8 @@ namespace App_MetroCali
         List<Stops> ParadasCalle = new List<Stops>();
         List<ZONA> Zonas = new List<ZONA>();
 
+        List<GMapOverlay> ListaPoligonos = new List <GMapOverlay>();
+
 
         public List<MIO> Buses = new List<MIO>();
         List<MIO> cantidadBuses = new List<MIO>();
@@ -323,6 +325,7 @@ namespace App_MetroCali
                     hacerPoligonoZonas(zona7, color7);
                     hacerPoligonoZonas(zona8, color8);
 
+                   
                     break;
             }
         }
@@ -777,6 +780,53 @@ namespace App_MetroCali
         private void ProgressBar1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        List<Stops> filtroZona0 = new List<Stops>();
+        List<Stops> filtroZona1 = new List<Stops>();
+        List<Stops> filtroZona2 = new List<Stops>();
+        List<Stops> filtroZona3 = new List<Stops>();
+        List<Stops> filtroZona4 = new List<Stops>();
+        List<Stops> filtroZona5 = new List<Stops>();
+        List<Stops> filtroZona6 = new List<Stops>();
+        List<Stops> filtroZona7 = new List<Stops>();
+        List<Stops> filtroZona8 = new List<Stops>();
+
+
+        public void filtrarEstacionesEnZonas(){
+            int i = 0;
+            MessageBox.Show("i se aumento en 1 pero");
+
+            while (i < zona0.Count) {
+                if ((ParadasEstaciones[i].DECIMALLATITUD >= 3.458952) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.513447) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.463029) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.521014) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.460478) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.527052) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.450851) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.537823) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.451531) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.541646) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.455851) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.542208) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.458972) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.553556) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD <= 3.458552) && (ParadasEstaciones[i].DECIMALLONGITUD == -76.582726) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.448433) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.562660) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.452630) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.549432) ||
+         /* 11 */   (ParadasEstaciones[i].DECIMALLATITUD >= 3.441510) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.536748) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.428423) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.533186) ||
+                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.434846) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.523287) ||
+         /* 14 */   (ParadasEstaciones[i].DECIMALLATITUD >= 3.443270) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.518067)){ 
+
+                    filtroZona0.Add(ParadasEstaciones[i]);
+                    mostrarMarcadores(filtroZona0);
+                    MessageBox.Show("i se aumento en 1 ENTROO");
+                }
+                i++;
+               
+            }
+           
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            filtrarEstacionesEnZonas();
         }
     }
 
