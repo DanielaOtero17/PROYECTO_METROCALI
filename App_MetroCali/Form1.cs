@@ -87,7 +87,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("MOSTRAR TODAS");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
-            pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
+            //pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
 
 
             leerZonasCiudad();
@@ -773,6 +773,11 @@ namespace App_MetroCali
         }
 
         private void PbIMAGEN_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LTitulo_Click(object sender, EventArgs e)
         {
 
         }
