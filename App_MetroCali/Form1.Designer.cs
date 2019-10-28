@@ -235,7 +235,6 @@
             this.pbIMAGEN.Size = new System.Drawing.Size(269, 240);
             this.pbIMAGEN.TabIndex = 7;
             this.pbIMAGEN.TabStop = false;
-           
             // 
             // MostrarMIOS
             // 
@@ -372,6 +371,7 @@
             // progressBar1
             // 
             this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.progressBar1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.progressBar1.Location = new System.Drawing.Point(25, 587);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(646, 23);
