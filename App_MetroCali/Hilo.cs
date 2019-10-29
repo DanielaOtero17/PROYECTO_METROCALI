@@ -28,7 +28,7 @@ namespace App_MetroCali
         public void run(int i)
         {
 
-            MessageBox.Show("entrando ");
+            MessageBox.Show("Entrando ");
 
             while (true)
             {
