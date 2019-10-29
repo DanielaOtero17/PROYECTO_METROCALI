@@ -89,7 +89,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("MOSTRAR TODAS");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
-            pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
+            //pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
 
 
             leerZonasCiudad();
@@ -480,6 +480,10 @@ namespace App_MetroCali
             gControl.Zoom = gControl.Zoom + 1;
             gControl.Zoom = gControl.Zoom - 1;
 
+           
+
+            
+
             
         }
 
@@ -758,14 +762,11 @@ namespace App_MetroCali
         private void Timer2_Tick(object sender, EventArgs e)
         {
             markerOverlayMIO.Clear();
-            if (cola.Count>0)
-            {
+            if (cola.Count>0){
                 runProcess(cola.Dequeue());
-                timer1.Start();
-                
+                timer1.Start(); 
             }
-            else
-            {
+            else{
                 timer2.Stop();
             }
 
@@ -782,52 +783,29 @@ namespace App_MetroCali
 
         }
 
-        List<Stops> filtroZona0 = new List<Stops>();
-        List<Stops> filtroZona1 = new List<Stops>();
-        List<Stops> filtroZona2 = new List<Stops>();
-        List<Stops> filtroZona3 = new List<Stops>();
-        List<Stops> filtroZona4 = new List<Stops>();
-        List<Stops> filtroZona5 = new List<Stops>();
-        List<Stops> filtroZona6 = new List<Stops>();
-        List<Stops> filtroZona7 = new List<Stops>();
-        List<Stops> filtroZona8 = new List<Stops>();
 
-
-        public void filtrarEstacionesEnZonas(){
+       /* public void filtrarEstacionesEnZonas(GMapPolygon poligono){
             int i = 0;
-            MessageBox.Show("i se aumento en 1 pero");
-
-            while (i < zona0.Count) {
-                if ((ParadasEstaciones[i].DECIMALLATITUD >= 3.458952) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.513447) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.463029) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.521014) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.460478) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.527052) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.450851) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.537823) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.451531) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.541646) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.455851) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.542208) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.458972) && (ParadasEstaciones[i].DECIMALLONGITUD >= -76.553556) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD <= 3.458552) && (ParadasEstaciones[i].DECIMALLONGITUD == -76.582726) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.448433) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.562660) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.452630) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.549432) ||
-         /* 11 */   (ParadasEstaciones[i].DECIMALLATITUD >= 3.441510) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.536748) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.428423) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.533186) ||
-                    (ParadasEstaciones[i].DECIMALLATITUD >= 3.434846) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.523287) ||
-         /* 14 */   (ParadasEstaciones[i].DECIMALLATITUD >= 3.443270) && (ParadasEstaciones[i].DECIMALLONGITUD <= -76.518067)){ 
-
-                    filtroZona0.Add(ParadasEstaciones[i]);
-                    mostrarMarcadores(filtroZona0);
-                    MessageBox.Show("i se aumento en 1 ENTROO");
+            List<PointLatLng> puntos = new List<PointLatLng>();
+            List<Stops> paradasFiltradas = new List<Stops>();
+            while (i < ParadasEstaciones.Count){
+                puntos.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLATITUD));
+                if (poligono.IsInside(puntos[i])){
+                    paradasFiltradas.Add(ParadasEstaciones[i]);
+                    mostrarMarcadores(paradasFiltradas);
                 }
                 i++;
-               
             }
            
 
-        }
+        }*/
 
-        private void button2_Click(object sender, EventArgs e)
+      
+        private void button2_Click_1(object sender, EventArgs e)
         {
-            filtrarEstacionesEnZonas();
+
         }
     }
+
 
 }
