@@ -90,10 +90,11 @@ namespace App_MetroCali
             leerZonasCiudad();
             separarZonas();
 
-            lecturaDatagramas();
+            //lecturaDatagramas();
+            lecturaDatagramas2();
             //separarBUSES();
 
-            
+
             markerOverlayMIO = new GMapOverlay("markadorMIO");
            /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
             marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
@@ -524,6 +525,47 @@ namespace App_MetroCali
 
         }
 
+        public void lecturaDatagramas2()
+        {
+            StreamReader lector = new StreamReader(@"DATAGRAMS4.txt");
+            String line = lector.ReadLine();
+            line = lector.ReadLine();
+
+            MIO bus = new MIO("", "", "", "", "", "", "", "", "", "", "");
+
+            String[] arregloDatagramas = line.Split(',');
+
+            bus.EVENTTYPE = arregloDatagramas[0];
+            bus.STOPID = arregloDatagramas[2];
+            bus.ODOMETER = arregloDatagramas[3];
+
+            bus.LATITUDE = arregloDatagramas[4];
+            bus.LONGITUDE = arregloDatagramas[5];
+            bus.LIST_LATITUDE.Add(arregloDatagramas[4]);
+            bus.LIST_LONGITUDE.Add(arregloDatagramas[5]);
+
+            bus.TASKID = arregloDatagramas[6];
+            bus.LINEID = arregloDatagramas[7];
+            bus.TRIPID = arregloDatagramas[8];
+
+            bus.DATAGRAMID = arregloDatagramas[9];
+            bus.DATAGRAMDATE = arregloDatagramas[10];
+            bus.BUSID = arregloDatagramas[11];
+
+            line = lector.ReadLine();
+            while (line != null)
+            {
+                arregloDatagramas = line.Split(',');
+                bus.LIST_LATITUDE.Add(arregloDatagramas[4]);
+                bus.LIST_LONGITUDE.Add(arregloDatagramas[5]);
+                line = lector.ReadLine();
+            }
+
+            Buses.Add(bus);
+            lector.Close();
+
+        }
+
         public Boolean ListExist(List<MIO> item)
         {
 
@@ -648,12 +690,41 @@ namespace App_MetroCali
 
         }
 
+        public void moverBus()
+        {
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+
+            for (int i = 0; i<Buses.Count; i++)
+            {
+                for(int j = 0; j<Buses[i].LIST_LATITUDE.Count; j++)
+                {
+                    double latitude = ordenarDecimal(Buses[i].LIST_LATITUDE[j]);
+                    double longitude = ordenarDecimal(Buses[i].LIST_LONGITUDE[j]);
+
+                    marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+
+                    markerOverlayMIO.Markers.Add(marker);
+                    gControl.Overlays.Add(markerOverlayMIO);
+                    //marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                    //Buses[i].moveBus(Int32.Parse(Buses[i].LIST_LATITUDE[i]), Int32.Parse(Buses[i].LIST_LONGITUDE[i]));
+                    Hilo hilo = new Hilo(Buses[i], this, Buses[i].LIST_LATITUDE[j], Buses[i].LIST_LONGITUDE[j]);
+                    Thread hilo1 = new Thread(hilo.run);
+                    //hilo1.Start
+                    //markerOverlayMIO.Clear();
+                }
+                //gControl.Overlays.Add(markerOverlayMIO);
+                //markerOverlayMIO.Clear();
+            }
+        }
+
 
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
 
-            runProcess();
+            //runProcess();
+            moverBus();
           
         }
 

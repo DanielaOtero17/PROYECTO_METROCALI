@@ -19,39 +19,52 @@ namespace App_MetroCali
         public MIO mios;
         private Form1 ventana;
 
-        public Hilo(MIO mio, Form1 forma)
+        private String x;
+        private String y;
+        private Boolean continuar;
+
+        public Hilo(MIO mio, Form1 forma, String x, String y)
         {
             mios = mio;
             ventana = forma;
+            this.x = x;
+            this.y = y;
+            continuar = true;
         }
 
-        public void run(int i)
+        public void run()
         {
 
-            MessageBox.Show("entrando ");
+            //MessageBox.Show("entrando ");
 
-            while (true)
+            while (continuar)
             {
+
+                mios.moveBus(Int32.Parse(x), Int32.Parse(y));
+
+                if (mios.LATITUDE.Equals(x) && mios.LONGITUDE.Equals(y))
+                {
+                    continuar = false;
+                }
+
+                //mios.changeLocation();
+
+                //double latitud = ventana.ordenarDecimal(mios.LATITUDE);
+                //double longitud = ventana.ordenarDecimal(mios.LONGITUDE);
+
+
+                //ventana.markerOverlayMIO.Markers[i].Position = new PointLatLng(latitud, longitud);
+
                 
-                    mios.changeLocation();
-
-                    double latitud = ventana.ordenarDecimal(mios.LATITUDE);
-                    double longitud = ventana.ordenarDecimal(mios.LONGITUDE);
-
-               
-                    ventana.markerOverlayMIO.Markers[i].Position = new PointLatLng(latitud, longitud);
-
-                ventana.gControl.Refresh();
                 try
                 {
                     Thread.Sleep(100);
                 }
                 catch (ThreadInterruptedException e)
                 {
-                    // TODO Auto-generated catch block
-
 
                 }
+                //ventana.gControl.Refresh();
             }
         }
 

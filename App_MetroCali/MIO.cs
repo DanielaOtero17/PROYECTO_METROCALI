@@ -79,9 +79,38 @@ namespace App_MetroCali
             
         }
 
-        public void moveBus()
+        public void moveBus(int x1, int y1)
         {
-           
+            int x = Int32.Parse(LATITUDE);
+            int y = Int32.Parse(LONGITUDE);
+
+            if (x != x1 && y != y1)
+            {
+                float deltaX = x1 - x;
+                float deltaY = y1 - y;
+                float angle = (float)Math.Atan2(deltaY, deltaX);
+
+                double speedX = 0.000015 * Math.Cos(angle);
+                double speedY = 0.000015 * Math.Sin(angle);
+
+                x = (int)(x + speedX);
+                LATITUDE = x.ToString();
+
+                y = (int)(y + speedY);
+                LONGITUDE = y.ToString();
+
+            }
+
+            //double dist = Math.Hypot(x - x1, y - y1);
+            double dist = Math.Sqrt(Math.Pow(x - x1, 2) + Math.Pow(y - y1, 2));
+
+            if (dist < 8)
+            {
+                x = x1;
+                LATITUDE = x.ToString();
+                y = y1;
+                LONGITUDE = y.ToString();
+            }
         }
     }
 }
