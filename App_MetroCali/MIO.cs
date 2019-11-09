@@ -9,7 +9,6 @@ namespace App_MetroCali
     public class MIO{
 
         public String EVENTTYPE { get; set; }
-      
         public String STOPID { get; set; }
         public String ODOMETER { get; set; }
         public String LATITUDE { get; set; }
@@ -21,6 +20,8 @@ namespace App_MetroCali
         public String DATAGRAMDATE { get; set; }
         public String BUSID { get; set; }
         int run { get; set; }
+
+       public  String id { get; set; }
 
         public List<String> LIST_LATITUDE { get; set; }
 
@@ -55,7 +56,7 @@ namespace App_MetroCali
             ways = new List<string>();
             ways.Add(LATITUDE + "," + LONGITUDE);
             run = 0;
-           
+            id = "";
 
         }
 

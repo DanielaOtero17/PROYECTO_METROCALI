@@ -35,6 +35,9 @@ namespace App_MetroCali
         List<Stops> ParadasCalle = new List<Stops>();
         List<ZONA> Zonas = new List<ZONA>();
 
+        List<GMapOverlay> ListaPoligonos = new List <GMapOverlay>();
+
+
         public List<MIO> Buses = new List<MIO>();
         List<MIO> cantidadBuses = new List<MIO>();
 
@@ -47,6 +50,8 @@ namespace App_MetroCali
         List<ZONA> zona6 = new List<ZONA>();
         List<ZONA> zona7 = new List<ZONA>();
         List<ZONA> zona8 = new List<ZONA>();
+
+        List<String> lines = new List <String>();
 
         Queue<List<MIO>> cola = new Queue<List<MIO>>();
 
@@ -84,7 +89,7 @@ namespace App_MetroCali
             cbZonas.Items.Add("MOSTRAR TODAS");
 
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
-            pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
+            //pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
 
 
             leerZonasCiudad();
@@ -96,13 +101,7 @@ namespace App_MetroCali
 
 
             markerOverlayMIO = new GMapOverlay("markadorMIO");
-           /* Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-            marker = new GMarkerGoogle(new PointLatLng(Double.Parse(bus.LIST_LATITUDE[0]), Double.Parse(bus.LIST_LONGITUDE[0])), markerMio);
-            markerOverlayMIO.Markers.Add(marker);
-
-           // marker.ToolTipMode = MarkerTooltipMode.Always;
-           marker.ToolTipText = String.Format("Este es el mio");
-            gControl.Overlays.Add(markerOverlayMIO);*/
+            progressBar1.Visible = false;
         }
 
         public void lecturaParadas()
@@ -200,12 +199,17 @@ namespace App_MetroCali
             for (int i = 0; i < a.Count(); i++)
             {
                 marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD), GMarkerGoogleType.red);
-                
+               //var point = new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD);
+                //Bitmap markerParada = (Bitmap)Image.FromFile(@"MIO.png");
+                //marker = new GMarkerGoogle(point, markerParada);
+
+
+
                 markerOverlayParada.Markers.Add(marker);
                 marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                marker.ToolTipText = String.Format("Parada: " + a[S].LONGNAME + "\n" + "ID " + a[S].STOPID + "\n" + "Latitud: " + a[S].DECIMALLATITUD + "\n" + "Longitud: " + a[S].DECIMALLONGITUD);
-                marker.ToolTip.TextPadding = new Size(10, 100);
-                marker.ToolTip.Fill = Brushes.Aqua;
+                marker.ToolTipText = String.Format("PARADA: " + a[S].LONGNAME + "\n" + "ID " + a[S].STOPID + "\n" + "LATITUD: " + a[S].DECIMALLATITUD + "\n" + "LONGITUD: " + a[S].DECIMALLONGITUD);
+                marker.ToolTip.TextPadding = new Size(10, 20);
+                marker.ToolTip.Fill = Brushes.AntiqueWhite;
                 //Console.WriteLine(S);
                 S++;
             }
@@ -215,7 +219,9 @@ namespace App_MetroCali
 
         private void Cb_elegir_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void GControl_Load_1(object sender, EventArgs e) { }
+        private void GControl_Load_1(object sender, EventArgs e) {
+
+         }
 
         private void Button1_Click(object sender, EventArgs e) { 
             seleccionZona();
@@ -275,8 +281,8 @@ namespace App_MetroCali
                     MessageBox.Show("Debe seleccionar un numero de zona");
                     break;
                 case "0 - CENTRO":
-                    
                     hacerPoligonoZonas(zona0, color);
+
                     
                     break;
                 case "1 - UNIVERSIDADES":
@@ -325,6 +331,7 @@ namespace App_MetroCali
                     hacerPoligonoZonas(zona7, color7);
                     hacerPoligonoZonas(zona8, color8);
 
+                   
                     break;
             }
         }
@@ -479,6 +486,10 @@ namespace App_MetroCali
             gControl.Zoom = gControl.Zoom + 1;
             gControl.Zoom = gControl.Zoom - 1;
 
+           
+
+            
+
             
         }
 
@@ -490,12 +501,13 @@ namespace App_MetroCali
             }
         }
 
+        //Aquí se guarda la información de los buses, en la lista de buses.
         public void lecturaDatagramas(){
             StreamReader lector = new StreamReader(@"DATAGRAMS.txt");
             String line = lector.ReadLine();
             line = lector.ReadLine();
             int i = 0;
-            
+         
             while (line != null)
             {
                 String[] arregloDatagramas = line.Split(',');
@@ -517,7 +529,8 @@ namespace App_MetroCali
 
                 MIO bus = new MIO(EVENTTYPE, STOPID, ODOMETER, LATITUDE, LONGITUDE, TASKID, LINEID, TRIPID, DATAGRAMID, DATAGRAMDATE, BUSID);
                 Buses.Add(bus);
-             
+
+        
                 i++;
                 line = lector.ReadLine();
             }
@@ -525,6 +538,7 @@ namespace App_MetroCali
 
         }
 
+<<<<<<< HEAD
         public void lecturaDatagramas2()
         {
             StreamReader lector = new StreamReader(@"DATAGRAMS4.txt");
@@ -608,13 +622,20 @@ namespace App_MetroCali
             }
 
         }
+=======
+>>>>>>> e34c876f42a829860ef928ce6c256d9bc918d038
 
+        
+       
         public void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
         }
 
         public void BEliminar_Click(object sender, EventArgs e){
+            timer2.Stop();
+            cola.Clear();
             removeMakers();
+          
         }
 
         public Boolean busExist(MIO idBus)
@@ -642,51 +663,183 @@ namespace App_MetroCali
 
         }
 
-       
+        public void ordenarCola(String id) {
 
-        public void runProcess()
-        {
-
-            ordenarCola();
-
-            MessageBox.Show("Se han agregado las colas, en" + cola.Count);
-            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
-
-            while (cola.Count>0)
+          
+            String hora = "";
+            String min = "";
+            String[] auxi = id.Split(',');
+            progressBar1.Increment(-Buses.Count);
+            progressBar1.Maximum = Buses.Count;
+            for (int a=0; a < Buses.Count; a++)
             {
 
-               
-                List<MIO> auxi = cola.Dequeue();
-               
-                
-
-                for (int j = 0; j < auxi.Count; j++)
+                if (Buses[a].LINEID.Equals(auxi[0]))
                 {
-                   
-                    double latitude = ordenarDecimal(auxi[j].LATITUDE);
-                    double longitude = ordenarDecimal(auxi[j].LONGITUDE);
+                    Buses[a].id = auxi[1];
 
-                    marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+                    String[] data = Buses[a].DATAGRAMDATE.Split(' ');
+                    String[] data2 = data[1].Split('.');
 
-                    markerOverlayMIO.Markers.Add(marker);
+                    
+                    String auxh = data2[0];
+                    String auxm = data[1];
 
-                    marker.ToolTipMode = MarkerTooltipMode.Always;
-                    marker.ToolTipText = String.Format(auxi[j].BUSID);
-                   
+                    if (auxh == hora && auxm == min)
+                    {
+                        cola.Last().Add(Buses[a]);
+                    }
+                    else {
+                        cola.Enqueue(new List<MIO>());
+                        cola.Last().Add(Buses[a]);
+                        hora = auxh;
+                        min = auxm;
+                    }
+                    
+
                 }
-                gControl.Overlays.Add(markerOverlayMIO);
-                    gControl.Zoom = gControl.Zoom + 0.1;
-                    gControl.Zoom = gControl.Zoom - 0.1;
-                // Thread.Sleep(100);
-
-                markerOverlayMIO.Clear();
-
-               
+                progressBar1.Increment(1);
 
             }
 
-            
-      
+        }
+
+
+       public void MostrarMIOS_Click(object sender, EventArgs e)
+        {
+
+            lecturaLines();
+            ordenarCola(filtrarMios());
+            timer2.Start();
+
+        }
+
+        private void PboxFondoDeco_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbZonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            seleccionZona();
+        }
+        
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            //  
+            label4.Text = DateTime.Parse("01/11/2018 05:35").ToString();
+            timer1.Enabled = true;
+            timer1.Interval = 10;
+           
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void lecturaLines() {
+            StreamReader lector = new StreamReader(@"lines.txt");
+            String line = lector.ReadLine();
+            int i = 0;
+
+            while (line != null){
+                lines.Add(line);
+                i++;
+                line = lector.ReadLine();
+            }
+
+            lector.Close();
+           
+        }
+
+
+        public String filtrarMios() {
+
+            String lineId = "";
+            int i = 0;
+
+            List<String> linesPos3 = new List <String>();
+            List<String> linesPos1 = new List<String>();
+         
+            for (int j = 0; j < lines.Count; j++){
+              
+                String[] arreglo = lines[j].Split(',');
+                linesPos3.Add(arreglo[2]);
+                linesPos1.Add(arreglo[0]);
+
+            }
+
+        
+            while (i<linesPos3.Count ){
+
+                if (buscarRutasUsuarios.Text.Equals(linesPos3[i], StringComparison.InvariantCultureIgnoreCase)){
+                   
+                    lineId = linesPos1[i] + "," + linesPos3[i];
+                    MessageBox.Show("El line id de la "+buscarRutasUsuarios.Text + " ES :"+ linesPos1[i]);
+                    i = linesPos3.Count;
+                  
+                }
+                
+                    i++;  
+            }
+            return lineId;
+
+        }
+
+        public void runProcess(List<MIO> bus)
+        {
+
+            Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
+
+
+            for (int j = 0; j < bus.Count; j++)
+            {
+                double latitude = ordenarDecimal(bus[j].LATITUDE);
+                double longitude = ordenarDecimal(bus[j].LONGITUDE);
+
+                marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+
+                markerOverlayMIO.Markers.Add(marker);
+
+                marker.ToolTipMode = MarkerTooltipMode.Always;
+                marker.ToolTipText = String.Format(bus[j].id);
+
+            }
+
+            gControl.Overlays.Add(markerOverlayMIO);
+            gControl.Zoom = gControl.Zoom + 0.1;
+            gControl.Zoom = gControl.Zoom - 0.1;
 
         }
 
@@ -719,21 +872,73 @@ namespace App_MetroCali
         }
 
 
+        private void button1_Click_1(object sender, EventArgs e){
 
-       public void MostrarMIOS_Click(object sender, EventArgs e)
+            lecturaLines();
+            ordenarCola(filtrarMios());
+            timer2.Start();
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
         {
+            markerOverlayMIO.Clear();
+            if (cola.Count>0){
+                runProcess(cola.Dequeue());
+                timer1.Start(); 
+            }
+            else{
+                timer2.Stop();
+            }
 
+<<<<<<< HEAD
             //runProcess();
             moverBus();
           
+=======
+            timer2.Interval = 1000;
+>>>>>>> e34c876f42a829860ef928ce6c256d9bc918d038
         }
 
-        
+        private void PbIMAGEN_Click(object sender, EventArgs e)
+        {
 
-        private void PboxFondoDeco_Click(object sender, EventArgs e)
+        }
+
+        private void ProgressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+       /* public void filtrarEstacionesEnZonas(GMapPolygon poligono){
+            int i = 0;
+            List<PointLatLng> puntos = new List<PointLatLng>();
+            List<Stops> paradasFiltradas = new List<Stops>();
+            while (i < ParadasEstaciones.Count){
+                puntos.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLATITUD));
+                if (poligono.IsInside(puntos[i])){
+                    paradasFiltradas.Add(ParadasEstaciones[i]);
+                    mostrarMarcadores(paradasFiltradas);
+                }
+                i++;
+            }
+           
+
+        }*/
+
+      
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+      
+ 
+        private void LTitulo_Click(object sender, EventArgs e)
         {
 
         }
     }
+
 
 }
