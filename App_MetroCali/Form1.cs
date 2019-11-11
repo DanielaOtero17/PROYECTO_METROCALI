@@ -70,13 +70,14 @@ namespace App_MetroCali
             gControl.Zoom = 18;
             gControl.AutoScroll = true;
 
-           
 
+            cb_elegir.Enabled = true;
             cb_elegir.Items.Add("ESTACIONES");
             cb_elegir.Items.Add("PARADAS EN LAS CALLES");
             cb_elegir.Items.Add("PATIOS");
 
 
+            cbZonas.Enabled = true;
             cbZonas.Items.Add("0 - CENTRO");
             cbZonas.Items.Add("1 - UNIVERSIDADES");
             cbZonas.Items.Add("2 - MENGA");
@@ -171,24 +172,32 @@ namespace App_MetroCali
         }
 
         private void filter(){
-            switch (cb_elegir.Text)
-            {
-                case "":
-                    MessageBox.Show("Por favor seleccione una opción.");
-                    break;
+            if (cb_elegir.Text.Equals("ESTACIONES") || cb_elegir.Text.Equals("PARADAS EN LAS CALLES") || cb_elegir.Text.Equals("PATIOS")){
+                switch (cb_elegir.Text) {
+                    case "":
+                        MessageBox.Show("Por favor seleccione una opción.");
+                        break;
 
-                case "ESTACIONES":
-                    mostrarMarcadores(ParadasEstaciones);
-                    break;
+                    case "ESTACIONES":
+                        cb_elegir.Enabled = false;
+                        mostrarMarcadores(ParadasEstaciones);
+                        break;
 
-                case "PARADAS EN LAS CALLES":
-                    mostrarMarcadores(ParadasCalle);
-                    break;
+                    case "PARADAS EN LAS CALLES":
+                        cb_elegir.Enabled = false;
+                        mostrarMarcadores(ParadasCalle);
+                        break;
 
-                case "PATIOS":
-                    MessageBox.Show("Esta área se encuentra temporalmente fuera de servicio, por favor seleccione otra opción.");
-                    break;
+                    case "PATIOS":
+                        cb_elegir.Enabled = false;
+                        MessageBox.Show("Esta área se encuentra temporalmente fuera de servicio, por favor seleccione otra opción.");
+                        break;
+                }
             }
+            else {
+                MessageBox.Show("Error , esta opción no es valida");
+            }
+           
         }
 
         public void mostrarMarcadores(List<Stops> a) { 
@@ -276,50 +285,50 @@ namespace App_MetroCali
             Color color8 = Color.FromArgb(50, Color.DarkMagenta);
             switch (cbZonas.Text)
             {
-                case "":
-                    MessageBox.Show("Debe seleccionar un numero de zona");
-                    break;
+                
                 case "0 - CENTRO":
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona0, color);
 
                     
                     break;
                 case "1 - UNIVERSIDADES":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona1, color1);
                     break;
                 case "2 - MENGA":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona2, color2);
                     break;
                 case "3 - PASO DEL COMERCIO":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona3, color3);
                     break;
                 case "4 - ANDRÉS SANÍN":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona4, color4);
                     break;
                 case "5 - NUEVO LATIR":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona5, color5);
                     break;
                 case "6 - CAÑAVERALEJO":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona6, color6);
                     break;
 
                 case "7 - SIMÓN BOLIVAR":
-                   
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona7, color7);
                     break;
-
-                    case "8 - CALIPSO":
-                    
+                    cbZonas.Enabled = false;
+                case "8 - CALIPSO":
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona8, color8);
                     break;  
                     
                 case "MOSTRAR TODAS":
+                    cbZonas.Enabled = false;
                     hacerPoligonoZonas(zona0, color);
                     hacerPoligonoZonas(zona1, color1);
                     hacerPoligonoZonas(zona2, color2);
@@ -547,6 +556,11 @@ namespace App_MetroCali
         public void BEliminar_Click(object sender, EventArgs e){
             timer2.Stop();
             cola.Clear();
+            cbZonas.Enabled = true;
+            cb_elegir.Enabled = true;
+            cbZonas.SelectedIndex = -1;
+            buscarRutasUsuarios.ResetText();
+            cb_elegir.SelectedIndex = -1;
             removeMakers();
           
         }
@@ -719,7 +733,7 @@ namespace App_MetroCali
                 if (buscarRutasUsuarios.Text.Equals(linesPos3[i], StringComparison.InvariantCultureIgnoreCase)){
                    
                     lineId = linesPos1[i] + "," + linesPos3[i];
-                    MessageBox.Show("El line id de la "+buscarRutasUsuarios.Text + " ES :"+ linesPos1[i]);
+                   
                     i = linesPos3.Count;
                   
                 }
@@ -798,7 +812,7 @@ namespace App_MetroCali
                 if (poligono.IsInside(puntos[i])){
                     paradasFiltradas.Add(ParadasEstaciones[i]);
                     mostrarMarcadores(paradasFiltradas);
-                }
+                }                                                              
                 i++;
             }
            
