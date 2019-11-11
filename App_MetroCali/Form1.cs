@@ -634,10 +634,15 @@ namespace App_MetroCali
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
+            if (buscarRutasUsuarios.Text.Equals("")){
+                MessageBox.Show("Error, debe ingresar una ruta para buscar");
 
-            lecturaLines();
-            ordenarCola(filtrarMios());
-            timer2.Start();
+            }else {
+                lecturaLines();
+                ordenarCola(filtrarMios());
+                timer2.Start();
+            }
+           
 
         }
 
@@ -803,7 +808,7 @@ namespace App_MetroCali
         }
 
 
-       /* public void filtrarEstacionesEnZonas(GMapPolygon poligono){
+        public void filtrarEstacionesEnZonas(GMapPolygon poligono){
             int i = 0;
             List<PointLatLng> puntos = new List<PointLatLng>();
             List<Stops> paradasFiltradas = new List<Stops>();
@@ -817,7 +822,7 @@ namespace App_MetroCali
             }
            
 
-        }*/
+        }
 
       
         private void button2_Click_1(object sender, EventArgs e)
