@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Panel panel1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.filtradoEstacionesZonas = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbZonas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,23 +67,35 @@
             panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             panel1.AutoSize = true;
             panel1.BackColor = System.Drawing.Color.Green;
+            panel1.Controls.Add(this.filtradoEstacionesZonas);
             panel1.Controls.Add(this.label3);
             panel1.Controls.Add(this.cbZonas);
             panel1.Controls.Add(this.label2);
-            panel1.Location = new System.Drawing.Point(740, 312);
+            panel1.Location = new System.Drawing.Point(987, 332);
+            panel1.Margin = new System.Windows.Forms.Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(271, 79);
+            panel1.Size = new System.Drawing.Size(361, 149);
             panel1.TabIndex = 17;
             panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // filtradoEstacionesZonas
+            // 
+            this.filtradoEstacionesZonas.FormattingEnabled = true;
+            this.filtradoEstacionesZonas.Location = new System.Drawing.Point(15, 99);
+            this.filtradoEstacionesZonas.Name = "filtradoEstacionesZonas";
+            this.filtradoEstacionesZonas.Size = new System.Drawing.Size(329, 24);
+            this.filtradoEstacionesZonas.TabIndex = 21;
+            this.filtradoEstacionesZonas.SelectedIndexChanged += new System.EventHandler(this.filtradoEstacionesZonas_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Gill Sans MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FloralWhite;
-            this.label3.Location = new System.Drawing.Point(91, 1);
+            this.label3.Location = new System.Drawing.Point(121, 1);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 27);
+            this.label3.Size = new System.Drawing.Size(107, 34);
             this.label3.TabIndex = 20;
             this.label3.Text = "ZONAS";
             this.label3.Click += new System.EventHandler(this.Label3_Click);
@@ -91,10 +104,10 @@
             // 
             this.cbZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbZonas.FormattingEnabled = true;
-            this.cbZonas.Location = new System.Drawing.Point(11, 49);
-            this.cbZonas.Margin = new System.Windows.Forms.Padding(2);
+            this.cbZonas.Location = new System.Drawing.Point(15, 60);
+            this.cbZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbZonas.Name = "cbZonas";
-            this.cbZonas.Size = new System.Drawing.Size(247, 21);
+            this.cbZonas.Size = new System.Drawing.Size(328, 24);
             this.cbZonas.TabIndex = 9;
             this.cbZonas.SelectedIndexChanged += new System.EventHandler(this.cbZonas_SelectedIndexChanged);
             // 
@@ -103,10 +116,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(78, 30);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(104, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 17);
+            this.label2.Size = new System.Drawing.Size(141, 23);
             this.label2.TabIndex = 14;
             this.label2.Text = "Visualizar Zonas";
             this.label2.Click += new System.EventHandler(this.Label2_Click);
@@ -116,11 +128,11 @@
             this.cb_elegir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cb_elegir.FormattingEnabled = true;
-            this.cb_elegir.ItemHeight = 13;
-            this.cb_elegir.Location = new System.Drawing.Point(11, 43);
-            this.cb_elegir.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_elegir.ItemHeight = 16;
+            this.cb_elegir.Location = new System.Drawing.Point(15, 53);
+            this.cb_elegir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cb_elegir.Name = "cb_elegir";
-            this.cb_elegir.Size = new System.Drawing.Size(141, 21);
+            this.cb_elegir.Size = new System.Drawing.Size(187, 24);
             this.cb_elegir.TabIndex = 1;
             this.cb_elegir.SelectedIndexChanged += new System.EventHandler(this.Cb_elegir_SelectedIndexChanged);
             // 
@@ -131,10 +143,10 @@
             this.Bguardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Bguardar.Font = new System.Drawing.Font("Gill Sans MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bguardar.Image = ((System.Drawing.Image)(resources.GetObject("Bguardar.Image")));
-            this.Bguardar.Location = new System.Drawing.Point(156, 35);
-            this.Bguardar.Margin = new System.Windows.Forms.Padding(2);
+            this.Bguardar.Location = new System.Drawing.Point(208, 39);
+            this.Bguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Bguardar.Name = "Bguardar";
-            this.Bguardar.Size = new System.Drawing.Size(100, 31);
+            this.Bguardar.Size = new System.Drawing.Size(133, 42);
             this.Bguardar.TabIndex = 2;
             this.Bguardar.Text = "Buscar";
             this.Bguardar.UseVisualStyleBackColor = false;
@@ -153,8 +165,8 @@
             this.gControl.GrayScaleMode = false;
             this.gControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gControl.LevelsKeepInMemmory = 5;
-            this.gControl.Location = new System.Drawing.Point(25, 40);
-            this.gControl.Margin = new System.Windows.Forms.Padding(2);
+            this.gControl.Location = new System.Drawing.Point(33, 49);
+            this.gControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gControl.MarkersEnabled = true;
             this.gControl.MaxZoom = 2;
             this.gControl.MinZoom = 2;
@@ -168,7 +180,7 @@
             this.gControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gControl.ShowTileGridLines = false;
-            this.gControl.Size = new System.Drawing.Size(685, 570);
+            this.gControl.Size = new System.Drawing.Size(913, 701);
             this.gControl.TabIndex = 3;
             this.gControl.Zoom = 0D;
             this.gControl.Load += new System.EventHandler(this.GControl_Load_1);
@@ -176,19 +188,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(723, 28);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(964, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 4;
             // 
             // LimagenLogo
             // 
             this.LimagenLogo.AutoSize = true;
-            this.LimagenLogo.Location = new System.Drawing.Point(721, 42);
-            this.LimagenLogo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LimagenLogo.Location = new System.Drawing.Point(961, 52);
             this.LimagenLogo.Name = "LimagenLogo";
-            this.LimagenLogo.Size = new System.Drawing.Size(0, 13);
+            this.LimagenLogo.Size = new System.Drawing.Size(0, 17);
             this.LimagenLogo.TabIndex = 5;
             // 
             // BEliminar
@@ -198,10 +208,10 @@
             this.BEliminar.Font = new System.Drawing.Font("Gill Sans MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BEliminar.ForeColor = System.Drawing.SystemColors.Desktop;
             this.BEliminar.Image = ((System.Drawing.Image)(resources.GetObject("BEliminar.Image")));
-            this.BEliminar.Location = new System.Drawing.Point(830, 578);
-            this.BEliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.BEliminar.Location = new System.Drawing.Point(1107, 711);
+            this.BEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BEliminar.Name = "BEliminar";
-            this.BEliminar.Size = new System.Drawing.Size(98, 44);
+            this.BEliminar.Size = new System.Drawing.Size(131, 54);
             this.BEliminar.TabIndex = 6;
             this.BEliminar.Text = "Limpiar";
             this.BEliminar.UseVisualStyleBackColor = false;
@@ -210,10 +220,10 @@
             // pbIMAGEN
             // 
             this.pbIMAGEN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbIMAGEN.Location = new System.Drawing.Point(751, 40);
-            this.pbIMAGEN.Margin = new System.Windows.Forms.Padding(2);
+            this.pbIMAGEN.Location = new System.Drawing.Point(1002, 43);
+            this.pbIMAGEN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbIMAGEN.Name = "pbIMAGEN";
-            this.pbIMAGEN.Size = new System.Drawing.Size(269, 240);
+            this.pbIMAGEN.Size = new System.Drawing.Size(329, 283);
             this.pbIMAGEN.TabIndex = 7;
             this.pbIMAGEN.TabStop = false;
             // 
@@ -225,9 +235,10 @@
             this.MostrarMIOS.Font = new System.Drawing.Font("Gill Sans MT", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MostrarMIOS.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MostrarMIOS.Image = ((System.Drawing.Image)(resources.GetObject("MostrarMIOS.Image")));
-            this.MostrarMIOS.Location = new System.Drawing.Point(158, 36);
+            this.MostrarMIOS.Location = new System.Drawing.Point(211, 44);
+            this.MostrarMIOS.Margin = new System.Windows.Forms.Padding(4);
             this.MostrarMIOS.Name = "MostrarMIOS";
-            this.MostrarMIOS.Size = new System.Drawing.Size(98, 22);
+            this.MostrarMIOS.Size = new System.Drawing.Size(131, 27);
             this.MostrarMIOS.TabIndex = 11;
             this.MostrarMIOS.Text = "Mostrar Buses";
             this.MostrarMIOS.UseVisualStyleBackColor = false;
@@ -238,10 +249,9 @@
             this.lTitulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lTitulo.AutoSize = true;
             this.lTitulo.Font = new System.Drawing.Font("Gill Sans MT", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lTitulo.Location = new System.Drawing.Point(278, 11);
-            this.lTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lTitulo.Location = new System.Drawing.Point(371, 14);
             this.lTitulo.Name = "lTitulo";
-            this.lTitulo.Size = new System.Drawing.Size(216, 30);
+            this.lTitulo.Size = new System.Drawing.Size(282, 38);
             this.lTitulo.TabIndex = 13;
             this.lTitulo.Text = "MAPA DE GOOGLE";
             this.lTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -254,17 +264,18 @@
             this.panel2.Controls.Add(this.buscarRutasUsuarios);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.MostrarMIOS);
-            this.panel2.Location = new System.Drawing.Point(740, 402);
+            this.panel2.Location = new System.Drawing.Point(987, 495);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(271, 75);
+            this.panel2.Size = new System.Drawing.Size(361, 92);
             this.panel2.TabIndex = 18;
             // 
             // buscarRutasUsuarios
             // 
-            this.buscarRutasUsuarios.Location = new System.Drawing.Point(11, 38);
-            this.buscarRutasUsuarios.Margin = new System.Windows.Forms.Padding(2);
+            this.buscarRutasUsuarios.Location = new System.Drawing.Point(15, 47);
+            this.buscarRutasUsuarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buscarRutasUsuarios.Name = "buscarRutasUsuarios";
-            this.buscarRutasUsuarios.Size = new System.Drawing.Size(142, 20);
+            this.buscarRutasUsuarios.Size = new System.Drawing.Size(188, 22);
             this.buscarRutasUsuarios.TabIndex = 23;
             // 
             // label6
@@ -273,9 +284,10 @@
             this.label6.BackColor = System.Drawing.Color.Red;
             this.label6.Font = new System.Drawing.Font("Gill Sans MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FloralWhite;
-            this.label6.Location = new System.Drawing.Point(100, 6);
+            this.label6.Location = new System.Drawing.Point(133, 7);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 27);
+            this.label6.Size = new System.Drawing.Size(97, 34);
             this.label6.TabIndex = 22;
             this.label6.Text = "BUSES";
             this.label6.Click += new System.EventHandler(this.Label6_Click);
@@ -288,9 +300,10 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.Bguardar);
             this.panel3.Controls.Add(this.cb_elegir);
-            this.panel3.Location = new System.Drawing.Point(740, 488);
+            this.panel3.Location = new System.Drawing.Point(987, 601);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(271, 75);
+            this.panel3.Size = new System.Drawing.Size(361, 92);
             this.panel3.TabIndex = 18;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel3_Paint);
             // 
@@ -299,9 +312,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Britannic Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FloralWhite;
-            this.label5.Location = new System.Drawing.Point(93, 8);
+            this.label5.Location = new System.Drawing.Point(124, 10);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 22);
+            this.label5.Size = new System.Drawing.Size(115, 27);
             this.label5.TabIndex = 21;
             this.label5.Text = "PARADAS";
             // 
@@ -314,9 +328,10 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Gill Sans MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(822, 10);
+            this.label4.Location = new System.Drawing.Point(1096, 12);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 23);
+            this.label4.Size = new System.Drawing.Size(174, 29);
             this.label4.TabIndex = 20;
             this.label4.Text = "Hora del sistema";
             this.label4.Click += new System.EventHandler(this.Label4_Click);
@@ -332,10 +347,10 @@
             this.pboxFondoDeco.BackColor = System.Drawing.Color.White;
             this.pboxFondoDeco.ErrorImage = null;
             this.pboxFondoDeco.InitialImage = null;
-            this.pboxFondoDeco.Location = new System.Drawing.Point(740, -11);
-            this.pboxFondoDeco.Margin = new System.Windows.Forms.Padding(2);
+            this.pboxFondoDeco.Location = new System.Drawing.Point(987, -14);
+            this.pboxFondoDeco.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pboxFondoDeco.Name = "pboxFondoDeco";
-            this.pboxFondoDeco.Size = new System.Drawing.Size(291, 726);
+            this.pboxFondoDeco.Size = new System.Drawing.Size(388, 894);
             this.pboxFondoDeco.TabIndex = 12;
             this.pboxFondoDeco.TabStop = false;
             this.pboxFondoDeco.Click += new System.EventHandler(this.PboxFondoDeco_Click);
@@ -343,18 +358,19 @@
             // progressBar1
             // 
             this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(44, 587);
+            this.progressBar1.Location = new System.Drawing.Point(59, 722);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(646, 23);
+            this.progressBar1.Size = new System.Drawing.Size(861, 28);
             this.progressBar1.TabIndex = 21;
             this.progressBar1.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1027, 656);
+            this.ClientSize = new System.Drawing.Size(1369, 807);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel3);
@@ -368,7 +384,7 @@
             this.Controls.Add(this.pboxFondoDeco);
             this.Controls.Add(this.lTitulo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "METROCALI";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -408,6 +424,7 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.PictureBox pboxFondoDeco;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ComboBox filtradoEstacionesZonas;
     }
 }
 

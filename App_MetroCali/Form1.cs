@@ -51,6 +51,9 @@ namespace App_MetroCali
         List<ZONA> zona7 = new List<ZONA>();
         List<ZONA> zona8 = new List<ZONA>();
 
+        //puntos ZONAS
+        List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+
         List<String> lines = new List <String>();
 
         Queue<List<MIO>> cola = new Queue<List<MIO>>();
@@ -89,9 +92,22 @@ namespace App_MetroCali
             cbZonas.Items.Add("8 - CALIPSO");
             cbZonas.Items.Add("MOSTRAR TODAS");
 
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 0");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 1");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 2");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 3");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 4");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 5");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 6");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 7");
+            filtradoEstacionesZonas.Items.Add("Estaciones ZONA 8");
+  
+
             pbIMAGEN.Image = Image.FromFile(@"logoMio.JPG");
             //pboxFondoDeco.Image = Image.FromFile(@"fondo.PNG");
 
+            lecturaParadas();
+            separarListasDeParadas();
 
             leerZonasCiudad();
             separarZonas();
@@ -104,8 +120,7 @@ namespace App_MetroCali
             progressBar1.Visible = false;
         }
 
-        public void lecturaParadas()
-        {
+        public void lecturaParadas() {
 
             StreamReader lector = new StreamReader(@"STOPS2.txt");
             String line = lector.ReadLine();
@@ -165,8 +180,7 @@ namespace App_MetroCali
         private void GControl_Load(object sender, EventArgs e) { }
 
         private void Bguardar_Click(object sender, EventArgs e){
-            lecturaParadas();
-            separarListasDeParadas();
+           
             filter();
             comprobarParadasEnMismaEstacion();
         }
@@ -204,8 +218,7 @@ namespace App_MetroCali
             MessageBox.Show("Preparando para mostrar marcadores");
             int S = 0;
             markerOverlayParada = new GMapOverlay("markadorParada");
-            for (int i = 0; i < a.Count(); i++)
-            {
+            for (int i = 0; i < a.Count(); i++){
                 marker = new GMarkerGoogle(new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD), GMarkerGoogleType.red);
                //var point = new PointLatLng(a[S].DECIMALLATITUD, a[S].DECIMALLONGITUD);
                 //Bitmap markerParada = (Bitmap)Image.FromFile(@"MIO.png");
@@ -460,12 +473,12 @@ namespace App_MetroCali
 
         }
 
-        public void hacerPoligonoEstaciones(List<Stops> a)
-        {
-            GMapOverlay poligono = new GMapOverlay("Poligono");
+       
+        public void hacerPoligonoEstaciones(List<Stops> a){
             List<PointLatLng> puntos = new List<PointLatLng>();
-            for (int i = 0; i < a.Count; i++)
-            {
+            GMapOverlay poligono = new GMapOverlay("Poligono");
+           
+            for (int i = 0; i < a.Count; i++){
                 puntos.Add(new PointLatLng(a[i].DECIMALLATITUD, a[i].DECIMALLONGITUD));
             }
 
@@ -476,11 +489,16 @@ namespace App_MetroCali
             gControl.Overlays.Add(poligono);
             //gControl.Zoom = gControl.Zoom + 1;
             //gControl.Zoom = gControl.Zoom - 1;
+            puntosEstaciones = puntos;
+            poligonoEstaciones = poligonoPuntos;
+
         }
 
         public void hacerPoligonoZonas(List<ZONA> a , Color color){
             GMapOverlay poligono = new GMapOverlay("Poligono");
+
             List<PointLatLng> puntos = new List<PointLatLng>();
+            
             for (int i = 0; i < a.Count; i++)
             {
                 
@@ -493,12 +511,7 @@ namespace App_MetroCali
             gControl.Overlays.Add(poligono);
             gControl.Zoom = gControl.Zoom + 1;
             gControl.Zoom = gControl.Zoom - 1;
-
-           
-
-            
-
-            
+            poligonoPuntosAux = poligonoPuntos;
         }
 
         public void removeMakers(){
@@ -516,8 +529,7 @@ namespace App_MetroCali
             line = lector.ReadLine();
             int i = 0;
          
-            while (line != null)
-            {
+            while (line != null) {
                 String[] arregloDatagramas = line.Split(',');
  
                 String EVENTTYPE = arregloDatagramas[0];
@@ -561,6 +573,7 @@ namespace App_MetroCali
             cbZonas.SelectedIndex = -1;
             buscarRutasUsuarios.ResetText();
             cb_elegir.SelectedIndex = -1;
+            filtradoEstacionesZonas.SelectedIndex = -1;
             removeMakers();
           
         }
@@ -676,13 +689,10 @@ namespace App_MetroCali
 
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            //  
+        private void Timer1_Tick(object sender, EventArgs e){
             label4.Text = DateTime.Parse("01/11/2018 05:35").ToString();
             timer1.Enabled = true;
-            timer1.Interval = 10;
-           
+            timer1.Interval = 10;         
         }
 
         private void Label4_Click(object sender, EventArgs e)
@@ -808,26 +818,333 @@ namespace App_MetroCali
         }
 
 
-        public void filtrarEstacionesEnZonas(GMapPolygon poligono){
-            int i = 0;
-            List<PointLatLng> puntos = new List<PointLatLng>();
-            List<Stops> paradasFiltradas = new List<Stops>();
-            while (i < ParadasEstaciones.Count){
-                puntos.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLATITUD));
-                if (poligono.IsInside(puntos[i])){
-                    paradasFiltradas.Add(ParadasEstaciones[i]);
-                    mostrarMarcadores(paradasFiltradas);
-                }                                                              
-                i++;
+     
+        public void filtrarEstacionesEnZonas(GMapPolygon poligonoPuntosZonas ) {
+            GMapOverlay poligonoEstacion = new GMapOverlay("PoligonoEstacion");
+
+            //ZONA 0
+            GMapOverlay poligono0 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona0 = new List<PointLatLng>();   
+            for (int i = 0; i < zona0.Count; i++){
+                puntosZona0.Add(new PointLatLng(zona0[i].latitud, zona0[i].longitud));
             }
+            GMapPolygon poligonoZona0 = new GMapPolygon(puntosZona0, "Poligono");
+            poligonoZona0.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono0.Polygons.Add(poligonoZona0);
            
 
-        }
+            //ZONA 1
+            GMapOverlay poligono1 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona1 = new List<PointLatLng>();
+            for (int i = 0; i < zona1.Count; i++){
+                puntosZona1.Add(new PointLatLng(zona1[i].latitud, zona1[i].longitud));
+            }
+            GMapPolygon poligonoZona1 = new GMapPolygon(puntosZona1, "Poligono");
+            poligonoZona1.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono1.Polygons.Add(poligonoZona1);
+           
+
+            //ZONA 2
+            GMapOverlay poligono2 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona2 = new List<PointLatLng>();
+            for (int i = 0; i < zona2.Count; i++){
+                puntosZona2.Add(new PointLatLng(zona2[i].latitud, zona2[i].longitud));
+            }
+            GMapPolygon poligonoZona2 = new GMapPolygon(puntosZona2, "Poligono");
+            poligonoZona2.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono2.Polygons.Add(poligonoZona2);
+            
+
+            //ZONA 3
+            GMapOverlay poligono3 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona3 = new List<PointLatLng>();
+            for (int i = 0; i < zona3.Count; i++){
+                puntosZona3.Add(new PointLatLng(zona3[i].latitud, zona3[i].longitud));
+            }
+            GMapPolygon poligonoZona3 = new GMapPolygon(puntosZona3, "Poligono");
+            poligonoZona3.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono3.Polygons.Add(poligonoZona3);
+            
+            //ZONA 4 
+            GMapOverlay poligono4 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona4 = new List<PointLatLng>();
+            for (int i = 0; i < zona4.Count; i++){
+                puntosZona4.Add(new PointLatLng(zona4[i].latitud, zona4[i].longitud));
+            }
+            GMapPolygon poligonoZona4 = new GMapPolygon(puntosZona4, "Poligono");
+            poligonoZona4.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono4.Polygons.Add(poligonoZona4);
+
+            //ZONA 5
+            GMapOverlay poligono5 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona5 = new List<PointLatLng>();
+            for (int i = 0; i < zona5.Count; i++) {
+                puntosZona5.Add(new PointLatLng(zona5[i].latitud, zona5[i].longitud));
+            }
+            GMapPolygon poligonoZona5 = new GMapPolygon(puntosZona5, "Poligono");
+            poligonoZona5.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono5.Polygons.Add(poligonoZona5);
+
+            //ZONA 6
+            GMapOverlay poligono6 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona6 = new List<PointLatLng>();
+            for (int i = 0; i < zona6.Count; i++)
+            {
+                puntosZona6.Add(new PointLatLng(zona6[i].latitud, zona6[i].longitud));
+            }
+            GMapPolygon poligonoZona6 = new GMapPolygon(puntosZona6, "Poligono");
+            poligonoZona6.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono6.Polygons.Add(poligonoZona6);
+
+            //ZONA 7
+            GMapOverlay poligono7 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona7 = new List<PointLatLng>();
+            for (int i = 0; i < zona7.Count; i++)
+            {
+                puntosZona7.Add(new PointLatLng(zona7[i].latitud, zona7[i].longitud));
+            }
+            GMapPolygon poligonoZona7 = new GMapPolygon(puntosZona7, "Poligono");
+            poligonoZona7.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono7.Polygons.Add(poligonoZona7);
+
+            //ZONA 8
+            GMapOverlay poligono8 = new GMapOverlay("Poligono");
+            List<PointLatLng> puntosZona8 = new List<PointLatLng>();
+            for (int i = 0; i < zona8.Count; i++)
+            {
+                puntosZona8.Add(new PointLatLng(zona8[i].latitud, zona8[i].longitud));
+            }
+            GMapPolygon poligonoZona8= new GMapPolygon(puntosZona8, "Poligono");
+            poligonoZona8.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
+            poligono8.Polygons.Add(poligonoZona8);
+
+            if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 0"))
+            {
+                gControl.Overlays.Add(poligono0);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona0.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+
+
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 1"))
+            {
+                gControl.Overlays.Add(poligono1);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona1.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 2"))
+            {
+                gControl.Overlays.Add(poligono2);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona2.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 3"))
+            {
+                gControl.Overlays.Add(poligono3);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona3.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 4"))
+            {
+                gControl.Overlays.Add(poligono4);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona4.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 5"))
+            {
+                gControl.Overlays.Add(poligono5);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona5.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 6"))
+            {
+                gControl.Overlays.Add(poligono6);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona6.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+            else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 7"))
+            {
+                gControl.Overlays.Add(poligono7);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona7.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            } else if (filtradoEstacionesZonas.Text.Equals("Estaciones ZONA 8")){
+                gControl.Overlays.Add(poligono8);
+                List<PointLatLng> puntosEstaciones = new List<PointLatLng>();
+                int i = 0;
+                while (i < ParadasEstaciones.Count)
+                {
+                    puntosEstaciones.Add(new PointLatLng(ParadasEstaciones[i].DECIMALLATITUD, ParadasEstaciones[i].DECIMALLONGITUD));
+
+                    markerOverlayZonas = new GMapOverlay("MarkadorEstacion");
+
+                    if (poligonoZona8.IsInside(puntosEstaciones[i]))
+                    {
+                        PointLatLng PZ = puntosEstaciones[i];
+
+                        marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
+                        markerOverlayZonas.Markers.Add(marker);
+                        marker.ToolTipMode = MarkerTooltipMode.Always;
+
+                        gControl.Overlays.Add(markerOverlayZonas);
+                    }
+                    i++;
+                }
+            }
+
+
+            }
+
+
+      
 
       
         private void button2_Click_1(object sender, EventArgs e)
         {
-
         }
 
       
@@ -836,6 +1153,21 @@ namespace App_MetroCali
         {
 
         }
+
+        public static  List<PointLatLng> puntos = new List<PointLatLng>();
+        GMapPolygon poligonoPuntosAux = new GMapPolygon(puntos, "Poligono");
+
+        public static List<PointLatLng> puntos2 = new List<PointLatLng>();
+        GMapPolygon poligonoEstaciones = new GMapPolygon(puntos2, "Poligono");
+
+        private void filtradoEstacionesZonas_SelectedIndexChanged(object sender, EventArgs e){
+            filtrarEstacionesEnZonas(poligonoPuntosAux);
+          
+        }
+
+
+
+
     }
 
 
