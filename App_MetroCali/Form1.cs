@@ -115,8 +115,8 @@ namespace App_MetroCali
             leerZonasCiudad();
             separarZonas();
 
-            //lecturaDatagramas();
-            lecturaDatagramas2();
+            lecturaDatagramas();
+            //lecturaDatagramas2();
             //separarBUSES();
 
 
@@ -758,12 +758,10 @@ namespace App_MetroCali
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             //metodoHilo();
             lecturaLines();
             ordenarCola(filtrarMios());
             timer2.Start();
-=======
             if (buscarRutasUsuarios.Text.Equals("")){
                 MessageBox.Show("Error, debe ingresar una ruta para buscar");
 
@@ -772,8 +770,7 @@ namespace App_MetroCali
                 ordenarCola(filtrarMios());
                 timer2.Start();
             }
-           
->>>>>>> 55110aa55c738bfe46965f49db383d6d6f840e7f
+          
 
         }
 
@@ -960,9 +957,9 @@ namespace App_MetroCali
         {
             markerOverlayMIO.Clear();
             //metodoHilo();
-            moverBus(darBus());
+            //moverBus(darBus());
             if (cola.Count>0){
-                //runProcess(cola.Dequeue());
+                runProcess(cola.Dequeue());
                 timer1.Start(); 
             }
             else{
@@ -1323,12 +1320,10 @@ namespace App_MetroCali
 
         }
 
-<<<<<<< HEAD
         private void pbIMAGEN_Click_1(object sender, EventArgs e)
         {
 
         }
-=======
         public static  List<PointLatLng> puntos = new List<PointLatLng>();
         GMapPolygon poligonoPuntosAux = new GMapPolygon(puntos, "Poligono");
 
@@ -1343,7 +1338,6 @@ namespace App_MetroCali
 
 
 
->>>>>>> 55110aa55c738bfe46965f49db383d6d6f840e7f
     }
 
 
