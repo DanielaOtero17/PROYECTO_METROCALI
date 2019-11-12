@@ -35,11 +35,9 @@ namespace App_MetroCali
         public void run()
         {
 
-<<<<<<< HEAD
-            //MessageBox.Show("entrando ");
-=======
+
             MessageBox.Show("Entrando ");
->>>>>>> e34c876f42a829860ef928ce6c256d9bc918d038
+
 
             while (continuar)
             {

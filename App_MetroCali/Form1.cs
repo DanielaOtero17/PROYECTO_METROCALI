@@ -39,6 +39,9 @@ namespace App_MetroCali
 
 
         public List<MIO> Buses = new List<MIO>();
+
+        private IDictionary<int, MIO> busDict = new Dictionary<int, MIO>();
+
         List<MIO> cantidadBuses = new List<MIO>();
 
         List<ZONA> zona0 = new List<ZONA>();
@@ -538,44 +541,58 @@ namespace App_MetroCali
 
         }
 
-<<<<<<< HEAD
+        //metodo de prueba
         public void lecturaDatagramas2()
         {
             StreamReader lector = new StreamReader(@"DATAGRAMS4.txt");
             String line = lector.ReadLine();
             line = lector.ReadLine();
 
-            MIO bus = new MIO("", "", "", "", "", "", "", "", "", "", "");
-
-            String[] arregloDatagramas = line.Split(',');
-
-            bus.EVENTTYPE = arregloDatagramas[0];
-            bus.STOPID = arregloDatagramas[2];
-            bus.ODOMETER = arregloDatagramas[3];
-
-            bus.LATITUDE = arregloDatagramas[4];
-            bus.LONGITUDE = arregloDatagramas[5];
-            bus.LIST_LATITUDE.Add(arregloDatagramas[4]);
-            bus.LIST_LONGITUDE.Add(arregloDatagramas[5]);
-
-            bus.TASKID = arregloDatagramas[6];
-            bus.LINEID = arregloDatagramas[7];
-            bus.TRIPID = arregloDatagramas[8];
-
-            bus.DATAGRAMID = arregloDatagramas[9];
-            bus.DATAGRAMDATE = arregloDatagramas[10];
-            bus.BUSID = arregloDatagramas[11];
-
-            line = lector.ReadLine();
             while (line != null)
             {
-                arregloDatagramas = line.Split(',');
+                MIO bus = new MIO("", "", "", "", "", "", "", "", "", "", "");
+
+                String[] arregloDatagramas = line.Split(',');
+
+                bus.EVENTTYPE = arregloDatagramas[0];
+                bus.STOPID = arregloDatagramas[2];
+                bus.ODOMETER = arregloDatagramas[3];
+
+                bus.LATITUDE = arregloDatagramas[4];
+                bus.LONGITUDE = arregloDatagramas[5];
                 bus.LIST_LATITUDE.Add(arregloDatagramas[4]);
                 bus.LIST_LONGITUDE.Add(arregloDatagramas[5]);
+
+                bus.TASKID = arregloDatagramas[6];
+                bus.LINEID = arregloDatagramas[7];
+                bus.TRIPID = arregloDatagramas[8];
+
+                bus.DATAGRAMID = arregloDatagramas[9];
+                bus.DATAGRAMDATE = arregloDatagramas[10];
+                bus.BUSID = arregloDatagramas[11];
+
                 line = lector.ReadLine();
+
+                arregloDatagramas = line.Split(',');
+
+                while (line != null && arregloDatagramas[11].Equals(bus.BUSID))
+                {
+                    arregloDatagramas = line.Split(',');
+                    bus.LIST_LATITUDE.Add(arregloDatagramas[4]);
+                    bus.LIST_LONGITUDE.Add(arregloDatagramas[5]);
+                    line = lector.ReadLine();
+
+                    if(line != null)
+                    {
+                    arregloDatagramas = line.Split(',');
+                    }
+                }
+                Buses.Add(bus);
+                Console.WriteLine(bus.BUSID);
+                busDict.Add(Int32.Parse(bus.BUSID), bus);
+
             }
 
-            Buses.Add(bus);
             lector.Close();
 
         }
@@ -588,44 +605,40 @@ namespace App_MetroCali
         }
 
       
-        public void ordenarCola()
-        {
+        //public void ordenarCola()
+        //{
           
-            String hora = "";
-            String minutos = "";
-            String auxh = "";
-            String auxm = "";
+        //    String hora = "";
+        //    String minutos = "";
+        //    String auxh = "";
+        //    String auxm = "";
 
             
 
-            for (int i = 0; i < Buses.Count; i++)
-            {
+        //    for (int i = 0; i < Buses.Count; i++)
+        //    {
 
-                String[] data = Buses[i].DATAGRAMDATE.Split(' ');
-                String[] data2 = data[1].Split('.');
-                auxh = data2[0];
-                auxm = data2[1];
-                if(auxh.Equals(hora) && auxm.Equals(minutos))
-                {
-                    cola.Last().Add(Buses[i]);
+        //        String[] data = Buses[i].DATAGRAMDATE.Split(' ');
+        //        String[] data2 = data[1].Split('.');
+        //        auxh = data2[0];
+        //        auxm = data2[1];
+        //        if(auxh.Equals(hora) && auxm.Equals(minutos))
+        //        {
+        //            cola.Last().Add(Buses[i]);
                    
-                }
-                else
-                {
-                    cola.Enqueue(new List<MIO>());
-                    cola.Last().Add(Buses[i]);
+        //        }
+        //        else
+        //        {
+        //            cola.Enqueue(new List<MIO>());
+        //            cola.Last().Add(Buses[i]);
 
-                    hora = auxh;
-                    minutos = auxm;
-                }
+        //            hora = auxh;
+        //            minutos = auxm;
+        //        }
 
-            }
+        //    }
 
-        }
-=======
->>>>>>> e34c876f42a829860ef928ce6c256d9bc918d038
-
-        
+        //}
        
         public void BPuntosZonas_Click_1(object sender, EventArgs e){
             mostrarMarcadoresZonas();
@@ -635,7 +648,6 @@ namespace App_MetroCali
             timer2.Stop();
             cola.Clear();
             removeMakers();
-          
         }
 
         public Boolean busExist(MIO idBus)
@@ -661,6 +673,18 @@ namespace App_MetroCali
 
             return result;
 
+        }
+
+        public MIO darBus()
+        {
+            if (busDict[Int32.Parse(buscarRutasUsuarios.Text)] != null)
+            {
+                return busDict[Int32.Parse(buscarRutasUsuarios.Text)];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void ordenarCola(String id) {
@@ -707,7 +731,7 @@ namespace App_MetroCali
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
-
+            //metodoHilo();
             lecturaLines();
             ordenarCola(filtrarMios());
             timer2.Start();
@@ -842,35 +866,52 @@ namespace App_MetroCali
             gControl.Zoom = gControl.Zoom - 0.1;
 
         }
-
-        public void moverBus()
+        public void moverBus(object bus)
         {
             Bitmap markerMio = (Bitmap)Image.FromFile(@"iconoMio.png");
 
-            for (int i = 0; i<Buses.Count; i++)
+            MIO buss = (MIO) bus;
+            //Console.WriteLine(buss.BUSID);
+
+            double latitude = ordenarDecimal(buss.LATITUDE);
+            double longitude = ordenarDecimal(buss.LONGITUDE);
+
+            marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
+
+            markerOverlayMIO.Markers.Add(marker);
+            marker.ToolTipText = buss.LINEID;
+            gControl.Overlays.Add(markerOverlayMIO);
+
+            for (int j = 1; j < buss.LIST_LATITUDE.Count - 1; j++)
             {
-                for(int j = 0; j<Buses[i].LIST_LATITUDE.Count; j++)
+                while (!buss.LATITUDE.Equals(buss.LIST_LATITUDE[j]) && !buss.LONGITUDE.Equals(buss.LIST_LONGITUDE[j]))
                 {
-                    double latitude = ordenarDecimal(Buses[i].LIST_LATITUDE[j]);
-                    double longitude = ordenarDecimal(Buses[i].LIST_LONGITUDE[j]);
-
-                    marker = new GMarkerGoogle(new PointLatLng(latitude, longitude), markerMio);
-
-                    markerOverlayMIO.Markers.Add(marker);
-                    gControl.Overlays.Add(markerOverlayMIO);
-                    //marker.ToolTipMode = MarkerTooltipMode.Always;
-
-                    //Buses[i].moveBus(Int32.Parse(Buses[i].LIST_LATITUDE[i]), Int32.Parse(Buses[i].LIST_LONGITUDE[i]));
-                    Hilo hilo = new Hilo(Buses[i], this, Buses[i].LIST_LATITUDE[j], Buses[i].LIST_LONGITUDE[j]);
-                    Thread hilo1 = new Thread(hilo.run);
-                    //hilo1.Start
-                    //markerOverlayMIO.Clear();
+                    //Buses[i].moveBus(ordenarDecimal(Buses[i].LIST_LATITUDE[j]), ordenarDecimal(Buses[i].LIST_LONGITUDE[j]));
+                    buss.moveBus2(buss.LIST_LATITUDE[j], buss.LIST_LONGITUDE[j]);
+                    marker.Position = new GMap.NET.PointLatLng(ordenarDecimal(buss.LATITUDE), ordenarDecimal(buss.LONGITUDE));
+                    //Thread.Sleep(1000);
                 }
-                //gControl.Overlays.Add(markerOverlayMIO);
-                //markerOverlayMIO.Clear();
             }
+            
         }
 
+        public void moverUnBus(MIO bus)
+        {
+            ParameterizedThreadStart delegado = new ParameterizedThreadStart(moverBus);
+            Thread hilo = new Thread(delegado);
+            hilo.Start(bus);
+        }
+
+        public void metodoHilo()
+        {
+            ParameterizedThreadStart delegado = new ParameterizedThreadStart(moverBus);
+            foreach (var item in busDict)
+            {
+                Thread hilo = new Thread(delegado);
+                hilo.Start(item.Value);
+                //hilo.Join();
+            }
+        }
 
         private void button1_Click_1(object sender, EventArgs e){
 
@@ -882,21 +923,21 @@ namespace App_MetroCali
         private void Timer2_Tick(object sender, EventArgs e)
         {
             markerOverlayMIO.Clear();
+            //metodoHilo();
+            moverBus(darBus());
             if (cola.Count>0){
-                runProcess(cola.Dequeue());
+                //runProcess(cola.Dequeue());
                 timer1.Start(); 
             }
             else{
                 timer2.Stop();
             }
 
-<<<<<<< HEAD
             //runProcess();
-            moverBus();
-          
-=======
+            //moverBus();
+
             timer2.Interval = 1000;
->>>>>>> e34c876f42a829860ef928ce6c256d9bc918d038
+
         }
 
         private void PbIMAGEN_Click(object sender, EventArgs e)
@@ -935,6 +976,11 @@ namespace App_MetroCali
       
  
         private void LTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbIMAGEN_Click_1(object sender, EventArgs e)
         {
 
         }

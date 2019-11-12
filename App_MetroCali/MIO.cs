@@ -80,38 +80,67 @@ namespace App_MetroCali
             
         }
 
-        public void moveBus(int x1, int y1)
+        public void moveBus(double x1, double y1)
         {
-            int x = Int32.Parse(LATITUDE);
-            int y = Int32.Parse(LONGITUDE);
+            double x = ordenarDecimal(LATITUDE);
+            double y = ordenarDecimal(LONGITUDE);
 
             if (x != x1 && y != y1)
             {
-                float deltaX = x1 - x;
-                float deltaY = y1 - y;
-                float angle = (float)Math.Atan2(deltaY, deltaX);
+                double deltaX = x1 - x;
+                double deltaY = y1 - y;
 
-                double speedX = 0.000015 * Math.Cos(angle);
-                double speedY = 0.000015 * Math.Sin(angle);
+                double angle = Math.Atan2(deltaY, deltaX);
 
-                x = (int)(x + speedX);
-                LATITUDE = x.ToString();
+                double speedX = 0.00006 * Math.Cos(angle);
+                double speedY = 0.00006 * Math.Sin(angle);
 
-                y = (int)(y + speedY);
-                LONGITUDE = y.ToString();
+                x = x + speedX;
+                y = y + speedY;
+
+                LATITUDE = desOrdenarDecimal(x);
+                LONGITUDE = desOrdenarDecimal(y);
 
             }
 
             //double dist = Math.Hypot(x - x1, y - y1);
             double dist = Math.Sqrt(Math.Pow(x - x1, 2) + Math.Pow(y - y1, 2));
 
-            if (dist < 8)
+            if (dist < 0.0003)
             {
                 x = x1;
-                LATITUDE = x.ToString();
+                LATITUDE = desOrdenarDecimal(x);
                 y = y1;
-                LONGITUDE = y.ToString();
+                LONGITUDE = desOrdenarDecimal(y);
             }
+
         }
+
+        public void moveBus2(String x1, String y1)
+        {
+            LATITUDE = x1;
+            LONGITUDE = y1;
+        }
+
+        public double ordenarDecimal(String num)
+        {
+
+            double aux = double.Parse(num);
+
+            double result = aux / 10000000;
+
+            return result;
+
+        }
+
+        public String desOrdenarDecimal(double num)
+        {
+
+            String result = (num * 10000000) + "";
+
+            return result;
+
+        }
+
     }
 }
