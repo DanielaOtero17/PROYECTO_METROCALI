@@ -54,6 +54,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.pboxFondoDeco = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
             panel1 = new System.Windows.Forms.Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIMAGEN)).BeginInit();
@@ -67,21 +68,22 @@
             panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             panel1.AutoSize = true;
             panel1.BackColor = System.Drawing.Color.Green;
+            panel1.Controls.Add(this.label7);
             panel1.Controls.Add(this.filtradoEstacionesZonas);
             panel1.Controls.Add(this.label3);
             panel1.Controls.Add(this.cbZonas);
             panel1.Controls.Add(this.label2);
-            panel1.Location = new System.Drawing.Point(987, 332);
+            panel1.Location = new System.Drawing.Point(983, 332);
             panel1.Margin = new System.Windows.Forms.Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(361, 149);
+            panel1.Size = new System.Drawing.Size(365, 157);
             panel1.TabIndex = 17;
             panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
             // 
             // filtradoEstacionesZonas
             // 
             this.filtradoEstacionesZonas.FormattingEnabled = true;
-            this.filtradoEstacionesZonas.Location = new System.Drawing.Point(15, 99);
+            this.filtradoEstacionesZonas.Location = new System.Drawing.Point(16, 121);
             this.filtradoEstacionesZonas.Name = "filtradoEstacionesZonas";
             this.filtradoEstacionesZonas.Size = new System.Drawing.Size(329, 24);
             this.filtradoEstacionesZonas.TabIndex = 21;
@@ -104,7 +106,7 @@
             // 
             this.cbZonas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbZonas.FormattingEnabled = true;
-            this.cbZonas.Location = new System.Drawing.Point(15, 60);
+            this.cbZonas.Location = new System.Drawing.Point(19, 60);
             this.cbZonas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbZonas.Name = "cbZonas";
             this.cbZonas.Size = new System.Drawing.Size(328, 24);
@@ -208,7 +210,7 @@
             this.BEliminar.Font = new System.Drawing.Font("Gill Sans MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BEliminar.ForeColor = System.Drawing.SystemColors.Desktop;
             this.BEliminar.Image = ((System.Drawing.Image)(resources.GetObject("BEliminar.Image")));
-            this.BEliminar.Location = new System.Drawing.Point(1107, 711);
+            this.BEliminar.Location = new System.Drawing.Point(1101, 731);
             this.BEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BEliminar.Name = "BEliminar";
             this.BEliminar.Size = new System.Drawing.Size(131, 54);
@@ -265,7 +267,7 @@
             this.panel2.Controls.Add(this.buscarRutasUsuarios);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.MostrarMIOS);
-            this.panel2.Location = new System.Drawing.Point(987, 495);
+            this.panel2.Location = new System.Drawing.Point(987, 514);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 92);
@@ -301,7 +303,7 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.Bguardar);
             this.panel3.Controls.Add(this.cb_elegir);
-            this.panel3.Location = new System.Drawing.Point(987, 601);
+            this.panel3.Location = new System.Drawing.Point(987, 623);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(361, 92);
@@ -366,6 +368,17 @@
             this.progressBar1.TabIndex = 21;
             this.progressBar1.Click += new System.EventHandler(this.ProgressBar1_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(50, 95);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(258, 23);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Visualizar Estaciones por Zona";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -426,6 +439,7 @@
         private System.Windows.Forms.PictureBox pboxFondoDeco;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ComboBox filtradoEstacionesZonas;
+        private System.Windows.Forms.Label label7;
     }
 }
 
