@@ -666,7 +666,7 @@ namespace App_MetroCali
         }
 
         public void BEliminar_Click(object sender, EventArgs e){
-            timer2.Stop();
+            timer1.Stop();
             cola.Clear();
             cbZonas.Enabled = true;
             cb_elegir.Enabled = true;
@@ -675,6 +675,7 @@ namespace App_MetroCali
             cb_elegir.SelectedIndex = -1;
             filtradoEstacionesZonas.SelectedIndex = -1;
             removeMakers();
+            label4.Text = "Hora del sistema";
         }
 
         public Boolean busExist(MIO idBus)
@@ -720,6 +721,7 @@ namespace App_MetroCali
             String hora = "";
             String min = "";
             String[] auxi = id.Split(',');
+            progressBar1.Visible = true;
             progressBar1.Increment(-Buses.Count);
             progressBar1.Maximum = Buses.Count;
             for (int a=0; a < Buses.Count; a++)
@@ -753,15 +755,17 @@ namespace App_MetroCali
 
             }
 
+            progressBar1.Visible = false;
+
         }
 
 
        public void MostrarMIOS_Click(object sender, EventArgs e)
         {
             //metodoHilo();
-            lecturaLines();
+            /*lecturaLines();
             ordenarCola(filtrarMios());
-            timer2.Start();
+            timer2.Start();*/
             if (buscarRutasUsuarios.Text.Equals("")){
                 MessageBox.Show("Error, debe ingresar una ruta para buscar");
 
@@ -804,10 +808,34 @@ namespace App_MetroCali
 
         }
 
-        private void Timer1_Tick(object sender, EventArgs e){
-            label4.Text = DateTime.Parse("01/11/2018 05:35").ToString();
+        int minutes = 35;
+        int hour = 5;
+        int seconds = 00;
+        int day = 01;
+        private void Timer1_Tick(object sender, EventArgs e) {
+
+            label4.Text = DateTime.Parse("01/11/2018 " + hour + ":" + minutes + ":" + seconds).ToString();
             timer1.Enabled = true;
-            timer1.Interval = 10;         
+            timer1.Interval = 1;
+            
+            seconds++;
+
+            if (seconds == 60 )
+            {
+                minutes++;
+                seconds = 00;
+            }
+            if(minutes == 60)
+            {
+                hour++;
+                minutes = 00;
+            }
+            if(hour == 25)
+            {
+                hour = 01;
+                day++;
+
+            }
         }
 
         private void Label4_Click(object sender, EventArgs e)
