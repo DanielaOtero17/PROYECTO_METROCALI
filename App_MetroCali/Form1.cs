@@ -155,7 +155,16 @@ namespace App_MetroCali
             for (int i = 0; i < Paradas.Count; i++)
             {
 
-                if (Paradas[i].LONGNAME.Contains("Kr ") || Paradas[i].LONGNAME.Contains("Cl ") || Paradas[i].LONGNAME.Contains("entre"))
+                if (Paradas[i].LONGNAME.Contains("Callejon Chapa") || Paradas[i].LONGNAME.Contains("Autopista Cali -") || 
+                    Paradas[i].LONGNAME.Contains("Univ Anto") || Paradas[i].LONGNAME.Contains("Hormigero") || Paradas[i].LONGNAME.Contains("Cementerio Metro") || 
+                    Paradas[i].LONGNAME.Contains("E Servi") || Paradas[i].LONGNAME.Contains("Resesrva") || Paradas[i].LONGNAME.Contains("Hormiguero") || 
+                    Paradas[i].LONGNAME.Contains("Zonamerica") || Paradas[i].LONGNAME.Contains("San Martin") || Paradas[i].LONGNAME.Contains("Urb Mara") || 
+                    Paradas[i].LONGNAME.Contains("Cali_p") || Paradas[i].LONGNAME.Contains("Mirador") || Paradas[i].LONGNAME.Contains("VORAGINE") || 
+                    Paradas[i].LONGNAME.Contains("La Sirena") || Paradas[i].LONGNAME.Contains("Puerto") || Paradas[i].LONGNAME.Contains("Colegio Ideas") || 
+                    Paradas[i].LONGNAME.Contains("Voragine") || Paradas[i].LONGNAME.Contains("V-") || Paradas[i].LONGNAME.Contains("V_") || 
+                    Paradas[i].LONGNAME.Contains("Puente ") || Paradas[i].LONGNAME.Contains("Reserva") || Paradas[i].LONGNAME.Contains("Av ") || 
+                    Paradas[i].LONGNAME.Contains("Kr ") || Paradas[i].LONGNAME.Contains("Cl ") || Paradas[i].LONGNAME.Contains("entre") || 
+                    Paradas[i].LONGNAME.Contains("Via") || Paradas[i].LONGNAME.Contains("Alto") || Paradas[i].LONGNAME.Contains("via"))
                 {
                     ParadasCalle.Add(Paradas[i]);
                     //Console.WriteLine("ESTACION : "+ParadasEstaciones[i].LONGNAME);
@@ -453,11 +462,11 @@ namespace App_MetroCali
         public void comprobarParadasEnMismaEstacion()
         {
             List<Stops> listaAux = new List<Stops>();
-            String name = ParadasEstaciones[0].SHORTNAME;
+            String name = ParadasEstaciones[0].LONGNAME;
             for (int i = 0; i < ParadasEstaciones.Count; i++)
             {
 
-                if (ParadasEstaciones[i].SHORTNAME.Substring(0, ParadasEstaciones[i].SHORTNAME.Length-2).Equals(name.Substring(0, name.Length-2)))
+                if (ParadasEstaciones[i].LONGNAME.Substring(0, ParadasEstaciones[i].LONGNAME.Length-4).Equals(name.Substring(0, name.Length-4)))
                 {
                     listaAux.Add(ParadasEstaciones[i]);
                     //Console.WriteLine(ParadasEstaciones[i].SHORTNAME);
@@ -466,7 +475,7 @@ namespace App_MetroCali
                 {
                     //convexHull(listaAux, listaAux.Count);
                     hacerPoligonoEstaciones(convexHull(listaAux, listaAux.Count));
-                    name = ParadasEstaciones[i].SHORTNAME;
+                    name = ParadasEstaciones[i].LONGNAME;
                     listaAux.Clear();
                     listaAux.Add(ParadasEstaciones[i]);
                 }
@@ -528,7 +537,7 @@ namespace App_MetroCali
 
         //Aquí se guarda la información de los buses, en la lista de buses.
         public void lecturaDatagramas(){
-            StreamReader lector = new StreamReader(@"DATAGRAMS.txt");
+            StreamReader lector = new StreamReader(@"DATAGRAMS4.txt");
             String line = lector.ReadLine();
             line = lector.ReadLine();
             int i = 0;
@@ -1130,7 +1139,8 @@ namespace App_MetroCali
                         marker = new GMarkerGoogle(PZ, GMarkerGoogleType.green);
                         markerOverlayZonas.Markers.Add(marker);
                         marker.ToolTipMode = MarkerTooltipMode.Always;
-
+                        //gControl.Zoom = gControl.Zoom + 1;
+                        //gControl.Zoom = gControl.Zoom - 1;
 
                         gControl.Overlays.Add(markerOverlayZonas);
                     }
